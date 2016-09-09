@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/popup.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-xhdpi/popup.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/poi_star.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-xhdpi/poi_star.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/poi_img.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-xhdpi/poi_img.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/ic_launcher.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/poi_dot.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-xhdpi/poi_dot.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/poi_popup.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-xhdpi/poi_popup.png"
+    }
+]

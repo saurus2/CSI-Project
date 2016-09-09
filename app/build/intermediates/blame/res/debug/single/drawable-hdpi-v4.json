@@ -1,0 +1,70 @@
+[
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/end.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/end.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/test_image.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/test_image.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/i_go.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/i_go.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/info_box.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/info_box.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/poi_popup.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/poi_popup.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/pin_tevent.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/pin_tevent.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/popup.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/popup.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/poi_img.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/poi_img.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/poi_star.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/poi_star.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ani2.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/ani2.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/i_location.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/i_location.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/right_arrow.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/right_arrow.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/map_pin_red.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/map_pin_red.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ani1.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/ani1.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/poi_dot.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/poi_dot.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/bubble_info.9.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/bubble_info.9.png"
+    },
+    {
+        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_launcher.png",
+        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/drawable-hdpi/ic_launcher.png"
+    }
+]

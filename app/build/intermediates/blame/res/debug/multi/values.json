@@ -1,0 +1,965 @@
+[
+    {
+        "outputFile": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 22,
+                    "endColumn": 20,
+                    "endOffset": 555
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/arrays.xml",
+                    "position": {
+                        "startLine": 42,
+                        "startColumn": 1,
+                        "startOffset": 1015,
+                        "endLine": 62,
+                        "endColumn": 20,
+                        "endOffset": 1515
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 560,
+                    "endLine": 28,
+                    "endColumn": 19,
+                    "endOffset": 729
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/arrays.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 1,
+                        "startOffset": 583,
+                        "endLine": 31,
+                        "endColumn": 19,
+                        "endOffset": 752
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 29,
+                    "startColumn": 4,
+                    "startOffset": 734,
+                    "endLine": 36,
+                    "endColumn": 19,
+                    "endOffset": 983
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/arrays.xml",
+                    "position": {
+                        "startLine": 33,
+                        "startColumn": 1,
+                        "startOffset": 759,
+                        "endLine": 40,
+                        "endColumn": 19,
+                        "endOffset": 1008
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 37,
+                    "startColumn": 4,
+                    "startOffset": 988,
+                    "endLine": 58,
+                    "endColumn": 19,
+                    "endOffset": 1511
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/arrays.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 1,
+                        "startOffset": 53,
+                        "endLine": 24,
+                        "endColumn": 19,
+                        "endOffset": 576
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 59,
+                    "startColumn": 4,
+                    "startOffset": 1516,
+                    "endColumn": 43,
+                    "endOffset": 1555
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 32,
+                        "startColumn": 1,
+                        "startOffset": 1101,
+                        "endColumn": 40,
+                        "endOffset": 1140
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 60,
+                    "startColumn": 4,
+                    "startOffset": 1560,
+                    "endColumn": 47,
+                    "endOffset": 1603
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 1,
+                        "startOffset": 163,
+                        "endColumn": 44,
+                        "endOffset": 206
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 61,
+                    "startColumn": 4,
+                    "startOffset": 1608,
+                    "endColumn": 60,
+                    "endOffset": 1664
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 60,
+                        "endOffset": 111
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 62,
+                    "startColumn": 4,
+                    "startOffset": 1669,
+                    "endColumn": 39,
+                    "endOffset": 1704
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 1,
+                        "startOffset": 208,
+                        "endColumn": 36,
+                        "endOffset": 243
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 63,
+                    "startColumn": 4,
+                    "startOffset": 1709,
+                    "endColumn": 46,
+                    "endOffset": 1751
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 49,
+                        "startColumn": 1,
+                        "startOffset": 1678,
+                        "endColumn": 43,
+                        "endOffset": 1720
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 64,
+                    "startColumn": 4,
+                    "startOffset": 1756,
+                    "endColumn": 50,
+                    "endOffset": 1802
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 65,
+                        "startColumn": 1,
+                        "startOffset": 2186,
+                        "endColumn": 47,
+                        "endOffset": 2232
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 65,
+                    "startColumn": 4,
+                    "startOffset": 1807,
+                    "endColumn": 45,
+                    "endOffset": 1848
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 64,
+                        "startColumn": 1,
+                        "startOffset": 2143,
+                        "endColumn": 42,
+                        "endOffset": 2184
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 66,
+                    "startColumn": 4,
+                    "startOffset": 1853,
+                    "endColumn": 42,
+                    "endOffset": 1891
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 47,
+                        "startColumn": 1,
+                        "startOffset": 1591,
+                        "endColumn": 39,
+                        "endOffset": 1629
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 67,
+                    "startColumn": 4,
+                    "startOffset": 1896,
+                    "endColumn": 49,
+                    "endOffset": 1941
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 60,
+                        "startColumn": 1,
+                        "startOffset": 1998,
+                        "endColumn": 46,
+                        "endOffset": 2043
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 68,
+                    "startColumn": 4,
+                    "startOffset": 1946,
+                    "endColumn": 59,
+                    "endOffset": 2001
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 44,
+                        "startColumn": 1,
+                        "startOffset": 1493,
+                        "endColumn": 56,
+                        "endOffset": 1548
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 69,
+                    "startColumn": 4,
+                    "startOffset": 2006,
+                    "endColumn": 42,
+                    "endOffset": 2044
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 35,
+                        "startColumn": 1,
+                        "startOffset": 1188,
+                        "endColumn": 39,
+                        "endOffset": 1226
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 70,
+                    "startColumn": 4,
+                    "startOffset": 2049,
+                    "endColumn": 47,
+                    "endOffset": 2092
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 39,
+                        "startColumn": 1,
+                        "startOffset": 1311,
+                        "endColumn": 44,
+                        "endOffset": 1354
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 71,
+                    "startColumn": 4,
+                    "startOffset": 2097,
+                    "endColumn": 44,
+                    "endOffset": 2137
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 42,
+                        "startColumn": 1,
+                        "startOffset": 1404,
+                        "endColumn": 41,
+                        "endOffset": 1444
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 72,
+                    "startColumn": 4,
+                    "startOffset": 2142,
+                    "endColumn": 43,
+                    "endOffset": 2181
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 36,
+                        "startColumn": 1,
+                        "startOffset": 1228,
+                        "endColumn": 40,
+                        "endOffset": 1267
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 73,
+                    "startColumn": 4,
+                    "startOffset": 2186,
+                    "endColumn": 48,
+                    "endOffset": 2230
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 40,
+                        "startColumn": 1,
+                        "startOffset": 1356,
+                        "endColumn": 45,
+                        "endOffset": 1400
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 74,
+                    "startColumn": 4,
+                    "startOffset": 2235,
+                    "endColumn": 43,
+                    "endOffset": 2274
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 59,
+                        "startColumn": 1,
+                        "startOffset": 1957,
+                        "endColumn": 40,
+                        "endOffset": 1996
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 75,
+                    "startColumn": 4,
+                    "startOffset": 2279,
+                    "endColumn": 50,
+                    "endOffset": 2325
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 62,
+                        "startColumn": 1,
+                        "startOffset": 2093,
+                        "endColumn": 47,
+                        "endOffset": 2139
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 76,
+                    "startColumn": 4,
+                    "startOffset": 2330,
+                    "endColumn": 50,
+                    "endOffset": 2376
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 61,
+                        "startColumn": 1,
+                        "startOffset": 2045,
+                        "endColumn": 47,
+                        "endOffset": 2091
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 77,
+                    "startColumn": 4,
+                    "startOffset": 2381,
+                    "endColumn": 50,
+                    "endOffset": 2427
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 1,
+                        "startOffset": 789,
+                        "endColumn": 47,
+                        "endOffset": 835
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 78,
+                    "startColumn": 4,
+                    "startOffset": 2432,
+                    "endColumn": 52,
+                    "endOffset": 2480
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 1,
+                        "startOffset": 520,
+                        "endColumn": 49,
+                        "endOffset": 568
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 79,
+                    "startColumn": 4,
+                    "startOffset": 2485,
+                    "endColumn": 59,
+                    "endOffset": 2540
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 1,
+                        "startOffset": 892,
+                        "endColumn": 56,
+                        "endOffset": 947
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 80,
+                    "startColumn": 4,
+                    "startOffset": 2545,
+                    "endColumn": 52,
+                    "endOffset": 2593
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 30,
+                        "startColumn": 1,
+                        "startOffset": 1049,
+                        "endColumn": 49,
+                        "endOffset": 1097
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 81,
+                    "startColumn": 4,
+                    "startOffset": 2598,
+                    "endColumn": 63,
+                    "endOffset": 2657
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 1,
+                        "startOffset": 367,
+                        "endColumn": 60,
+                        "endOffset": 426
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 82,
+                    "startColumn": 4,
+                    "startOffset": 2662,
+                    "endColumn": 48,
+                    "endOffset": 2706
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 1,
+                        "startOffset": 648,
+                        "endColumn": 45,
+                        "endOffset": 692
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 83,
+                    "startColumn": 4,
+                    "startOffset": 2711,
+                    "endColumn": 42,
+                    "endOffset": 2749
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 37,
+                        "startColumn": 1,
+                        "startOffset": 1269,
+                        "endColumn": 39,
+                        "endOffset": 1307
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 84,
+                    "startColumn": 4,
+                    "startOffset": 2754,
+                    "endColumn": 54,
+                    "endOffset": 2804
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 56,
+                        "startColumn": 1,
+                        "startOffset": 1855,
+                        "endColumn": 51,
+                        "endOffset": 1905
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 85,
+                    "startColumn": 4,
+                    "startOffset": 2809,
+                    "endColumn": 50,
+                    "endOffset": 2855
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 57,
+                        "startColumn": 1,
+                        "startOffset": 1907,
+                        "endColumn": 47,
+                        "endOffset": 1953
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 86,
+                    "startColumn": 4,
+                    "startOffset": 2860,
+                    "endColumn": 41,
+                    "endOffset": 2897
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 45,
+                        "startColumn": 1,
+                        "startOffset": 1550,
+                        "endColumn": 38,
+                        "endOffset": 1587
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 87,
+                    "startColumn": 4,
+                    "startOffset": 2902,
+                    "endColumn": 43,
+                    "endOffset": 2941
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 1,
+                        "startOffset": 122,
+                        "endColumn": 40,
+                        "endOffset": 161
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 88,
+                    "startColumn": 4,
+                    "startOffset": 2946,
+                    "endColumn": 49,
+                    "endOffset": 2991
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 48,
+                        "startColumn": 1,
+                        "startOffset": 1631,
+                        "endColumn": 46,
+                        "endOffset": 1676
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 89,
+                    "startColumn": 4,
+                    "startOffset": 2996,
+                    "endColumn": 46,
+                    "endOffset": 3038
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 33,
+                        "startColumn": 1,
+                        "startOffset": 1142,
+                        "endColumn": 43,
+                        "endOffset": 1184
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 90,
+                    "startColumn": 4,
+                    "startOffset": 3043,
+                    "endColumn": 49,
+                    "endOffset": 3088
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 43,
+                        "startColumn": 1,
+                        "startOffset": 1446,
+                        "endColumn": 46,
+                        "endOffset": 1491
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 91,
+                    "startColumn": 4,
+                    "startOffset": 3093,
+                    "endColumn": 46,
+                    "endOffset": 3135
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 54,
+                        "startColumn": 1,
+                        "startOffset": 1810,
+                        "endColumn": 43,
+                        "endOffset": 1852
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 92,
+                    "startColumn": 4,
+                    "startOffset": 3140,
+                    "endColumn": 59,
+                    "endOffset": 3195
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 1,
+                        "startOffset": 247,
+                        "endColumn": 56,
+                        "endOffset": 302
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 93,
+                    "startColumn": 4,
+                    "startOffset": 3200,
+                    "endColumn": 52,
+                    "endOffset": 3248
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 1,
+                        "startOffset": 470,
+                        "endColumn": 49,
+                        "endOffset": 518
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 94,
+                    "startColumn": 4,
+                    "startOffset": 3253,
+                    "endColumn": 42,
+                    "endOffset": 3291
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 1,
+                        "startOffset": 430,
+                        "endColumn": 39,
+                        "endOffset": 468
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 95,
+                    "startColumn": 4,
+                    "startOffset": 3296,
+                    "endColumn": 63,
+                    "endOffset": 3355
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 1,
+                        "startOffset": 306,
+                        "endColumn": 60,
+                        "endOffset": 365
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 96,
+                    "startColumn": 4,
+                    "startOffset": 3360,
+                    "endColumn": 47,
+                    "endOffset": 3403
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 1,
+                        "startOffset": 742,
+                        "endColumn": 44,
+                        "endOffset": 785
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 97,
+                    "startColumn": 4,
+                    "startOffset": 3408,
+                    "endColumn": 52,
+                    "endOffset": 3456
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 29,
+                        "startColumn": 1,
+                        "startOffset": 999,
+                        "endColumn": 49,
+                        "endOffset": 1047
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 98,
+                    "startColumn": 4,
+                    "startOffset": 3461,
+                    "endColumn": 55,
+                    "endOffset": 3512
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 1,
+                        "startOffset": 839,
+                        "endColumn": 52,
+                        "endOffset": 890
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 99,
+                    "startColumn": 4,
+                    "startOffset": 3517,
+                    "endColumn": 48,
+                    "endOffset": 3561
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 1,
+                        "startOffset": 696,
+                        "endColumn": 45,
+                        "endOffset": 740
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 100,
+                    "startColumn": 4,
+                    "startOffset": 3566,
+                    "endColumn": 50,
+                    "endOffset": 3612
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 1,
+                        "startOffset": 951,
+                        "endColumn": 47,
+                        "endOffset": 997
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 101,
+                    "startColumn": 4,
+                    "startOffset": 3617,
+                    "endColumn": 44,
+                    "endOffset": 3657
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 53,
+                        "startColumn": 1,
+                        "startOffset": 1768,
+                        "endColumn": 41,
+                        "endOffset": 1808
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 102,
+                    "startColumn": 4,
+                    "startOffset": 3662,
+                    "endColumn": 44,
+                    "endOffset": 3702
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 51,
+                        "startColumn": 1,
+                        "startOffset": 1724,
+                        "endColumn": 41,
+                        "endOffset": 1764
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 103,
+                    "startColumn": 4,
+                    "startOffset": 3707,
+                    "endColumn": 39,
+                    "endOffset": 3742
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 1,
+                        "startOffset": 572,
+                        "endColumn": 36,
+                        "endOffset": 607
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 104,
+                    "startColumn": 4,
+                    "startOffset": 3747,
+                    "endColumn": 41,
+                    "endOffset": 3784
+                },
+                "from": {
+                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 1,
+                        "startOffset": 609,
+                        "endColumn": 38,
+                        "endOffset": 646
+                    }
+                }
+            }
+        ]
+    }
+]
