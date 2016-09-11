@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/values/values.xml",
+        "outputFile": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -12,14 +12,14 @@
                     "endOffset": 555
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/arrays.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\arrays.xml",
                     "position": {
                         "startLine": 42,
                         "startColumn": 1,
-                        "startOffset": 1015,
+                        "startOffset": 1057,
                         "endLine": 62,
                         "endColumn": 20,
-                        "endOffset": 1515
+                        "endOffset": 1577
                     }
                 }
             },
@@ -33,14 +33,14 @@
                     "endOffset": 729
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/arrays.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\arrays.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 1,
-                        "startOffset": 583,
+                        "startOffset": 609,
                         "endLine": 31,
                         "endColumn": 19,
-                        "endOffset": 752
+                        "endOffset": 783
                     }
                 }
             },
@@ -54,14 +54,14 @@
                     "endOffset": 983
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/arrays.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\arrays.xml",
                     "position": {
                         "startLine": 33,
                         "startColumn": 1,
-                        "startOffset": 759,
+                        "startOffset": 792,
                         "endLine": 40,
                         "endColumn": 19,
-                        "endOffset": 1008
+                        "endOffset": 1048
                     }
                 }
             },
@@ -75,14 +75,14 @@
                     "endOffset": 1511
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/arrays.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\arrays.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 1,
-                        "startOffset": 53,
+                        "startOffset": 56,
                         "endLine": 24,
                         "endColumn": 19,
-                        "endOffset": 576
+                        "endOffset": 600
                     }
                 }
             },
@@ -95,13 +95,13 @@
                     "endOffset": 1555
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 32,
                         "startColumn": 1,
-                        "startOffset": 1101,
+                        "startOffset": 1133,
                         "endColumn": 40,
-                        "endOffset": 1140
+                        "endOffset": 1172
                     }
                 }
             },
@@ -114,13 +114,13 @@
                     "endOffset": 1603
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 1,
-                        "startOffset": 163,
+                        "startOffset": 168,
                         "endColumn": 44,
-                        "endOffset": 206
+                        "endOffset": 211
                     }
                 }
             },
@@ -133,13 +133,13 @@
                     "endOffset": 1664
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
-                        "startOffset": 55,
+                        "startOffset": 57,
                         "endColumn": 60,
-                        "endOffset": 111
+                        "endOffset": 113
                     }
                 }
             },
@@ -152,13 +152,13 @@
                     "endOffset": 1704
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 1,
-                        "startOffset": 208,
+                        "startOffset": 214,
                         "endColumn": 36,
-                        "endOffset": 243
+                        "endOffset": 249
                     }
                 }
             },
@@ -171,13 +171,13 @@
                     "endOffset": 1751
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 49,
                         "startColumn": 1,
-                        "startOffset": 1678,
+                        "startOffset": 1727,
                         "endColumn": 43,
-                        "endOffset": 1720
+                        "endOffset": 1769
                     }
                 }
             },
@@ -190,13 +190,13 @@
                     "endOffset": 1802
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 65,
                         "startColumn": 1,
-                        "startOffset": 2186,
+                        "startOffset": 2251,
                         "endColumn": 47,
-                        "endOffset": 2232
+                        "endOffset": 2297
                     }
                 }
             },
@@ -209,13 +209,13 @@
                     "endOffset": 1848
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 64,
                         "startColumn": 1,
-                        "startOffset": 2143,
+                        "startOffset": 2207,
                         "endColumn": 42,
-                        "endOffset": 2184
+                        "endOffset": 2248
                     }
                 }
             },
@@ -228,13 +228,13 @@
                     "endOffset": 1891
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 47,
                         "startColumn": 1,
-                        "startOffset": 1591,
+                        "startOffset": 1638,
                         "endColumn": 39,
-                        "endOffset": 1629
+                        "endOffset": 1676
                     }
                 }
             },
@@ -247,13 +247,13 @@
                     "endOffset": 1941
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 60,
                         "startColumn": 1,
-                        "startOffset": 1998,
+                        "startOffset": 2058,
                         "endColumn": 46,
-                        "endOffset": 2043
+                        "endOffset": 2103
                     }
                 }
             },
@@ -266,13 +266,13 @@
                     "endOffset": 2001
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 44,
                         "startColumn": 1,
-                        "startOffset": 1493,
+                        "startOffset": 1537,
                         "endColumn": 56,
-                        "endOffset": 1548
+                        "endOffset": 1592
                     }
                 }
             },
@@ -285,13 +285,13 @@
                     "endOffset": 2044
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 35,
                         "startColumn": 1,
-                        "startOffset": 1188,
+                        "startOffset": 1223,
                         "endColumn": 39,
-                        "endOffset": 1226
+                        "endOffset": 1261
                     }
                 }
             },
@@ -304,13 +304,13 @@
                     "endOffset": 2092
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 39,
                         "startColumn": 1,
-                        "startOffset": 1311,
+                        "startOffset": 1350,
                         "endColumn": 44,
-                        "endOffset": 1354
+                        "endOffset": 1393
                     }
                 }
             },
@@ -323,13 +323,13 @@
                     "endOffset": 2137
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 42,
                         "startColumn": 1,
-                        "startOffset": 1404,
+                        "startOffset": 1446,
                         "endColumn": 41,
-                        "endOffset": 1444
+                        "endOffset": 1486
                     }
                 }
             },
@@ -342,13 +342,13 @@
                     "endOffset": 2181
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 36,
                         "startColumn": 1,
-                        "startOffset": 1228,
+                        "startOffset": 1264,
                         "endColumn": 40,
-                        "endOffset": 1267
+                        "endOffset": 1303
                     }
                 }
             },
@@ -361,13 +361,13 @@
                     "endOffset": 2230
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 40,
                         "startColumn": 1,
-                        "startOffset": 1356,
+                        "startOffset": 1396,
                         "endColumn": 45,
-                        "endOffset": 1400
+                        "endOffset": 1440
                     }
                 }
             },
@@ -380,13 +380,13 @@
                     "endOffset": 2274
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 59,
                         "startColumn": 1,
-                        "startOffset": 1957,
+                        "startOffset": 2016,
                         "endColumn": 40,
-                        "endOffset": 1996
+                        "endOffset": 2055
                     }
                 }
             },
@@ -399,13 +399,13 @@
                     "endOffset": 2325
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 62,
                         "startColumn": 1,
-                        "startOffset": 2093,
+                        "startOffset": 2155,
                         "endColumn": 47,
-                        "endOffset": 2139
+                        "endOffset": 2201
                     }
                 }
             },
@@ -418,13 +418,13 @@
                     "endOffset": 2376
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 61,
                         "startColumn": 1,
-                        "startOffset": 2045,
+                        "startOffset": 2106,
                         "endColumn": 47,
-                        "endOffset": 2091
+                        "endOffset": 2152
                     }
                 }
             },
@@ -437,13 +437,13 @@
                     "endOffset": 2427
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 23,
                         "startColumn": 1,
-                        "startOffset": 789,
+                        "startOffset": 812,
                         "endColumn": 47,
-                        "endOffset": 835
+                        "endOffset": 858
                     }
                 }
             },
@@ -456,13 +456,13 @@
                     "endOffset": 2480
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 1,
-                        "startOffset": 520,
+                        "startOffset": 534,
                         "endColumn": 49,
-                        "endOffset": 568
+                        "endOffset": 582
                     }
                 }
             },
@@ -475,13 +475,13 @@
                     "endOffset": 2540
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 1,
-                        "startOffset": 892,
+                        "startOffset": 918,
                         "endColumn": 56,
-                        "endOffset": 947
+                        "endOffset": 973
                     }
                 }
             },
@@ -494,13 +494,13 @@
                     "endOffset": 2593
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 30,
                         "startColumn": 1,
-                        "startOffset": 1049,
+                        "startOffset": 1079,
                         "endColumn": 49,
-                        "endOffset": 1097
+                        "endOffset": 1127
                     }
                 }
             },
@@ -513,13 +513,13 @@
                     "endOffset": 2657
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 1,
-                        "startOffset": 367,
+                        "startOffset": 377,
                         "endColumn": 60,
-                        "endOffset": 426
+                        "endOffset": 436
                     }
                 }
             },
@@ -532,13 +532,13 @@
                     "endOffset": 2706
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 1,
-                        "startOffset": 648,
+                        "startOffset": 666,
                         "endColumn": 45,
-                        "endOffset": 692
+                        "endOffset": 710
                     }
                 }
             },
@@ -551,13 +551,13 @@
                     "endOffset": 2749
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 37,
                         "startColumn": 1,
-                        "startOffset": 1269,
+                        "startOffset": 1306,
                         "endColumn": 39,
-                        "endOffset": 1307
+                        "endOffset": 1344
                     }
                 }
             },
@@ -570,13 +570,13 @@
                     "endOffset": 2804
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 56,
                         "startColumn": 1,
-                        "startOffset": 1855,
+                        "startOffset": 1911,
                         "endColumn": 51,
-                        "endOffset": 1905
+                        "endOffset": 1961
                     }
                 }
             },
@@ -589,13 +589,13 @@
                     "endOffset": 2855
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 57,
                         "startColumn": 1,
-                        "startOffset": 1907,
+                        "startOffset": 1964,
                         "endColumn": 47,
-                        "endOffset": 1953
+                        "endOffset": 2010
                     }
                 }
             },
@@ -608,13 +608,13 @@
                     "endOffset": 2897
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 45,
                         "startColumn": 1,
-                        "startOffset": 1550,
+                        "startOffset": 1595,
                         "endColumn": 38,
-                        "endOffset": 1587
+                        "endOffset": 1632
                     }
                 }
             },
@@ -627,13 +627,13 @@
                     "endOffset": 2941
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 1,
-                        "startOffset": 122,
+                        "startOffset": 126,
                         "endColumn": 40,
-                        "endOffset": 161
+                        "endOffset": 165
                     }
                 }
             },
@@ -646,13 +646,13 @@
                     "endOffset": 2991
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 48,
                         "startColumn": 1,
-                        "startOffset": 1631,
+                        "startOffset": 1679,
                         "endColumn": 46,
-                        "endOffset": 1676
+                        "endOffset": 1724
                     }
                 }
             },
@@ -665,13 +665,13 @@
                     "endOffset": 3038
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 33,
                         "startColumn": 1,
-                        "startOffset": 1142,
+                        "startOffset": 1175,
                         "endColumn": 43,
-                        "endOffset": 1184
+                        "endOffset": 1217
                     }
                 }
             },
@@ -684,13 +684,13 @@
                     "endOffset": 3088
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 43,
                         "startColumn": 1,
-                        "startOffset": 1446,
+                        "startOffset": 1489,
                         "endColumn": 46,
-                        "endOffset": 1491
+                        "endOffset": 1534
                     }
                 }
             },
@@ -703,13 +703,13 @@
                     "endOffset": 3135
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 54,
                         "startColumn": 1,
-                        "startOffset": 1810,
+                        "startOffset": 1864,
                         "endColumn": 43,
-                        "endOffset": 1852
+                        "endOffset": 1906
                     }
                 }
             },
@@ -722,13 +722,13 @@
                     "endOffset": 3195
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 1,
-                        "startOffset": 247,
+                        "startOffset": 255,
                         "endColumn": 56,
-                        "endOffset": 302
+                        "endOffset": 310
                     }
                 }
             },
@@ -741,13 +741,13 @@
                     "endOffset": 3248
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 1,
-                        "startOffset": 470,
+                        "startOffset": 483,
                         "endColumn": 49,
-                        "endOffset": 518
+                        "endOffset": 531
                     }
                 }
             },
@@ -760,13 +760,13 @@
                     "endOffset": 3291
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 1,
-                        "startOffset": 430,
+                        "startOffset": 442,
                         "endColumn": 39,
-                        "endOffset": 468
+                        "endOffset": 480
                     }
                 }
             },
@@ -779,13 +779,13 @@
                     "endOffset": 3355
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 1,
-                        "startOffset": 306,
+                        "startOffset": 315,
                         "endColumn": 60,
-                        "endOffset": 365
+                        "endOffset": 374
                     }
                 }
             },
@@ -798,13 +798,13 @@
                     "endOffset": 3403
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 1,
-                        "startOffset": 742,
+                        "startOffset": 763,
                         "endColumn": 44,
-                        "endOffset": 785
+                        "endOffset": 806
                     }
                 }
             },
@@ -817,13 +817,13 @@
                     "endOffset": 3456
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 29,
                         "startColumn": 1,
-                        "startOffset": 999,
+                        "startOffset": 1028,
                         "endColumn": 49,
-                        "endOffset": 1047
+                        "endOffset": 1076
                     }
                 }
             },
@@ -836,13 +836,13 @@
                     "endOffset": 3512
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 25,
                         "startColumn": 1,
-                        "startOffset": 839,
+                        "startOffset": 864,
                         "endColumn": 52,
-                        "endOffset": 890
+                        "endOffset": 915
                     }
                 }
             },
@@ -855,13 +855,13 @@
                     "endOffset": 3561
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 1,
-                        "startOffset": 696,
+                        "startOffset": 716,
                         "endColumn": 45,
-                        "endOffset": 740
+                        "endOffset": 760
                     }
                 }
             },
@@ -874,13 +874,13 @@
                     "endOffset": 3612
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 28,
                         "startColumn": 1,
-                        "startOffset": 951,
+                        "startOffset": 979,
                         "endColumn": 47,
-                        "endOffset": 997
+                        "endOffset": 1025
                     }
                 }
             },
@@ -893,13 +893,13 @@
                     "endOffset": 3657
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 53,
                         "startColumn": 1,
-                        "startOffset": 1768,
+                        "startOffset": 1821,
                         "endColumn": 41,
-                        "endOffset": 1808
+                        "endOffset": 1861
                     }
                 }
             },
@@ -912,13 +912,13 @@
                     "endOffset": 3702
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 51,
                         "startColumn": 1,
-                        "startOffset": 1724,
+                        "startOffset": 1775,
                         "endColumn": 41,
-                        "endOffset": 1764
+                        "endOffset": 1815
                     }
                 }
             },
@@ -931,13 +931,13 @@
                     "endOffset": 3742
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 1,
-                        "startOffset": 572,
+                        "startOffset": 588,
                         "endColumn": 36,
-                        "endOffset": 607
+                        "endOffset": 623
                     }
                 }
             },
@@ -950,13 +950,13 @@
                     "endOffset": 3784
                 },
                 "from": {
-                    "file": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 1,
-                        "startOffset": 609,
+                        "startOffset": 626,
                         "endColumn": 38,
-                        "endOffset": 646
+                        "endOffset": 663
                     }
                 }
             }

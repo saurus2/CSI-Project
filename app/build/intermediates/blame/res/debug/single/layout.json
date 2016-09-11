@@ -1,18 +1,18 @@
 [
     {
-        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/layout/image_overlay.xml",
-        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/layout/image_overlay.xml"
+        "merged": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\main_activity.xml",
+        "source": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\layout\\main_activity.xml"
     },
     {
-        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/layout/base_activity.xml",
-        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/layout/base_activity.xml"
+        "merged": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\image_overlay.xml",
+        "source": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\layout\\image_overlay.xml"
     },
     {
-        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/layout/bubble_popup.xml",
-        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/layout/bubble_popup.xml"
+        "merged": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\base_activity.xml",
+        "source": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\layout\\base_activity.xml"
     },
     {
-        "merged": "/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/res/merged/debug/layout/main_activity.xml",
-        "source": "/Users/saurus/CSIProject/CSI_Ver1/app/src/main/res/layout/main_activity.xml"
+        "merged": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\bubble_popup.xml",
+        "source": "C:\\Users\\user\\Downloads\\Capstone\\CSI-Project\\app\\src\\main\\res\\layout\\bubble_popup.xml"
     }
 ]

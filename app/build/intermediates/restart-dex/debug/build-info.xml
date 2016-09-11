@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86"
-    api-level="23"
-    density="hdpi"
+    abi="armeabi-v7a,armeabi"
+    api-level="19"
+    density="xxhdpi"
     format="7"
-    timestamp="76270728148025"
-    token="-949443605792240125" >
+    timestamp="482678356154346"
+    token="3172204404735319374" >
 
     <task
         name="javac"
@@ -20,16 +20,6 @@
         name="verifier"
         duration="0" />
 
-    <build timestamp="72196434066951" >
-        <artifact
-            location="/Users/saurus/CSIProject/CSI_Ver1/app/build/outputs/apk/app-debug.apk"
-            type="MAIN" />
-    </build>
-    <build timestamp="72366768547720" >
-        <artifact
-            location="/Users/saurus/CSIProject/CSI_Ver1/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
-            type="DEX" />
-    </build>
-    <build timestamp="76270728148025" />
+    <build timestamp="482678356154346" />
 
 </instant-run>
