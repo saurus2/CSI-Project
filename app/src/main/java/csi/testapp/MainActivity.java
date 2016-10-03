@@ -27,8 +27,17 @@ import android.widget.Toast;
 
 import com.skp.Tmap.TMapGpsManager;
 import com.skp.Tmap.TMapPoint;
+import com.skp.Tmap.TMapPolyLine;
 import com.skp.Tmap.TMapView;
 import com.skp.Tmap.TMapGpsManager.onLocationChangedCallback;
+import com.skp.Tmap.TMapData;
+import com.skp.Tmap.TMapData.BizCategoryListenerCallback;
+import com.skp.Tmap.TMapData.ConvertGPSToAddressListenerCallback;
+import com.skp.Tmap.TMapData.FindAllPOIListenerCallback;
+import com.skp.Tmap.TMapData.FindAroundNamePOIListenerCallback;
+import com.skp.Tmap.TMapData.FindPathDataAllListenerCallback;
+import com.skp.Tmap.TMapData.FindPathDataListenerCallback;
+import com.skp.Tmap.TMapData.TMapPathType;
 
 public class MainActivity extends AppCompatActivity implements onLocationChangedCallback,LocationListener{
 
@@ -38,7 +47,8 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
     private RelativeLayout mMainRelativeLayout=null;
     TMapGpsManager gps;
     final int READ_ROCATE_CODE = 0;
-
+    Bitmap bitmap;
+    Bitmap end;
     private LocationManager locationManager;
 
     private void configureMapView(){
@@ -49,13 +59,15 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         mMapView = new TMapView(this);
         mMapView.setCenterPoint(126.65318, 37.449666);
         mMapView.setLocationPoint(126.65318, 37.449666);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+        bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+        end = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
         mMapView.setLanguage(TMapView.LANGUAGE_KOREAN);
         mMapView.setIcon(bitmap);
         mMapView.setIconVisibility(true);
         mMapView.setSightVisible(true);
         mMapView.setZoomLevel(17);
         gps=new TMapGpsManager(this);
+        mMapView.setTMapPathIcon(bitmap,end);
     }
 
 
@@ -95,6 +107,22 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
 
     };
 
+    public void drawPedestrianPath() {
+        TMapPoint point1 = mMapView.getCenterPoint();
+        TMapPoint point2 = new TMapPoint(37.447564,126.653128);
+
+        TMapData tmapdata = new TMapData();
+
+        tmapdata.findPathDataWithType(TMapPathType.PEDESTRIAN_PATH, point1, point2, new FindPathDataListenerCallback() {
+            @Override
+            public void onFindPathData(TMapPolyLine polyLine) {
+                polyLine.setLineColor(Color.BLUE);
+                mMapView.addTMapPath(polyLine);
+            }
+        });
+    }
+
+
     @Override
     public void onLocationChange(Location location){
 
@@ -108,17 +136,17 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         }
     }
 
-   @Override
+    @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
-       super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
 
-       switch(requestCode){
-           case READ_ROCATE_CODE:
-               if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
-                   settingGPS();
-               }
-       }
-   }
+        switch(requestCode){
+            case READ_ROCATE_CODE:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                    settingGPS();
+                }
+        }
+    }
 
 
     @Override
@@ -131,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
         mMapView.setCenterPoint(Longitude, Latitude);
         mMapView.setLocationPoint(Longitude, Latitude);
+        drawPedestrianPath();
     }
 
     @Override
