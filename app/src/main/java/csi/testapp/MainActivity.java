@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         mMapView.setZoomLevel(17);
         gps=new TMapGpsManager(this);
         mMapView.setTMapPathIcon(bitmap,end);
+        mMapView.setCompassMode(true);
     }
 
 
@@ -81,6 +83,14 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         configureMapView();
         tryCheckPermission();
         findViewById(R.id.button).setOnClickListener(handler);
+
+        //컴파스 버튼 테스트 부분
+        Button btn_compas = (Button)findViewById(R.id.compas);
+        btn_compas.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v){
+                mMapView.setCompassMode(true);
+            }
+        });
 
 
 
@@ -101,15 +111,18 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         gps.OpenGps();
     };
 
+
+
     void doAction(){
+
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,2000,10,this);
 
     };
 
-    public void drawPedestrianPath() {
-        TMapPoint point1 = mMapView.getCenterPoint();
-        TMapPoint point2 = new TMapPoint(37.447564,126.653128);
+    public void drawPedestrianPath(double s_lat, double s_long) {
+        TMapPoint point1 = new TMapPoint(s_lat,s_long);
+        TMapPoint point2 = new TMapPoint(37.442584,126.662710);
 
         TMapData tmapdata = new TMapData();
 
@@ -148,9 +161,10 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         }
     }
 
-
+    int check = 0;
     @Override
     public void onLocationChanged(Location location) {
+
         double Latitude = location.getLatitude();
         double Longitude = location.getLongitude();
         String msg = "New Latitude: " + Latitude
@@ -159,7 +173,10 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
         mMapView.setCenterPoint(Longitude, Latitude);
         mMapView.setLocationPoint(Longitude, Latitude);
-        drawPedestrianPath();
+        if(check == 0) {
+            drawPedestrianPath(Latitude, Longitude);
+            check++;
+        }
     }
 
     @Override
