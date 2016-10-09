@@ -21,18 +21,23 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="find path"
+            android:text="New Button"
             android:id="@+id/button"
+            android:layout_marginTop="20dp"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="60dp" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="나침반"
-            android:id="@+id/compas"
-            />
-
-
+            android:text="Change"
+            android:id="@+id/chButton"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="210dp"
+            android:onClick="clicked2" />
 
 
     </RelativeLayout>
