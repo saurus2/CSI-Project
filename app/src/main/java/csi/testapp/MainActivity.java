@@ -40,7 +40,9 @@ import com.skp.Tmap.TMapData.FindPathDataAllListenerCallback;
 import com.skp.Tmap.TMapData.FindPathDataListenerCallback;
 import com.skp.Tmap.TMapData.TMapPathType;
 
-public class MainActivity extends AppCompatActivity implements onLocationChangedCallback,LocationListener{
+import static csi.testapp.R.id.view;
+
+public class MainActivity extends AppCompatActivity implements LocationListener{
 
     public static String mApiKey = "8bdbb125-7d59-3684-84ff-ad4b5bb59e74";
     private TMapView mMapView = null;
@@ -51,6 +53,14 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
     Bitmap bitmap;
     Bitmap end;
     private LocationManager locationManager;
+    Button btn_compas;
+    Button second;
+    Button back;
+    Button high;
+    Button center;
+    double n_Latitude = 0;
+    double n_Longitude = 0;
+    int check = 0;
 
     private void configureMapView(){
         mMapView.setSKPMapApiKey(mApiKey);
@@ -70,6 +80,12 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         gps=new TMapGpsManager(this);
         mMapView.setTMapPathIcon(bitmap,end);
         mMapView.setCompassMode(true);
+        btn_compas = (Button)findViewById(R.id.compas);
+        second = (Button)findViewById(R.id.second);
+        back = (Button)findViewById(R.id.back);
+        high = (Button)findViewById(R.id.high);
+        center = (Button)findViewById(R.id.center);
+
     }
 
 
@@ -85,16 +101,46 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         findViewById(R.id.button).setOnClickListener(handler);
 
         //컴파스 버튼 테스트 부분
-        Button btn_compas = (Button)findViewById(R.id.compas);
-        btn_compas.setOnClickListener(new Button.OnClickListener(){
-            public void onClick(View v){
-                mMapView.setCompassMode(true);
-            }
-        });
 
-
-
+        btn_compas.setOnClickListener(compas);
+        second.setOnClickListener(Des);
+        back.setOnClickListener(Des);
+        high.setOnClickListener(Des);
+        center.setOnClickListener(Des);
     }
+
+    View.OnClickListener compas = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            mMapView.setCompassMode(true);
+        }
+    };
+
+    View.OnClickListener Des = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            switch (v.getId()){
+                case R.id.back:
+                    n_Latitude = 37.451037;
+                    n_Longitude = 126.656499;
+                    break;
+                case R.id.center:
+                    n_Latitude = 37.449476;
+                    n_Longitude = 126.654388;
+                    break;
+                case R.id.high:
+                    n_Latitude = 37.450662;
+                    n_Longitude = 126.656960;
+                    break;
+                case R.id.second:
+                    n_Latitude = 37.450337;
+                    n_Longitude = 126.655693;
+                    break;
+            }
+            check = 0;
+
+        }
+    };
 
     View.OnClickListener handler = new View.OnClickListener() {
         @Override
@@ -114,15 +160,16 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
 
 
     void doAction(){
-
+        n_Latitude = 37.4508;
+        n_Longitude = 126.6525;
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,2000,10,this);
 
     };
 
-    public void drawPedestrianPath(double s_lat, double s_long) {
+    public void drawPedestrianPath(double s_lat, double s_long,double n_Latitude, double n_Longitude) {
         TMapPoint point1 = new TMapPoint(s_lat,s_long);
-        TMapPoint point2 = new TMapPoint(37.442584,126.662710);
+        TMapPoint point2 = new TMapPoint(n_Latitude, n_Longitude);
 
         TMapData tmapdata = new TMapData();
 
@@ -135,11 +182,6 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         });
     }
 
-
-    @Override
-    public void onLocationChange(Location location){
-
-    }
 
     void tryCheckPermission(){
         if(ContextCompat.checkSelfPermission(this, Manifest.permission_group.LOCATION) == PackageManager.PERMISSION_GRANTED){
@@ -161,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         }
     }
 
-    int check = 0;
+
     @Override
     public void onLocationChanged(Location location) {
 
@@ -174,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements onLocationChanged
         mMapView.setCenterPoint(Longitude, Latitude);
         mMapView.setLocationPoint(Longitude, Latitude);
         if(check == 0) {
-            drawPedestrianPath(Latitude, Longitude);
+            drawPedestrianPath(Latitude, Longitude,n_Latitude,n_Longitude);
             check++;
         }
     }
