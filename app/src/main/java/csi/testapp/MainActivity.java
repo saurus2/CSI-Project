@@ -150,15 +150,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
     };
 
-    //    화면변환하는 버튼 onclick 활성화 xml 의 디자인에서 수정함
-    //    버튼 이벤트 자바에 미리 만들어 놓기 -> 엑티비티 연결된 xml에서 버튼 생성 -> 버튼 프로퍼티에서 Onclick 옵션에 추가
-
-    public void clicked2(View v) {
-        Intent intent = new Intent(getApplicationContext(), NextActivity.class);
-        startActivity(intent);
-    }
-
-
     void settingGPS(){
         gps.setMinTime(1000);
         gps.setMinDistance(5);
