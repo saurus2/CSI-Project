@@ -158,9 +158,5 @@
     {
         "merged": "/Users/saurus/CSI-Project-1023/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
         "source": "/Users/saurus/CSI-Project-1023/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/layout/abc_dialog_title_material.xml"
-    },
-    {
-        "merged": "/Users/saurus/CSI-Project-1023/app/build/intermediates/res/merged/debug/layout/new_activity.xml",
-        "source": "/Users/saurus/CSI-Project-1023/app/src/main/res/layout/new_activity.xml"
     }
 ]
