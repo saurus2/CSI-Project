@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/saurus/CSI-Project-1023/app/src/main/AndroidManifest.xml:2:1-113:12
+ADDED from /Users/saurus/CSI-Project-1023/app/src/main/AndroidManifest.xml:2:1-90:12
 	package
 		ADDED from /Users/saurus/CSI-Project-1023/app/src/main/AndroidManifest.xml:3:5-26
 		INJECTED from /Users/saurus/CSI-Project-1023/app/src/main/AndroidManifest.xml
@@ -65,7 +65,7 @@ ADDED from /Users/saurus/CSI-Project-1023/app/src/main/AndroidManifest.xml:41:5-
 	android:name
 		ADDED from /Users/saurus/CSI-Project-1023/app/src/main/AndroidManifest.xml:41:22-62
 application
-ADDED from /Users/saurus/CSI-Project-1023/app/src/main/AndroidManifest.xml:43:5-107:19
+ADDED from /Users/saurus/CSI-Project-1023/app/src/main/AndroidManifest.xml:43:5-84:19
 MERGED from [com.android.support:appcompat-v7:24.2.0] /Users/saurus/CSI-Project-1023/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-vector-drawable:24.2.0] /Users/saurus/CSI-Project-1023/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/AndroidManifest.xml:23:5-20
 MERGED from [com.android.support:support-compat:24.2.0] /Users/saurus/CSI-Project-1023/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/AndroidManifest.xml:25:5-20
