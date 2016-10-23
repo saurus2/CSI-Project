@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <!--타이틀 제거 완료 -->
-        <!--다시 푸쉬-->
+        <!--다시 푸-->
         <activity android:name=".MainActivity"
             >
             <intent-filter>
