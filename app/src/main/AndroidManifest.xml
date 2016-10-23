@@ -80,29 +80,6 @@
 
         <!--비콘 함수 사용하기 위해서 서비스 추가 -->
         <service android:name="com.perples.recosdk.RECOBeaconService" /><!--구글맵 사용하는 부분 추가 10/02-->
-        <!--구글맵 api key 추가 안하면 화면에 뜨지 않음-->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCSxubGd-_rlOJeeBfvuSSSFPj8b5aTvcQ" />
-
-        <!--구글맵 사용할 화면 액티비티 추가 -->
-        <activity android:name=".NextActivity"
-            android:label="Map">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
-        <!--비콘 함수 사용하기 위해서 서비스 추가 -->
-        <service android:name="com.perples.recosdk.RECOBeaconService" />
-
 
     </application>
 
