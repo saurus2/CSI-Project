@@ -172,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         n_Latitude = 37.4508;
         n_Longitude = 126.6525;
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,2000,10,this);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,2000,10,this);
 
     };
