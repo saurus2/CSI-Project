@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="22"
+        android:minSdkVersion="19"
         android:targetSdkVersion="22" />
 
     <!-- These permissions are required to use bluetooth -->
@@ -100,7 +100,7 @@
             android:value="@integer/google_play_services_version" />
 
         <!-- 비콘 함수 사용하기 위해서 서비스 추가 -->
-        <service android:name="com.perples.recosdk.RECOBeaconService" /> <!-- 구글맵 사용하는 부분 추가 10/02 -->
+        <!-- <service android:name="com.perples.recosdk.RECOBeaconService" />&lt;!&ndash;구글맵 사용하는 부분 추가 10/02&ndash;&gt; -->
 
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"

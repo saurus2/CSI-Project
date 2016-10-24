@@ -3,10 +3,9 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
-
     defaultConfig {
         applicationId "csi.testapp"
-        minSdkVersion 22
+        minSdkVersion 19
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -17,6 +16,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+    }
 }
 
 dependencies {
@@ -25,5 +26,4 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile files('libs/com.skp.Tmap_1.0.43.jar')
     compile 'com.google.android.gms:play-services-maps:9.6.1'
-    compile project(':reco-sdk-android_1.1.4')
 }
