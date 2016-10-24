@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     //    버튼 이벤트 자바에 미리 만들어 놓기 -> 엑티비티 연결된 xml에서 버튼 생성 -> 버튼 프로퍼티에서 Onclick 옵션에 추가
 
     public void clicked2(View v) {
-        Intent intent = new Intent(getApplicationContext(), NextActivity.class);
+        Intent intent = new Intent(this, NextActivity.class);
         startActivity(intent);
     }
 

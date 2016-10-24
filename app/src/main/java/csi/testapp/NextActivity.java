@@ -1,5 +1,7 @@
 package csi.testapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -15,6 +17,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import static android.R.attr.offset;
+
 
 /**
  * Created by saurus on 2016. 10. 1..
@@ -22,7 +26,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class NextActivity extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap; // 뷰 맵 객체 생성
-
+    BitmapFactory.Options option;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -32,6 +36,7 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        option = new BitmapFactory.Options();
 
 
     }
@@ -57,11 +62,13 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void overlaySetBuilding() {
+
+
         LatLngBounds building = new LatLngBounds(       //오른쪽 위 왼쪽 아래 모서리 두개 잡고 이미지 오버레이 시키기
                 new LatLng(37.450355, 126.651892),       // South west corner 남 서
                 new LatLng(37.452054, 126.654249));      // North east corner 북 동
         GroundOverlayOptions fifthFirstMap = new GroundOverlayOptions()
-                .image(BitmapDescriptorFactory.fromResource(R.drawable.fifth_building)) //만든이미지 res/mipmap에 추가함
+                .image(BitmapDescriptorFactory.fromResource(R.drawable.two)) //만든이미지 res/mipmap에 추가함
                 .positionFromBounds(building);//오버레이 좌표 적용
         GroundOverlay imageOverlay = mMap.addGroundOverlay(fifthFirstMap);//화면에 오버레이 띄우기
     }
