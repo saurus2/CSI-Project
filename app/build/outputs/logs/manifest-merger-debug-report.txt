@@ -64,18 +64,18 @@ ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xm
 application
 ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:43:5-84:19
 MERGED from [com.android.support:appcompat-v7:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:animated-vector-drawable:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-vector-drawable:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/AndroidManifest.xml:23:5-20
-MERGED from [com.google.android.gms:play-services-maps:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.6.1/AndroidManifest.xml:24:5-19
-MERGED from [com.google.android.gms:play-services-base:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.6.1/AndroidManifest.xml:18:5-20:19
-MERGED from [com.google.android.gms:play-services-tasks:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.6.1/AndroidManifest.xml:4:5-19
-MERGED from [com.google.android.gms:play-services-basement:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.6.1/AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-compat:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-fragment:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-core-utils:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-media-compat:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-core-ui:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-compat:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-maps:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.6.1/AndroidManifest.xml:24:5-19
+MERGED from [com.google.android.gms:play-services-base:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.6.1/AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.android.gms:play-services-basement:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.6.1/AndroidManifest.xml:19:5-21:19
+MERGED from [com.google.android.gms:play-services-tasks:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.6.1/AndroidManifest.xml:4:5-19
 	android:label
 		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:46:9-41
 	android:supportsRtl
@@ -122,18 +122,18 @@ MERGED from [com.google.android.gms:play-services-basement:9.6.1] /home/lab1/Stu
 uses-sdk
 INJECTED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:animated-vector-drawable:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/AndroidManifest.xml:21:5-43
-MERGED from [com.google.android.gms:play-services-maps:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.6.1/AndroidManifest.xml:23:5-42
-MERGED from [com.google.android.gms:play-services-base:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.6.1/AndroidManifest.xml:17:5-42
-MERGED from [com.google.android.gms:play-services-tasks:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.6.1/AndroidManifest.xml:3:5-42
-MERGED from [com.google.android.gms:play-services-basement:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.6.1/AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-compat:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:animated-vector-drawable:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-v4:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/AndroidManifest.xml:21:5-23:60
 MERGED from [com.android.support:support-core-utils:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/AndroidManifest.xml:21:5-23:61
 MERGED from [com.android.support:support-media-compat:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/AndroidManifest.xml:21:5-23:63
 MERGED from [com.android.support:support-core-ui:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-fragment:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/AndroidManifest.xml:21:5-23:60
+MERGED from [com.google.android.gms:play-services-maps:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.6.1/AndroidManifest.xml:23:5-42
+MERGED from [com.google.android.gms:play-services-base:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.6.1/AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-basement:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.6.1/AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-tasks:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.6.1/AndroidManifest.xml:3:5-42
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/AndroidManifest.xml:23:9-75
 	android:targetSdkVersion

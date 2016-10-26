@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
     public static String mApiKey = "8bdbb125-7d59-3684-84ff-ad4b5bb59e74";
     private TMapView mMapView = null;
-    private TMapPoint n_Locate = null;
     private RelativeLayout mMainRelativeLayout=null;
     TMapGpsManager gps;
     final int READ_ROCATE_CODE = 0;
