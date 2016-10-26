@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -51,15 +52,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     final int READ_ROCATE_CODE = 0;
     Bitmap bitmap;
     Bitmap end;
+    Bitmap location;
     private LocationManager locationManager;
     Button btn_compas;
     Button second;
     Button back;
     Button high;
     Button center;
+    Button test;
     double n_Latitude = 0;
     double n_Longitude = 0;
     int check = 0;
+    BitmapFactory.Options options = new BitmapFactory.Options();
+
 
     private void configureMapView(){
         mMapView.setSKPMapApiKey(mApiKey);
@@ -69,10 +74,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         mMapView = new TMapView(this);
         mMapView.setCenterPoint(126.65318, 37.449666);
         mMapView.setLocationPoint(126.65318, 37.449666);
+        options.inSampleSize = 60;
         bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
         end = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+        location = BitmapFactory.decodeResource(getResources(),R.drawable.location,options);
         mMapView.setLanguage(TMapView.LANGUAGE_KOREAN);
-        mMapView.setIcon(bitmap);
+        mMapView.setIcon(location);
         mMapView.setIconVisibility(true);
         mMapView.setSightVisible(true);
         mMapView.setZoomLevel(17);
@@ -84,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         back = (Button)findViewById(R.id.back);
         high = (Button)findViewById(R.id.high);
         center = (Button)findViewById(R.id.center);
+        test = (Button)findViewById(R.id.current);
 
     }
 
@@ -158,12 +166,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     }
 
 
-    void settingGPS(){
-        gps.setMinTime(1000);
-        gps.setMinDistance(5);
-        gps.setProvider(gps.GPS_PROVIDER);
-        gps.OpenGps();
-    };
+//    void settingGPS(){
+//        gps.setMinTime(1000);
+//        gps.setMinDistance(5);
+//        gps.setProvider(gps.GPS_PROVIDER);
+//        gps.OpenGps();
+//    };
 
 
 
@@ -194,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
     void tryCheckPermission(){
         if(ContextCompat.checkSelfPermission(this, Manifest.permission_group.LOCATION) == PackageManager.PERMISSION_GRANTED){
-            settingGPS();
+            doAction();
         }else{
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission_group.LOCATION},READ_ROCATE_CODE);
         }
@@ -207,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         switch(requestCode){
             case READ_ROCATE_CODE:
                 if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
-                    settingGPS();
+                    doAction();
                 }
         }
     }
