@@ -48,7 +48,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <!--타이틀 제거 완료 -->
         <!--다시 푸-->
-        <activity android:name=".Optimization"
+        <activity android:name=".MainActivity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
