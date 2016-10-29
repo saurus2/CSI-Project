@@ -122,7 +122,9 @@ public class RecoRangingListAdapter extends BaseAdapter {
         Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getBattery()+"");
         Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getProximity()+"");
         Log.i("수행 레코 비콘 정보 가져오기",String.format("%.2f", recoBeacon.getAccuracy())+"");
-
+        //비콘 정보가 화면에서 잘뜨는데
+        //지금 리스트뷰를 이용해서 만들어지는것 같다
+        //비콘의 정보를 가져오되 필요한 정보만 사용할 수 있도록 바꿔야함
         return convertView;
     }
 

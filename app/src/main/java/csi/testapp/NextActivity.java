@@ -89,6 +89,10 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
     private BluetoothAdapter mBluetoothAdapter;
 
 
+    private RecoRangingListAdapter mRangingListAdapter;
+    private ListView mRegionListView;
+
+
     @Override
     public void onServiceConnect(){
         //RECOBeaconService와 연결 시 코드 작성
@@ -125,15 +129,48 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
         Log.i("수행","데이터베이스생성");
 
         //비콘 소스 코드 추가
+
+
+
+        /* 안드로이드 API 23 (마시멜로우)이상 버전부터, 정상적으로 RECO SDK를 사용하기 위해서는
+         * 위치 권한 (ACCESS_COARSE_LOCATION 혹은 ACCESS_FINE_LOCATION)을 요청해야 합니다.
+         * 권한 요청의 경우, 구글에서 제공하는 가이드를 참고하시기 바랍니다.
+         *
+         * http://www.google.com/design/spec/patterns/permissions.html
+         * https://github.com/googlesamples/android-RuntimePermissions
+         */
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                Log.i("MainActivity", "The location permission (ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION) is not granted.");
+                this.requestLocationPermission();
+            } else {
+                Log.i("MainActivity", "The location permission (ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION) is already granted.");
+            }
+        }
+
+
         //RECOServiceConnectListener 인터페이스를 설정하고, RECOBeaconManager의 인스턴스를 RECOBeaconService와 연결합니다.
         mRecoManager = RECOBeaconManager.getInstance(getApplicationContext(), NextActivity.mScanRecoOnly, NextActivity.mEnableBackgroundTimeout);
         mRegions = this.generateBeaconRegion();
+        //mRecoManager will be created here. (Refer to the RECOActivity.onCreate())
+        //mRecoManager 인스턴스는 여기서 생성됩니다. RECOActivity.onCreate() 메소들르 참고하세요.
+
+        //Set RECORangingListener (Required)
+        //RECORangingListener 를 설정합니다. (필수)
+        mRecoManager.setRangingListener(this);
+        //Activity에서 생성되고 리스너를 셋하지 않으면 정보를 가져올 수 없다
         mRecoManager.bind(this);
 
     }
 
-    private RecoRangingListAdapter mRangingListAdapter;
-    private ListView mRegionListView;
+    private void requestLocationPermission() {
+        if(!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION);
+            return;
+        }
+    }
+
+
 
     @Override
     protected void onResume(){
