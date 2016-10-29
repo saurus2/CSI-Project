@@ -30,8 +30,47 @@
             android:layout_centerHorizontal="true"
             android:onClick="clicked3" />
 
+        <EditText
+            android:id="@+id/src_text"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp" />
 
+        <Button
+            android:text="Add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button7"
+            android:layout_alignTop="@+id/src_text"
+            android:layout_toEndOf="@+id/button"
+            android:onClick="searchClass" />
 
+        <Button
+            android:text="Delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button8"
+            android:onClick="deleteClass"
+            android:layout_alignBottom="@+id/src_text"
+            android:layout_toStartOf="@+id/button"
+            android:layout_alignTop="@+id/src_text" />
+
+        <ToggleButton
+            android:id="@+id/backgroundRangingToggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:textOn="ON"
+            android:textOff="OFF"
+            android:onClick="onRangingToggleButtonClicked"/>
+        <ListView android:id="@+id/list_ranging"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+        </ListView>
     </RelativeLayout>
+
 
 </LinearLayout>
