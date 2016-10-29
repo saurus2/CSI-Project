@@ -180,6 +180,8 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
         mRegionListView = (ListView)findViewById(R.id.list_ranging);
         mRegionListView.setAdapter(mRangingListAdapter);
         //리스트뷰가 다른 xml에 있어서 에러가 났던 거임.
+        //리스트뷰에만 저장하고 할수 있는지 알아봐야함
+        // 만약 리스트뷰에서만 가능하다면 리스트 뷰를 감추고 정보만 사용하도록 하자
 
 
     }
