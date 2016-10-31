@@ -28,10 +28,10 @@
                 android:src="@drawable/menu"
                 android:padding = "0sp"
                 android:scaleType="centerCrop"
-
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp" />
+             android:onClick="onPopupButtonClick"
+             android:layout_alignParentTop="true"
+             android:layout_alignParentEnd="true"
+             android:layout_marginTop="20dp" />
 
         <Button
             android:layout_width="50dp"

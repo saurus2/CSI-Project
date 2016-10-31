@@ -15,7 +15,11 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -53,7 +57,7 @@ public class Optimization extends AppCompatActivity implements LocationListener{
 
     //버튼 선언
     Button current;
-
+    ImageButton menu;
     //지도와 버튼들 처음 초기화 시켜주는 함수
     void initView(){
         mMapView = new TMapView(this);
@@ -76,6 +80,7 @@ public class Optimization extends AppCompatActivity implements LocationListener{
 
         //버튼 초기화
         current = (Button)findViewById(R.id.current);
+        menu = (ImageButton)findViewById(R.id.popup);
 
     }
 
@@ -90,7 +95,34 @@ public class Optimization extends AppCompatActivity implements LocationListener{
         CheckPermission();
 
         current.setOnClickListener(turnon);
+        menu.bringToFront();
+        menu.invalidate();
 
+
+    }
+
+    //popupmenu 처리
+    public void onPopupButtonClick(View button){
+        PopupMenu popup = new PopupMenu(this, button);
+
+        popup.getMenuInflater().inflate(R.menu.popup, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
+            public boolean onMenuItemClick(MenuItem item){
+                switch (item.getItemId()){
+                    case R.id.fifth:
+                        break;
+
+                    case R.id.center:
+                        break;
+
+                    case R.id.tech:
+                        break;
+                }
+                return true;
+            }
+        });
+        popup.show();
     }
 
     //현재 위치 버튼 눌렀을때 작동

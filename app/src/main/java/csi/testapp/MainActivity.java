@@ -43,11 +43,11 @@ import com.skp.Tmap.TMapData.TMapPathType;
 
 import static csi.testapp.R.id.view;
 
-public class MainActivity extends AppCompatActivity implements LocationListener{
+public class MainActivity extends AppCompatActivity implements LocationListener {
 
     public static String mApiKey = "8bdbb125-7d59-3684-84ff-ad4b5bb59e74";
     private TMapView mMapView = null;
-    private RelativeLayout mMainRelativeLayout=null;
+    private RelativeLayout mMainRelativeLayout = null;
     TMapGpsManager gps;
     final int READ_ROCATE_CODE = 0;
     Bitmap bitmap;
@@ -66,32 +66,32 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     BitmapFactory.Options options = new BitmapFactory.Options();
 
 
-    private void configureMapView(){
+    private void configureMapView() {
         mMapView.setSKPMapApiKey(mApiKey);
     }
 
-    void initView(){
+    void initView() {
         mMapView = new TMapView(this);
         mMapView.setCenterPoint(126.65318, 37.449666);
         mMapView.setLocationPoint(126.65318, 37.449666);
         options.inSampleSize = 60;
-        bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
-        end = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
-        location = BitmapFactory.decodeResource(getResources(),R.drawable.location,options);
+        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        end = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        location = BitmapFactory.decodeResource(getResources(), R.drawable.location, options);
         mMapView.setLanguage(TMapView.LANGUAGE_KOREAN);
         mMapView.setIcon(location);
         mMapView.setIconVisibility(true);
         mMapView.setSightVisible(true);
         mMapView.setZoomLevel(17);
-        gps=new TMapGpsManager(this);
-        mMapView.setTMapPathIcon(bitmap,end);
+        gps = new TMapGpsManager(this);
+        mMapView.setTMapPathIcon(bitmap, end);
         mMapView.setCompassMode(true);
-        btn_compas = (Button)findViewById(R.id.compas);
-        second = (Button)findViewById(R.id.second);
-        back = (Button)findViewById(R.id.back);
-        high = (Button)findViewById(R.id.high);
-        center = (Button)findViewById(R.id.center);
-        test = (Button)findViewById(R.id.current);
+//        btn_compas = (Button)findViewById(R.id.compas);
+//        second = (Button)findViewById(R.id.second);
+//        back = (Button)findViewById(R.id.back);
+//        high = (Button)findViewById(R.id.high);
+        center = (Button) findViewById(R.id.center);
+        test = (Button) findViewById(R.id.current);
 
     }
 
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mMainRelativeLayout = (RelativeLayout)findViewById(R.id.mainRelativeLayout);
+        mMainRelativeLayout = (RelativeLayout) findViewById(R.id.mainRelativeLayout);
         initView();
         mMainRelativeLayout.addView(mMapView);
         configureMapView();
@@ -116,33 +116,33 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         center.setOnClickListener(Des);
     }
 
-    View.OnClickListener compas = new View.OnClickListener(){
+    View.OnClickListener compas = new View.OnClickListener() {
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             mMapView.setCompassMode(true);
         }
     };
 
-    View.OnClickListener Des = new View.OnClickListener(){
+    View.OnClickListener Des = new View.OnClickListener() {
         @Override
-        public void onClick(View v){
-            switch (v.getId()){
-                case R.id.back:
-                    n_Latitude = 37.451037;
-                    n_Longitude = 126.656499;
-                    break;
-                case R.id.center:
-                    n_Latitude = 37.449476;
-                    n_Longitude = 126.654388;
-                    break;
-                case R.id.high:
-                    n_Latitude = 37.450662;
-                    n_Longitude = 126.656960;
-                    break;
-                case R.id.second:
-                    n_Latitude = 37.450337;
-                    n_Longitude = 126.655693;
-                    break;
+        public void onClick(View v) {
+            switch (v.getId()) {
+//                case R.id.back:
+//                    n_Latitude = 37.451037;
+//                    n_Longitude = 126.656499;
+//                    break;
+//                case R.id.center:
+//                    n_Latitude = 37.449476;
+//                    n_Longitude = 126.654388;
+//                    break;
+//                case R.id.high:
+//                    n_Latitude = 37.450662;
+//                    n_Longitude = 126.656960;
+//                    break;
+//                case R.id.second:
+//                    n_Latitude = 37.450337;
+//                    n_Longitude = 126.655693;
+//                    break;
             }
             check = 0;
 
@@ -174,18 +174,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 //    };
 
 
-
-    void doAction(){
+    void doAction() {
         n_Latitude = 37.4508;
         n_Longitude = 126.6525;
-        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,2000,10,this);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,2000,10,this);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 10, this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, this);
 
-    };
+    }
 
-    public void drawPedestrianPath(double s_lat, double s_long,double n_Latitude, double n_Longitude) {
-        TMapPoint point1 = new TMapPoint(s_lat,s_long);
+    ;
+
+    public void drawPedestrianPath(double s_lat, double s_long, double n_Latitude, double n_Longitude) {
+        TMapPoint point1 = new TMapPoint(s_lat, s_long);
         TMapPoint point2 = new TMapPoint(n_Latitude, n_Longitude);
 
         TMapData tmapdata = new TMapData();
@@ -200,21 +201,21 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     }
 
 
-    void tryCheckPermission(){
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission_group.LOCATION) == PackageManager.PERMISSION_GRANTED){
+    void tryCheckPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission_group.LOCATION) == PackageManager.PERMISSION_GRANTED) {
             doAction();
-        }else{
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission_group.LOCATION},READ_ROCATE_CODE);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission_group.LOCATION}, READ_ROCATE_CODE);
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
-        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        switch(requestCode){
+        switch (requestCode) {
             case READ_ROCATE_CODE:
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                     doAction();
                 }
         }
@@ -232,8 +233,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
         mMapView.setCenterPoint(Longitude, Latitude);
         mMapView.setLocationPoint(Longitude, Latitude);
-        if(check == 0) {
-            drawPedestrianPath(Latitude, Longitude,n_Latitude,n_Longitude);
+        if (check == 0) {
+            drawPedestrianPath(Latitude, Longitude, n_Latitude, n_Longitude);
             check++;
         }
     }

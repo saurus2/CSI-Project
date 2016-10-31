@@ -8,4 +8,20 @@
           android:right="10dp"
         />
 
+    <item android:id="@+id/tech"
+        android:title="하이테크"
+        android:top="10dp"
+        android:bottom="10dp"
+        android:left="10dp"
+        android:right="10dp"
+        />
+
+    <item android:id="@+id/center"
+        android:title="본관"
+        android:top="10dp"
+        android:bottom="10dp"
+        android:left="10dp"
+        android:right="10dp"
+        />
+
 </menu>
