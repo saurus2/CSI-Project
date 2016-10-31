@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -27,6 +28,9 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
+import com.skp.Tmap.TMapData;
+import com.skp.Tmap.TMapPoint;
+import com.skp.Tmap.TMapPolyLine;
 import com.skp.Tmap.TMapView;
 
 /**
@@ -116,12 +120,21 @@ public class Optimization extends AppCompatActivity implements LocationListener 
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.fifth:
+                        n_Latitude = 37.4508;
+                        n_Longitude = 126.6525;
+                        drawPedestrianPath(n_Latitude,n_Longitude);
                         break;
 
                     case R.id.center:
+                        n_Latitude = 37.449476;
+                        n_Longitude = 126.654388;
+                        drawPedestrianPath(n_Latitude,n_Longitude);
                         break;
 
                     case R.id.tech:
+                        n_Latitude = 37.450662;
+                        n_Longitude = 126.656960;
+                        drawPedestrianPath(n_Latitude,n_Longitude);
                         break;
                 }
                 return true;
@@ -146,6 +159,25 @@ public class Optimization extends AppCompatActivity implements LocationListener 
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 10, this);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, this);
     }
+
+    //맵에 길 그려주는 부분
+    public void drawPedestrianPath(double n_Latitude, double n_Longitude){
+        TMapPoint point1 = new TMapPoint(Now_Latitude, Now_Longitude);
+        TMapPoint point2 = new TMapPoint(n_Latitude, n_Longitude);
+
+        TMapData tmapdata = new TMapData();
+
+        tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, point1, point2, new TMapData.FindPathDataListenerCallback() {
+            @Override
+            public void onFindPathData(TMapPolyLine tMapPolyLine) {
+                tMapPolyLine.setLineColor(Color.BLUE);
+                mMapView.addTMapPath(tMapPolyLine);
+            }
+        });
+
+    }
+
+
 
     //위치 관련 함수들
     @Override
