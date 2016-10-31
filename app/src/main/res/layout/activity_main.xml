@@ -22,17 +22,6 @@
         <!--구글 맵으로 바꾸는 버튼만들기-->
         <!--현재 위치 버튼 -->
 
-        <ImageButton android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/popup"
-                android:src="@drawable/menu"
-                android:padding = "0sp"
-                android:scaleType="centerCrop"
-             android:onClick="onPopupButtonClick"
-             android:layout_alignParentTop="true"
-             android:layout_alignParentEnd="true"
-             android:layout_marginTop="20dp" />
-
         <Button
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -61,6 +50,16 @@
             android:layout_alignBottom="@+id/chButton"
             android:layout_toStartOf="@+id/chButton"
             android:layout_marginEnd="34dp" />
+
+        <ImageButton android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/popup"
+                android:src="@drawable/menu"
+                android:padding = "0sp"
+                android:scaleType="centerCrop"
+             android:onClick="onPopupButtonClick"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
 
 
     </RelativeLayout>

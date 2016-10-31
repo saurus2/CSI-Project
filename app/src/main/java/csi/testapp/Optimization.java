@@ -33,7 +33,7 @@ import com.skp.Tmap.TMapView;
  * Created by lab1 on 10/26/16.
  */
 
-public class Optimization extends AppCompatActivity implements LocationListener{
+public class Optimization extends AppCompatActivity implements LocationListener {
     //티맵 관련 변수들
     public static String mApiKey = "8bdbb125-7d59-3684-84ff-ad4b5bb59e74";
     private TMapView mMapView = null;
@@ -49,6 +49,10 @@ public class Optimization extends AppCompatActivity implements LocationListener{
     double n_Latitude = 0;
     double n_Longitude = 0;
 
+    //현재 위치 저장되는 위도 경도
+    double Now_Latitude = 0;
+    double Now_Longitude = 0;
+
     //출발위치 변하지 않게 하기 위해
     int check = 0;
 
@@ -58,8 +62,9 @@ public class Optimization extends AppCompatActivity implements LocationListener{
     //버튼 선언
     Button current;
     ImageButton menu;
+
     //지도와 버튼들 처음 초기화 시켜주는 함수
-    void initView(){
+    void initView() {
         mMapView = new TMapView(this);
         //지도를 처음 띄우면 보이는 화면 설정
         //현재위치,지도 중심부도 처음엔 학교 중심부
@@ -70,17 +75,17 @@ public class Optimization extends AppCompatActivity implements LocationListener{
 
         //지도 아이콘들 셋팅
         options.inSampleSize = 60;
-        location = BitmapFactory.decodeResource(getResources(),R.drawable.location,options);
-        start = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
-        end = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+        location = BitmapFactory.decodeResource(getResources(), R.drawable.location, options);
+        start = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        end = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         mMapView.setIcon(location);
         mMapView.setIconVisibility(true);
         mMapView.setSightVisible(true);
-        mMapView.setTMapPathIcon(start ,end);
+        mMapView.setTMapPathIcon(start, end);
 
         //버튼 초기화
-        current = (Button)findViewById(R.id.current);
-        menu = (ImageButton)findViewById(R.id.popup);
+        current = (Button) findViewById(R.id.current);
+        menu = (ImageButton) findViewById(R.id.popup);
 
     }
 
@@ -88,7 +93,7 @@ public class Optimization extends AppCompatActivity implements LocationListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mMainRelativeLayout = (RelativeLayout)findViewById(R.id.mainRelativeLayout);
+        mMainRelativeLayout = (RelativeLayout) findViewById(R.id.mainRelativeLayout);
         initView();
         mMainRelativeLayout.addView(mMapView);
         mMapView.setSKPMapApiKey(mApiKey);
@@ -102,14 +107,14 @@ public class Optimization extends AppCompatActivity implements LocationListener{
     }
 
     //popupmenu 처리
-    public void onPopupButtonClick(View button){
+    public void onPopupButtonClick(View button) {
         PopupMenu popup = new PopupMenu(this, button);
 
         popup.getMenuInflater().inflate(R.menu.popup, popup.getMenu());
 
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
-            public boolean onMenuItemClick(MenuItem item){
-                switch (item.getItemId()){
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
                     case R.id.fifth:
                         break;
 
@@ -126,9 +131,9 @@ public class Optimization extends AppCompatActivity implements LocationListener{
     }
 
     //현재 위치 버튼 눌렀을때 작동
-    View.OnClickListener turnon = new View.OnClickListener(){
+    View.OnClickListener turnon = new View.OnClickListener() {
         @Override
-        public void onClick(View view){
+        public void onClick(View view) {
             FindmyLocation();
         }
 
@@ -136,18 +141,18 @@ public class Optimization extends AppCompatActivity implements LocationListener{
 
 
     //gps, network provider 설정
-    void FindmyLocation(){
-        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,2000,10,this);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,2000,10,this);
+    void FindmyLocation() {
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 10, this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, this);
     }
 
     //위치 관련 함수들
     @Override
     public void onLocationChanged(Location location) {
 
-        double Now_Latitude = location.getLatitude();
-        double Now_Longitude = location.getLongitude();
+        Now_Latitude = location.getLatitude();
+        Now_Longitude = location.getLongitude();
 
         /* 여기는 제대로 좌표 잡는지 테스트하려고 토스트 메세지 넣어둔거 */
         String msg = "New Latitude: " + Now_Latitude
@@ -158,8 +163,8 @@ public class Optimization extends AppCompatActivity implements LocationListener{
         ////////////////////////////////////////////////////////////////////
 
         //현재 위치에 따라서 맵위치도 다 바꿔줌
-        mMapView.setCenterPoint(Now_Longitude,Now_Latitude);
-        mMapView.setLocationPoint(Now_Longitude,Now_Latitude);
+        mMapView.setCenterPoint(Now_Longitude, Now_Latitude);
+        mMapView.setLocationPoint(Now_Longitude, Now_Latitude);
 
     }
 
@@ -183,21 +188,21 @@ public class Optimization extends AppCompatActivity implements LocationListener{
     }
 
     //permission 설정
-    void CheckPermission(){
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission_group.LOCATION) == PackageManager.PERMISSION_GRANTED){
+    void CheckPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission_group.LOCATION) == PackageManager.PERMISSION_GRANTED) {
             FindmyLocation();
-        }else{
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission_group.LOCATION},READ_ROCATE_CODE);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission_group.LOCATION}, READ_ROCATE_CODE);
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
-        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        switch(requestCode){
+        switch (requestCode) {
             case READ_ROCATE_CODE:
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                     FindmyLocation();
                 }
         }
