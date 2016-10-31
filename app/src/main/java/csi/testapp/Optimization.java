@@ -15,6 +15,8 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -50,19 +52,7 @@ public class Optimization extends AppCompatActivity implements LocationListener{
     final int READ_ROCATE_CODE = 0;
 
     //버튼 선언
-    ImageButton C_location;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mMainRelativeLayout = (RelativeLayout)findViewById(R.id.mainRelativeLayout);
-        initView();
-        mMainRelativeLayout.addView(mMapView);
-        mMapView.setSKPMapApiKey(mApiKey);
-        CheckPermission();
-
-    }
+    Button current;
 
     //지도와 버튼들 처음 초기화 시켜주는 함수
     void initView(){
@@ -85,12 +75,36 @@ public class Optimization extends AppCompatActivity implements LocationListener{
         mMapView.setTMapPathIcon(start ,end);
 
         //버튼 초기화
-        //C_location = (ImageButton)findViewById(R.id.current);
+        current = (Button)findViewById(R.id.current);
 
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mMainRelativeLayout = (RelativeLayout)findViewById(R.id.mainRelativeLayout);
+        initView();
+        mMainRelativeLayout.addView(mMapView);
+        mMapView.setSKPMapApiKey(mApiKey);
+        CheckPermission();
+
+        current.setOnClickListener(turnon);
+
+    }
+
+    //현재 위치 버튼 눌렀을때 작동
+    View.OnClickListener turnon = new View.OnClickListener(){
+        @Override
+        public void onClick(View view){
+            FindmyLocation();
+        }
+
+    };
+
+
     //gps, network provider 설정
-    void Provider(){
+    void FindmyLocation(){
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,2000,10,this);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,2000,10,this);
@@ -139,7 +153,7 @@ public class Optimization extends AppCompatActivity implements LocationListener{
     //permission 설정
     void CheckPermission(){
         if(ContextCompat.checkSelfPermission(this, Manifest.permission_group.LOCATION) == PackageManager.PERMISSION_GRANTED){
-            Provider();
+            FindmyLocation();
         }else{
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission_group.LOCATION},READ_ROCATE_CODE);
         }
@@ -152,7 +166,7 @@ public class Optimization extends AppCompatActivity implements LocationListener{
         switch(requestCode){
             case READ_ROCATE_CODE:
                 if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
-                    Provider();
+                    FindmyLocation();
                 }
         }
     }
