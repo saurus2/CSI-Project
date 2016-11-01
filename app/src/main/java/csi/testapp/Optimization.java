@@ -65,6 +65,7 @@ public class Optimization extends AppCompatActivity implements LocationListener 
 
     //버튼 선언
     Button current;
+    Button chbutton;
     ImageButton menu;
 
     //지도와 버튼들 처음 초기화 시켜주는 함수
@@ -89,6 +90,7 @@ public class Optimization extends AppCompatActivity implements LocationListener 
 
         //버튼 초기화
         current = (Button) findViewById(R.id.current);
+        chbutton = (Button) findViewById(R.id.chButton);
         menu = (ImageButton) findViewById(R.id.popup);
 
     }
@@ -104,11 +106,21 @@ public class Optimization extends AppCompatActivity implements LocationListener 
         CheckPermission();
 
         current.setOnClickListener(turnon);
+        chbutton.setOnClickListener(inner);
         menu.bringToFront();
         menu.invalidate();
 
 
     }
+
+    //실내 지도로 화면 변환
+    View.OnClickListener inner = new View.OnClickListener(){
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(Optimization.this, NextActivity.class);
+            startActivity(intent);
+        }
+    };
 
     //popupmenu 처리
     public void onPopupButtonClick(View button) {
@@ -122,19 +134,19 @@ public class Optimization extends AppCompatActivity implements LocationListener 
                     case R.id.fifth:
                         n_Latitude = 37.4508;
                         n_Longitude = 126.6525;
-                        drawPedestrianPath(n_Latitude,n_Longitude);
+                        drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
 
                     case R.id.center:
                         n_Latitude = 37.449476;
                         n_Longitude = 126.654388;
-                        drawPedestrianPath(n_Latitude,n_Longitude);
+                        drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
 
                     case R.id.tech:
                         n_Latitude = 37.450662;
                         n_Longitude = 126.656960;
-                        drawPedestrianPath(n_Latitude,n_Longitude);
+                        drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
                 }
                 return true;
@@ -161,7 +173,7 @@ public class Optimization extends AppCompatActivity implements LocationListener 
     }
 
     //맵에 길 그려주는 부분
-    public void drawPedestrianPath(double n_Latitude, double n_Longitude){
+    public void drawPedestrianPath(double n_Latitude, double n_Longitude) {
         TMapPoint point1 = new TMapPoint(Now_Latitude, Now_Longitude);
         TMapPoint point2 = new TMapPoint(n_Latitude, n_Longitude);
 
@@ -176,7 +188,6 @@ public class Optimization extends AppCompatActivity implements LocationListener 
         });
 
     }
-
 
 
     //위치 관련 함수들
