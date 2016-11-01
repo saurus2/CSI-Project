@@ -12,14 +12,10 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +33,7 @@ import com.skp.Tmap.TMapView;
  * Created by lab1 on 10/26/16.
  */
 
-public class Optimization extends AppCompatActivity implements LocationListener {
+public class Optimization extends AppCompatActivity{
     //티맵 관련 변수들
     public static String mApiKey = "8bdbb125-7d59-3684-84ff-ad4b5bb59e74";
     private TMapView mMapView = null;
@@ -187,7 +183,10 @@ public class Optimization extends AppCompatActivity implements LocationListener 
                 flag = 2;
             } else if (flag == 2) {
                 mMapView.setCompassMode(false);
-                flag = 1;
+                flag = 3;
+            }else if(flag == 3){
+                locationManager.removeUpdates(locationfunction);
+                flag = 0;
             }
 
         }
@@ -198,8 +197,8 @@ public class Optimization extends AppCompatActivity implements LocationListener 
     //gps, network provider 설정
     void FindmyLocation() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 10, this);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, this);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 10, locationfunction);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationfunction);
     }
 
     //맵에 길 그려주는 부분
@@ -226,45 +225,42 @@ public class Optimization extends AppCompatActivity implements LocationListener 
 
 
     //위치 관련 함수들
-    @Override
-    public void onLocationChanged(Location location) {
-
-        Now_Latitude = location.getLatitude();
-        Now_Longitude = location.getLongitude();
+   LocationListener locationfunction = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            Now_Latitude = location.getLatitude();
+            Now_Longitude = location.getLongitude();
 
         /* 여기는 제대로 좌표 잡는지 테스트하려고 토스트 메세지 넣어둔거 */
-        String msg = "New Latitude: " + Now_Latitude
-                + "New Longitude: " + Now_Longitude;
+            String msg = "New Latitude: " + Now_Latitude
+                    + "New Longitude: " + Now_Longitude;
 
-        Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
 
-        ////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////
 
-        //현재 위치에 따라서 맵위치도 다 바꿔줌
-        mMapView.setCenterPoint(Now_Longitude, Now_Latitude);
-        mMapView.setLocationPoint(Now_Longitude, Now_Latitude);
-        check = 1;
+            //현재 위치에 따라서 맵위치도 다 바꿔줌
+            mMapView.setCenterPoint(Now_Longitude, Now_Latitude);
+            mMapView.setLocationPoint(Now_Longitude, Now_Latitude);
+            check = 1;
+        }
 
-    }
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
 
-    @Override
-    public void onStatusChanged(String s, int i, Bundle bundle) {
+        }
 
-    }
+        @Override
+        public void onProviderEnabled(String provider) {
 
-    @Override
-    public void onProviderEnabled(String s) {
-        Toast.makeText(getBaseContext(), "Gps is turned on!! ",
-                Toast.LENGTH_SHORT).show();
-    }
+        }
 
-    @Override
-    public void onProviderDisabled(String s) {
-        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        startActivity(intent);
-        Toast.makeText(getBaseContext(), "Gps is turned off!! ",
-                Toast.LENGTH_SHORT).show();
-    }
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
+
 
     //permission 설정
     void CheckPermission() {
