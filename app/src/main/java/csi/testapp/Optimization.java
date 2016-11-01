@@ -57,16 +57,19 @@ public class Optimization extends AppCompatActivity implements LocationListener 
     double Now_Latitude = 0;
     double Now_Longitude = 0;
 
-    //출발위치 변하지 않게 하기 위해
-    int check = 0;
-
     //퍼미션 플래그
     final int READ_ROCATE_CODE = 0;
 
+    //현재 위치와 나침반 효과 플래그
+    int flag = 0;
+
+    //바로 길찾기 눌렀을때 플래그
+    int check = 0;
+
     //버튼 선언
-    Button current;
     Button chbutton;
     ImageButton menu;
+    ImageButton current;
 
     //지도와 버튼들 처음 초기화 시켜주는 함수
     void initView() {
@@ -89,9 +92,9 @@ public class Optimization extends AppCompatActivity implements LocationListener 
         mMapView.setTMapPathIcon(start, end);
 
         //버튼 초기화
-        current = (Button) findViewById(R.id.current);
         chbutton = (Button) findViewById(R.id.chButton);
         menu = (ImageButton) findViewById(R.id.popup);
+        current = (ImageButton) findViewById(R.id.current);
 
     }
 
@@ -99,22 +102,36 @@ public class Optimization extends AppCompatActivity implements LocationListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //티맵 화면에 출력해주는 함수들
         mMainRelativeLayout = (RelativeLayout) findViewById(R.id.mainRelativeLayout);
         initView();
         mMainRelativeLayout.addView(mMapView);
         mMapView.setSKPMapApiKey(mApiKey);
         CheckPermission();
 
+        //버튼 리스너들 등록 버튼 위치 조정
         current.setOnClickListener(turnon);
         chbutton.setOnClickListener(inner);
-        menu.bringToFront();
-        menu.invalidate();
-
-
+        refresh();
     }
 
+    //버튼들 최상단으로 새로고침 시켜주는 함수
+    public void refresh() {
+        menu.bringToFront();
+        current.bringToFront();
+        chbutton.bringToFront();
+        setViewInvalidate(menu, current, chbutton);
+    }
+
+    private void setViewInvalidate(View... views) {
+        for (View v : views) {
+            v.invalidate();
+        }
+    }
+    /////////////////////////////////////////////////////
+
     //실내 지도로 화면 변환
-    View.OnClickListener inner = new View.OnClickListener(){
+    View.OnClickListener inner = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(Optimization.this, NextActivity.class);
@@ -156,10 +173,23 @@ public class Optimization extends AppCompatActivity implements LocationListener 
     }
 
     //현재 위치 버튼 눌렀을때 작동
+    //1번 누르면 현재 위치 찾기
+    //2번 누르면 나침반 모드
+    //3번 누르면 나침반 모드 종료
     View.OnClickListener turnon = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            FindmyLocation();
+            if (flag == 0) {
+                FindmyLocation();
+                flag = 1;
+            } else if (flag == 1) {
+                mMapView.setCompassMode(true);
+                flag = 2;
+            } else if (flag == 2) {
+                mMapView.setCompassMode(false);
+                flag = 1;
+            }
+
         }
 
     };
@@ -174,6 +204,10 @@ public class Optimization extends AppCompatActivity implements LocationListener 
 
     //맵에 길 그려주는 부분
     public void drawPedestrianPath(double n_Latitude, double n_Longitude) {
+        if (check == 0) {
+            FindmyLocation();
+        }
+
         TMapPoint point1 = new TMapPoint(Now_Latitude, Now_Longitude);
         TMapPoint point2 = new TMapPoint(n_Latitude, n_Longitude);
 
@@ -187,6 +221,7 @@ public class Optimization extends AppCompatActivity implements LocationListener 
             }
         });
 
+        check = 1;
     }
 
 
@@ -208,6 +243,7 @@ public class Optimization extends AppCompatActivity implements LocationListener 
         //현재 위치에 따라서 맵위치도 다 바꿔줌
         mMapView.setCenterPoint(Now_Longitude, Now_Latitude);
         mMapView.setLocationPoint(Now_Longitude, Now_Latitude);
+        check = 1;
 
     }
 
