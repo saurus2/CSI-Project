@@ -299,10 +299,10 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
         LatLngBounds building = new LatLngBounds(       //오른쪽 위 왼쪽 아래 모서리 두개 잡고 이미지 오버레이 시키기
                 new LatLng(37.450355, 126.651892),       // South west corner 남 서
                 new LatLng(37.452054, 126.654249));      // North east corner 북 동
-//        GroundOverlayOptions fifthFirstMap = new GroundOverlayOptions()
-//                .image(BitmapDescriptorFactory.fromResource(R.drawable.fifth_building)) //만든이미지 res/mipmap에 추가함
-//                .positionFromBounds(building);//오버레이 좌표 적용
-//        GroundOverlay imageOverlay = mMap.addGroundOverlay(fifthFirstMap);//화면에 오버레이 띄우기
+        GroundOverlayOptions fifthFirstMap = new GroundOverlayOptions()
+                .image(BitmapDescriptorFactory.fromResource(R.drawable.fifth_building)) //만든이미지 res/mipmap에 추가함
+                .positionFromBounds(building);//오버레이 좌표 적용
+        GroundOverlay imageOverlay = mMap.addGroundOverlay(fifthFirstMap);//화면에 오버레이 띄우기
     }
 
     public static void databaseInitialize(Context ctx) {
