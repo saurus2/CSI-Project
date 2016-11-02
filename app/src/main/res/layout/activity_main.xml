@@ -22,47 +22,47 @@
         <!--구글 맵으로 바꾸는 버튼만들기-->
         <!--현재 위치 버튼 -->
 
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/centerbutton"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="11dp" />
+
         <ImageButton
             android:id="@+id/current"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:scaleType="centerCrop"
             android:padding="0sp"
-            android:layout_alignParentStart="true"
+            android:background="@drawable/compass"
+            android:layout_marginStart="20dp"
+            android:layout_alignBottom="@+id/popup"
+            android:layout_alignParentStart="true" />
+
+        <ImageButton
+            android:id="@+id/popup"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:onClick="onPopupButtonClick"
             android:layout_alignParentTop="true"
-            android:src="@drawable/current" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/listbutton"/>
 
         <Button
             android:id="@+id/chButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="17dp"
-            android:layout_marginEnd="54dp"
-            android:layout_toStartOf="@+id/popup"
             android:onClick="clicked2"
-            android:text="Change" />
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/chButton"
-            android:layout_alignBottom="@+id/chButton"
-            android:layout_marginEnd="34dp"
-            android:layout_toStartOf="@+id/chButton"
-            android:text="AR" />
-
-        <ImageButton
-            android:id="@+id/popup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:onClick="onPopupButtonClick"
-            android:padding="0sp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/menu" />
+            android:text="Change"
+            android:layout_marginEnd="35dp"
+            android:layout_alignBaseline="@+id/button6"
+            android:layout_alignBottom="@+id/button6"
+            android:layout_alignEnd="@+id/popup" />
 
 
     </RelativeLayout>
