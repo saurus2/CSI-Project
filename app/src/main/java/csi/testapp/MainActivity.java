@@ -45,7 +45,7 @@ import com.skp.Tmap.TMapData.TMapPathType;
 
 import static csi.testapp.R.id.view;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     //티맵 관련 변수들
     public static String mApiKey = "8bdbb125-7d59-3684-84ff-ad4b5bb59e74";
@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity{
         //지도 아이콘들 셋팅
         options.inSampleSize = 60;
         location = BitmapFactory.decodeResource(getResources(), R.drawable.location, options);
-        start = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-        end = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        start = BitmapFactory.decodeResource(getResources(), R.drawable.start);
+        end = BitmapFactory.decodeResource(getResources(), R.drawable.end);
         mMapView.setIcon(location);
         mMapView.setIconVisibility(true);
         mMapView.setSightVisible(true);
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity{
             } else if (flag == 2) {
                 mMapView.setCompassMode(false);
                 flag = 3;
-            }else if(flag == 3){
+            } else if (flag == 3) {
                 locationManager.removeUpdates(locationfunction);
                 flag = 0;
             }
