@@ -25,7 +25,7 @@ public class IntroActivity extends AppCompatActivity {
     Runnable mrun = new Runnable(){
         @Override
         public void run(){
-            Intent i = new Intent(IntroActivity.this, Optimization.class); //인텐트 생성(현 액티비티, 새로 실행할 액티비티)
+            Intent i = new Intent(IntroActivity.this, MainActivity.class); //인텐트 생성(현 액티비티, 새로 실행할 액티비티)
             startActivity(i);
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

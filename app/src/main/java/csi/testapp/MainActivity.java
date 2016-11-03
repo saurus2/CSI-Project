@@ -16,7 +16,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -43,167 +45,240 @@ import com.skp.Tmap.TMapData.TMapPathType;
 
 import static csi.testapp.R.id.view;
 
-public class MainActivity extends AppCompatActivity implements LocationListener {
+public class MainActivity extends AppCompatActivity{
 
+    //티맵 관련 변수들
     public static String mApiKey = "8bdbb125-7d59-3684-84ff-ad4b5bb59e74";
     private TMapView mMapView = null;
-    private RelativeLayout mMainRelativeLayout = null;
-    TMapGpsManager gps;
-    final int READ_ROCATE_CODE = 0;
-    Bitmap bitmap;
+    private RelativeLayout mMainRelativeLayout;
+    private LocationManager locationManager;
+    //티맵 포인터들
+    Bitmap start;
     Bitmap end;
     Bitmap location;
-    private LocationManager locationManager;
-    Button btn_compas;
-    Button second;
-    Button back;
-    Button high;
-    Button center;
-    Button test;
-    double n_Latitude = 0;
-    double n_Longitude = 0;
-    int check = 0;
     BitmapFactory.Options options = new BitmapFactory.Options();
 
+    //위도경도 새로 설정해야할때
+    double n_Latitude = 0;
+    double n_Longitude = 0;
 
-    private void configureMapView() {
-        mMapView.setSKPMapApiKey(mApiKey);
-    }
+    //현재 위치 저장되는 위도 경도
+    double Now_Latitude = 0;
+    double Now_Longitude = 0;
 
+    //퍼미션 플래그
+    final int READ_ROCATE_CODE = 0;
+
+    //현재 위치와 나침반 효과 플래그
+    int flag = 0;
+
+    //바로 길찾기 눌렀을때 플래그
+    int check = 0;
+
+    //버튼 선언
+    Button chbutton;
+    ImageButton menu;
+    ImageButton current;
+
+    //지도와 버튼들 처음 초기화 시켜주는 함수
     void initView() {
         mMapView = new TMapView(this);
+        //지도를 처음 띄우면 보이는 화면 설정
+        //현재위치,지도 중심부도 처음엔 학교 중심부
         mMapView.setCenterPoint(126.65318, 37.449666);
         mMapView.setLocationPoint(126.65318, 37.449666);
-        options.inSampleSize = 60;
-        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-        end = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-        location = BitmapFactory.decodeResource(getResources(), R.drawable.location, options);
         mMapView.setLanguage(TMapView.LANGUAGE_KOREAN);
+        mMapView.setZoomLevel(17);
+
+        //지도 아이콘들 셋팅
+        options.inSampleSize = 60;
+        location = BitmapFactory.decodeResource(getResources(), R.drawable.location, options);
+        start = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        end = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         mMapView.setIcon(location);
         mMapView.setIconVisibility(true);
         mMapView.setSightVisible(true);
-        mMapView.setZoomLevel(17);
-        gps = new TMapGpsManager(this);
-        mMapView.setTMapPathIcon(bitmap, end);
-        mMapView.setCompassMode(true);
-//        btn_compas = (Button)findViewById(R.id.compas);
-//        second = (Button)findViewById(R.id.second);
-//        back = (Button)findViewById(R.id.back);
-//        high = (Button)findViewById(R.id.high);
-        center = (Button) findViewById(R.id.center);
-        test = (Button) findViewById(R.id.current);
+        mMapView.setTMapPathIcon(start, end);
+
+        //버튼 초기화
+        chbutton = (Button) findViewById(R.id.chButton);
+        menu = (ImageButton) findViewById(R.id.popup);
+        current = (ImageButton) findViewById(R.id.current);
 
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //티맵 화면에 출력해주는 함수들
         mMainRelativeLayout = (RelativeLayout) findViewById(R.id.mainRelativeLayout);
         initView();
         mMainRelativeLayout.addView(mMapView);
-        configureMapView();
-        tryCheckPermission();
-        findViewById(R.id.button).setOnClickListener(handler);
+        mMapView.setSKPMapApiKey(mApiKey);
+        CheckPermission();
 
-        //컴파스 버튼 테스트 부분
-
-        btn_compas.setOnClickListener(compas);
-        second.setOnClickListener(Des);
-        back.setOnClickListener(Des);
-        high.setOnClickListener(Des);
-        center.setOnClickListener(Des);
+        //버튼 리스너들 등록 버튼 위치 조정
+        current.setOnClickListener(turnon);
+        chbutton.setOnClickListener(inner);
+        refresh();
     }
 
-    View.OnClickListener compas = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            mMapView.setCompassMode(true);
+    //버튼들 최상단으로 새로고침 시켜주는 함수
+    public void refresh() {
+        menu.bringToFront();
+        current.bringToFront();
+        chbutton.bringToFront();
+        setViewInvalidate(menu, current, chbutton);
+    }
+
+    private void setViewInvalidate(View... views) {
+        for (View v : views) {
+            v.invalidate();
         }
-    };
+    }
+    /////////////////////////////////////////////////////
 
-    View.OnClickListener Des = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-//                case R.id.back:
-//                    n_Latitude = 37.451037;
-//                    n_Longitude = 126.656499;
-//                    break;
-//                case R.id.center:
-//                    n_Latitude = 37.449476;
-//                    n_Longitude = 126.654388;
-//                    break;
-//                case R.id.high:
-//                    n_Latitude = 37.450662;
-//                    n_Longitude = 126.656960;
-//                    break;
-//                case R.id.second:
-//                    n_Latitude = 37.450337;
-//                    n_Longitude = 126.655693;
-//                    break;
-            }
-            check = 0;
-
-        }
-    };
-
-    View.OnClickListener handler = new View.OnClickListener() {
+    //실내 지도로 화면 변환
+    View.OnClickListener inner = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            doAction();
+            Intent intent = new Intent(MainActivity.this, NextActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    //popupmenu 처리
+    public void onPopupButtonClick(View button) {
+        PopupMenu popup = new PopupMenu(this, button);
+
+        popup.getMenuInflater().inflate(R.menu.popup, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.fifth:
+                        n_Latitude = 37.4508;
+                        n_Longitude = 126.6525;
+                        drawPedestrianPath(n_Latitude, n_Longitude);
+                        break;
+
+                    case R.id.center:
+                        n_Latitude = 37.449476;
+                        n_Longitude = 126.654388;
+                        drawPedestrianPath(n_Latitude, n_Longitude);
+                        break;
+
+                    case R.id.tech:
+                        n_Latitude = 37.450662;
+                        n_Longitude = 126.656960;
+                        drawPedestrianPath(n_Latitude, n_Longitude);
+                        break;
+                }
+                return true;
+            }
+        });
+        popup.show();
+    }
+
+    //현재 위치 버튼 눌렀을때 작동
+    //1번 누르면 현재 위치 찾기
+    //2번 누르면 나침반 모드
+    //3번 누르면 나침반 모드 종료
+    View.OnClickListener turnon = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (flag == 0) {
+                FindmyLocation();
+                flag = 1;
+            } else if (flag == 1) {
+                mMapView.setCompassMode(true);
+                flag = 2;
+            } else if (flag == 2) {
+                mMapView.setCompassMode(false);
+                flag = 3;
+            }else if(flag == 3){
+                locationManager.removeUpdates(locationfunction);
+                flag = 0;
+            }
+
         }
 
     };
 
-    //    화면변환하는 버튼 onclick 활성화 xml 의 디자인에서 수정함
-    //    버튼 이벤트 자바에 미리 만들어 놓기 -> 엑티비티 연결된 xml에서 버튼 생성 -> 버튼 프로퍼티에서 Onclick 옵션에 추가
 
-    public void clicked2(View v) {
-        Intent intent = new Intent(this, NextActivity.class);
-        startActivity(intent);
-    }
-
-
-//    void settingGPS(){
-//        gps.setMinTime(1000);
-//        gps.setMinDistance(5);
-//        gps.setProvider(gps.GPS_PROVIDER);
-//        gps.OpenGps();
-//    };
-
-
-    void doAction() {
-        n_Latitude = 37.4508;
-        n_Longitude = 126.6525;
+    //gps, network provider 설정
+    void FindmyLocation() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 10, this);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, this);
-
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 10, locationfunction);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationfunction);
     }
 
-    ;
+    //맵에 길 그려주는 부분
+    public void drawPedestrianPath(double n_Latitude, double n_Longitude) {
+        if (check == 0) {
+            FindmyLocation();
+        }
 
-    public void drawPedestrianPath(double s_lat, double s_long, double n_Latitude, double n_Longitude) {
-        TMapPoint point1 = new TMapPoint(s_lat, s_long);
+        TMapPoint point1 = new TMapPoint(Now_Latitude, Now_Longitude);
         TMapPoint point2 = new TMapPoint(n_Latitude, n_Longitude);
 
         TMapData tmapdata = new TMapData();
 
-        tmapdata.findPathDataWithType(TMapPathType.PEDESTRIAN_PATH, point1, point2, new FindPathDataListenerCallback() {
+        tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, point1, point2, new TMapData.FindPathDataListenerCallback() {
             @Override
-            public void onFindPathData(TMapPolyLine polyLine) {
-                polyLine.setLineColor(Color.BLUE);
-                mMapView.addTMapPath(polyLine);
+            public void onFindPathData(TMapPolyLine tMapPolyLine) {
+                tMapPolyLine.setLineColor(Color.BLUE);
+                mMapView.addTMapPath(tMapPolyLine);
             }
         });
+
+        check = 1;
     }
 
 
-    void tryCheckPermission() {
+    //위치 관련 함수들
+    LocationListener locationfunction = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            Now_Latitude = location.getLatitude();
+            Now_Longitude = location.getLongitude();
+
+        /* 여기는 제대로 좌표 잡는지 테스트하려고 토스트 메세지 넣어둔거 */
+            String msg = "New Latitude: " + Now_Latitude
+                    + "New Longitude: " + Now_Longitude;
+
+            Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+
+            ////////////////////////////////////////////////////////////////////
+
+            //현재 위치에 따라서 맵위치도 다 바꿔줌
+            mMapView.setCenterPoint(Now_Longitude, Now_Latitude);
+            mMapView.setLocationPoint(Now_Longitude, Now_Latitude);
+            check = 1;
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
+
+
+    //permission 설정
+    void CheckPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission_group.LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            doAction();
+            FindmyLocation();
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission_group.LOCATION}, READ_ROCATE_CODE);
         }
@@ -216,45 +291,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         switch (requestCode) {
             case READ_ROCATE_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                    doAction();
+                    FindmyLocation();
                 }
         }
-    }
-
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-        double Latitude = location.getLatitude();
-        double Longitude = location.getLongitude();
-        String msg = "New Latitude: " + Latitude
-                + "New Longitude: " + Longitude;
-
-        Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
-        mMapView.setCenterPoint(Longitude, Latitude);
-        mMapView.setLocationPoint(Longitude, Latitude);
-        if (check == 0) {
-            drawPedestrianPath(Latitude, Longitude, n_Latitude, n_Longitude);
-            check++;
-        }
-    }
-
-    @Override
-    public void onStatusChanged(String s, int i, Bundle bundle) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String s) {
-        Toast.makeText(getBaseContext(), "Gps is turned on!! ",
-                Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onProviderDisabled(String s) {
-        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        startActivity(intent);
-        Toast.makeText(getBaseContext(), "Gps is turned off!! ",
-                Toast.LENGTH_SHORT).show();
     }
 }
