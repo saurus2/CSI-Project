@@ -1,5 +1,7 @@
 package csi.testapp;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,9 +12,8 @@ import android.view.Window;
  * Created by saurus on 2016. 11. 2..
  */
 
-public class IntroActivity extends AppCompatActivity {
+public class IntroActivity extends Activity {
     Handler h;//핸들러 선언
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,7 @@ public class IntroActivity extends AppCompatActivity {
     Runnable mrun = new Runnable(){
         @Override
         public void run(){
-            Intent i = new Intent(IntroActivity.this, MainActivity.class); //인텐트 생성(현 액티비티, 새로 실행할 액티비티)
+            Intent i = new Intent(getApplicationContext(), MainActivity.class); //인텐트 생성(현 액티비티, 새로 실행할 액티비티)
             startActivity(i);
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
