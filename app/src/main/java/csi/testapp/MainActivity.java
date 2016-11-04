@@ -261,6 +261,7 @@ public class MainActivity extends AppCompatActivity {
                         n_Longitude = 126.6525;
                         building_n = "5호관";
                         i_dialog();
+                        DrawSurfaceView.props = new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n);
                         drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
 
@@ -269,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
                         n_Longitude = 126.654388;
                         building_n = "본관";
                         i_dialog();
+                        DrawSurfaceView.props = new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n);
                         drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
 
@@ -277,6 +279,7 @@ public class MainActivity extends AppCompatActivity {
                         n_Longitude = 126.656960;
                         building_n = "하이테크";
                         i_dialog();
+                        DrawSurfaceView.props = new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n);
                         drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
                 }

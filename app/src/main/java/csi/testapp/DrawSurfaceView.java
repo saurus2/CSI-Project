@@ -35,16 +35,17 @@ public class DrawSurfaceView extends View {
 	Paint mPaint = new Paint();
 	private double OFFSET = 0d;
 	private double screenWidth, screenHeight = 0d;
-	private Bitmap[] mSpots, mBlips;
+	private Bitmap mSpots, mBlips;
 	private Bitmap mRadar;
 
-	public static ArrayList<Point> props = new ArrayList<Point>();
-	static {
-		props.add(new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n));
-		//props.add(new Point(37.449476, 126.654388, "본관"));
-		//props.add(new Point(37.450662, 126.656960, "하이테크"));
-		//props.add(new Point(37.450337, 126.655693, "2호관"));
-	}
+	public static Point props = new Point(0,0,"null");
+//	public static ArrayList<Point> props = new ArrayList<Point>();
+//	static {
+//		props.add(new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n));
+//		//props.add(new Point(37.449476, 126.654388, "본관"));
+//		//props.add(new Point(37.450662, 126.656960, "하이테크"));
+//		//props.add(new Point(37.450337, 126.655693, "2호관"));
+//	}
 
 	public DrawSurfaceView(Context c, Paint paint) {
 		super(c);
@@ -58,14 +59,16 @@ public class DrawSurfaceView extends View {
 		mPaint.setAntiAlias(true);
 		
 		mRadar = BitmapFactory.decodeResource(context.getResources(), R.drawable.radar);
-		
-		mSpots = new Bitmap[props.size()];
-		for (int i = 0; i < mSpots.length; i++) 
-			mSpots[i] = BitmapFactory.decodeResource(context.getResources(), R.drawable.dot);
 
-		mBlips = new Bitmap[props.size()];
-		for (int i = 0; i < mBlips.length; i++)
-			mBlips[i] = BitmapFactory.decodeResource(context.getResources(), R.drawable.blip);
+		mSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.dot);
+		mBlips = BitmapFactory.decodeResource(context.getResources(), R.drawable.blip);
+//		mSpots = new Bitmap[props.size()];
+//		for (int i = 0; i < mSpots.length; i++)
+//			mSpots[i] = BitmapFactory.decodeResource(context.getResources(), R.drawable.dot);
+//
+//		mBlips = new Bitmap[props.size()];
+//		for (int i = 0; i < mBlips.length; i++)
+//			mBlips[i] = BitmapFactory.decodeResource(context.getResources(), R.drawable.blip);
 	}
 
 	@Override
@@ -84,10 +87,10 @@ public class DrawSurfaceView extends View {
 		int radarCentreX = mRadar.getWidth() / 2;
 		int radarCentreY = mRadar.getHeight() / 2;
 
-		for (int i = 0; i < mBlips.length; i++) {
-			Bitmap blip = mBlips[i];
-			Bitmap spot = mSpots[i];
-			Point u = props.get(i);
+		for (int i = 0; i < 1; i++) {
+			Bitmap blip = mBlips;//[i];
+			Bitmap spot = mSpots;//[i];
+			Point u = props;//.get(i);
 			double dist = distInMetres(me, u);
 			
 			if (blip == null || spot == null)
