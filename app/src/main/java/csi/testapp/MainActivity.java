@@ -43,6 +43,8 @@ import com.skp.Tmap.TMapData.FindPathDataAllListenerCallback;
 import com.skp.Tmap.TMapData.FindPathDataListenerCallback;
 import com.skp.Tmap.TMapData.TMapPathType;
 
+import java.util.concurrent.TimeUnit;
+
 import static csi.testapp.R.id.view;
 
 public class MainActivity extends AppCompatActivity {
@@ -251,24 +253,46 @@ public class MainActivity extends AppCompatActivity {
 
 
     //위치 관련 함수들
+    long updatedOn = Long.MAX_VALUE;
+    final Object locationSync = new Object();
     LocationListener locationfunction = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
             Now_Latitude = location.getLatitude();
             Now_Longitude = location.getLongitude();
 
-        /* 여기는 제대로 좌표 잡는지 테스트하려고 토스트 메세지 넣어둔거 */
+        /* 여기는 제대로 좌표 잡는지 테스트하려고 토스트 메세지 넣어둔거
             String msg = "New Latitude: " + Now_Latitude
                     + "New Longitude: " + Now_Longitude;
 
             Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
 
-            ////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////*/
 
             //현재 위치에 따라서 맵위치도 다 바꿔줌
             mMapView.setCenterPoint(Now_Longitude, Now_Latitude);
             mMapView.setLocationPoint(Now_Longitude, Now_Latitude);
             check = 1;
+
+            synchronized (locationSync) {
+                if (updatedOn + 1 > TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())) {
+                    Log.i(getString(R.string.app_name), "onLocationChanged() called in less than 10 seconds, ignoring...");
+                    return;
+                }
+            }
+
+            try {
+                Compass.mDrawView.setMyLocation(location.getLatitude(), location.getLongitude());
+                Compass.mDrawView.invalidate();
+
+                synchronized (locationSync) {
+                    updatedOn = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
+                }
+            } catch (Exception e) {
+                Log.e(getString(R.string.app_name), "", e);
+            }
+
+
         }
 
         @Override

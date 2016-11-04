@@ -35,85 +35,89 @@ import android.widget.Toast;
 
 public class Compass extends Activity {
 
-	private static final String TAG = "Compass";
-	private static boolean DEBUG = false;
-	private SensorManager mSensorManager;
-	private Sensor mSensor;
-	private DrawSurfaceView mDrawView;
-	LocationManager locMgr;
+    private static final String TAG = "Compass";
+    private static boolean DEBUG = false;
+    private SensorManager mSensorManager;
+    private Sensor mSensor;
+    public static DrawSurfaceView mDrawView;
+    LocationManager locMgr;
 
-	private final SensorEventListener mListener = new SensorEventListener() {
-		public void onSensorChanged(SensorEvent event) {
-			if (DEBUG)
-				Log.d(TAG, "sensorChanged (" + event.values[0] + ", " + event.values[1] + ", " + event.values[2] + ")");
-			if (mDrawView != null) {
-				mDrawView.setOffset(event.values[0]);
-				mDrawView.invalidate();
-			}
-		}
+    private final SensorEventListener mListener = new SensorEventListener() {
+        public void onSensorChanged(SensorEvent event) {
+            if (DEBUG)
+                Log.d(TAG, "sensorChanged (" + event.values[0] + ", " + event.values[1] + ", " + event.values[2] + ")");
+            if (mDrawView != null) {
+                mDrawView.setOffset(event.values[0]);
+                mDrawView.invalidate();
+            }
+        }
 
-		public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		}
-	};
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        }
+    };
 
-	@SuppressWarnings("deprecation")
-	@Override
-	protected void onCreate(Bundle icicle) {
-		super.onCreate(icicle);
-		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-		mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
-		setContentView(R.layout.activity_ar);
-		
-		mDrawView = (DrawSurfaceView) findViewById(R.id.drawSurfaceView);
-		
-		locMgr = (LocationManager) this.getSystemService(LOCATION_SERVICE); // <2>
-		LocationProvider high = locMgr.getProvider(locMgr.getBestProvider(
-				LocationUtils.createFineCriteria(), true));
+    @SuppressWarnings("deprecation")
+    @Override
+    protected void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+        setContentView(R.layout.activity_ar);
 
-		// using high accuracy provider... to listen for updates
-		locMgr.requestLocationUpdates(high.getName(), 0, 0f,
-				new LocationListener() {
-					public void onLocationChanged(Location location) {
-						// do something here to save this new location
-						Log.d(TAG, "Location Changed");
-						mDrawView.setMyLocation(location.getLatitude(), location.getLongitude());
-						mDrawView.invalidate();
+        mDrawView = (DrawSurfaceView) findViewById(R.id.drawSurfaceView);
 
-						String msg = "AR New Latitude: " + location.getLatitude()
-								+ "AR New Longitude: " + location.getLongitude();
-						Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
-					}
+//		locMgr = (LocationManager) this.getSystemService(LOCATION_SERVICE); // <2>
+//		LocationProvider high = locMgr.getProvider(locMgr.getBestProvider(
+//				LocationUtils.createFineCriteria(), true));
+//
+//		// using high accuracy provider... to listen for updates
+//		locMgr.requestLocationUpdates(high.getName(), 0, 0f,
+//				new LocationListener() {
+//					public void onLocationChanged(Location location) {
+//						// do something here to save this new location
+//						Log.d(TAG, "Location Changed");
+//						mDrawView.setMyLocation(location.getLatitude(), location.getLongitude());
+//						mDrawView.invalidate();
+//
+//						String msg = "AR New Latitude: " + location.getLatitude()
+//								+ "AR New Longitude: " + location.getLongitude();
+//						Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+//					}
+//
+//					public void onStatusChanged(String s, int i, Bundle bundle) {
+//
+//					}
+//
+//					public void onProviderEnabled(String s) {
+//						// try switching to a different provider
+//					}
+//
+//					public void onProviderDisabled(String s) {
+//						// try switching to a different provider
+//					}
+//				});
 
-					public void onStatusChanged(String s, int i, Bundle bundle) {
 
-					}
 
-					public void onProviderEnabled(String s) {
-						// try switching to a different provider
-					}
+    }
 
-					public void onProviderDisabled(String s) {
-						// try switching to a different provider
-					}
-				});
 
-	}
 
-	@Override
-	protected void onResume() {
-		if (DEBUG)
-			Log.d(TAG, "onResume");
-		super.onResume();
+    @Override
+    protected void onResume() {
+        if (DEBUG)
+            Log.d(TAG, "onResume");
+        super.onResume();
 
-		mSensorManager.registerListener(mListener, mSensor,
-				SensorManager.SENSOR_DELAY_GAME);
-	}
+        mSensorManager.registerListener(mListener, mSensor,
+                SensorManager.SENSOR_DELAY_GAME);
+    }
 
-	@Override
-	protected void onStop() {
-		if (DEBUG)
-			Log.d(TAG, "onStop");
-		mSensorManager.unregisterListener(mListener);
-		super.onStop();
-	}
+    @Override
+    protected void onStop() {
+        if (DEBUG)
+            Log.d(TAG, "onStop");
+        mSensorManager.unregisterListener(mListener);
+        super.onStop();
+    }
 }
