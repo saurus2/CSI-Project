@@ -64,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String DATABASE_NAME = "Classes.db";
     public static final String COPY2DATABASE_NAME = "ClassesDB.db";
 
+    //도착지에 대한 경도 위도
+    public static double desLangitute = 0;
+    public static double desLongitute = 0;
+
     //티맵 관련 변수들
     public static String mApiKey = "8bdbb125-7d59-3684-84ff-ad4b5bb59e74";
     private TMapView mMapView = null;
