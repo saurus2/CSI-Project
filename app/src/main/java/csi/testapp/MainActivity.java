@@ -1,7 +1,9 @@
 package csi.testapp;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -14,14 +16,17 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.TextViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -175,18 +180,21 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.fifth:
                         n_Latitude = 37.4508;
                         n_Longitude = 126.6525;
+                        i_dialog();
                         drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
 
                     case R.id.center:
                         n_Latitude = 37.449476;
                         n_Longitude = 126.654388;
+                        i_dialog();
                         drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
 
                     case R.id.tech:
                         n_Latitude = 37.450662;
                         n_Longitude = 126.656960;
+                        i_dialog();
                         drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
                 }
@@ -195,6 +203,36 @@ public class MainActivity extends AppCompatActivity {
         });
         popup.show();
     }
+
+    //호관 누르면 호수 물어보는 팝업 창 뜨게 하는 함수
+    public void i_dialog(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle("강의실 번호를 입력해주세요");
+        //alert.setMessage("Message");
+
+        // Set an EditText view to get user input
+        final EditText input = new EditText(this);
+        alert.setView(input);
+
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String value = input.getText().toString();
+                value.toString();
+                // Do something with value!
+                Log.i("check dialog : ", value);
+            }
+        });
+        alert.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // Canceled.
+                    }
+                });
+
+        alert.show();
+    }
+
 
     //현재 위치 버튼 눌렀을때 작동
     //1번 누르면 현재 위치 찾기
