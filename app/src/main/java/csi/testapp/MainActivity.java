@@ -307,7 +307,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onProviderDisabled(String provider) {
-
+            Toast.makeText(MainActivity.this, "GPS 사용을 체크해주세요 .", Toast.LENGTH_LONG).show();
+            startActivityForResult(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS), 0);
         }
     };
 
