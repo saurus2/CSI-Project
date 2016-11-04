@@ -22,14 +22,24 @@
         <!--구글 맵으로 바꾸는 버튼만들기-->
         <!--현재 위치 버튼 -->
 
-        <Button
-            android:id="@+id/arButton"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/centerbutton"
+        <ImageView
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="11dp" />
+            android:background="@drawable/bottombar"/>
+
+            <ImageButton
+                android:id="@+id/popup"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:onClick="onPopupButtonClick"
+                android:background="@drawable/listbutton"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true" />
+
 
         <ImageButton
             android:id="@+id/current"
@@ -38,32 +48,32 @@
             android:scaleType="centerCrop"
             android:padding="0sp"
             android:background="@drawable/compass"
-            android:layout_marginStart="20dp"
-            android:layout_alignBottom="@+id/popup"
-            android:layout_alignParentStart="true" />
-
-        <ImageButton
-            android:id="@+id/popup"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:onClick="onPopupButtonClick"
-            android:layout_alignParentTop="true"
+            android:layout_above="@+id/arButton"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="18dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/listbutton"/>
+            android:layout_marginEnd="10dp" />
+
+
+        <Button
+            android:id="@+id/arButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/centerbutton"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="55dp"
+            android:layout_marginRight="10dp"/>
 
         <Button
             android:id="@+id/chButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Change"
-            android:layout_marginEnd="35dp"
-            android:layout_alignBaseline="@+id/arButton"
-            android:layout_alignBottom="@+id/arButton"
-            android:layout_alignEnd="@+id/popup" />
-
-
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="55dp"
+            />
     </RelativeLayout>
 
 </LinearLayout>

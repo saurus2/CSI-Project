@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.Image;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -27,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     Bitmap location;
     BitmapFactory.Options options = new BitmapFactory.Options();
 
+
     //위도경도 새로 설정해야할때
     double n_Latitude = 0;
     double n_Longitude = 0;
@@ -101,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
     Button chbutton;
     ImageButton menu;
     ImageButton current;
+    ImageView bottom;
 
     //지도와 버튼들 처음 초기화 시켜주는 함수
     void initView() {
@@ -127,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         chbutton = (Button) findViewById(R.id.chButton);
         menu = (ImageButton) findViewById(R.id.popup);
         current = (ImageButton) findViewById(R.id.current);
+        bottom = (ImageView) findViewById(R.id.bottomBar);
 
     }
 
@@ -194,11 +199,12 @@ public class MainActivity extends AppCompatActivity {
 
     //버튼들 최상단으로 새로고침 시켜주는 함수
     public void refresh() {
+        bottom.bringToFront();
         menu.bringToFront();
         current.bringToFront();
         chbutton.bringToFront();
         arButton.bringToFront();
-        setViewInvalidate(menu, current, chbutton, arButton);
+        setViewInvalidate(menu, current, chbutton, arButton, bottom);
     }
 
     private void setViewInvalidate(View... views) {
