@@ -119,13 +119,13 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        //데이터 베이스 초기화
-        Log.i("수행","메세지");
-        databaseInitialize(getApplicationContext());
-        Log.i("수행","이건 " + getApplicationContext());
-        //데이터 베이스 생성
-        makeDatabase();
-        Log.i("수행","데이터베이스생성");
+//        //데이터 베이스 초기화
+//        Log.i("수행","메세지");
+//        databaseInitialize(getApplicationContext());
+//        Log.i("수행","이건 " + getApplicationContext());
+//        //데이터 베이스 생성
+//        makeDatabase();
+//        Log.i("수행","데이터베이스생성");
 
         //비콘 소스 코드 추가
 
@@ -256,25 +256,6 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<RECOBeacon> mRangedBeacons;
     private LayoutInflater mLayoutInflater;
 
-
-
-    public void getView(int position, View convertView, ViewGroup parent) {
-        RECOBeacon recoBeacon = mRangedBeacons.get(position);
-        String proximityUuid = recoBeacon.getProximityUuid();
-
-        Log.i("수행 레코 비콘 정보 가져오기",String.format("%s-%s-%s-%s-%s", proximityUuid.substring(0, 8), proximityUuid.substring(8, 12), proximityUuid.substring(12, 16), proximityUuid.substring(16, 20), proximityUuid.substring(20) ));
-        Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getMajor()+"");
-        Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getMinor()+"");
-        Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getTxPower()+"");
-        Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getRssi()+"");
-        Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getBattery()+"");
-        Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getProximity()+"");
-        Log.i("수행 레코 비콘 정보 가져오기",String.format("%.2f", recoBeacon.getAccuracy())+"");
-    }
-
-
-
-
     //원래 화면으로 돌아가는 버튼
     //버튼 만들고 액티비티랑 연결 -> 함수 미리 만들어 놓기 -> 버튼에서 onclick 기능 추가하면됨
     public void returnToMain(View v){
@@ -305,60 +286,60 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
         GroundOverlay imageOverlay = mMap.addGroundOverlay(fifthFirstMap);//화면에 오버레이 띄우기
     }
 
-    public static void databaseInitialize(Context ctx) {
-        // check
-        File folder = new File(PACKAGE_DIR + "databases");
-        folder.mkdirs();
-        File outfile = new File(PACKAGE_DIR + "databases/" + COPY2DATABASE_NAME);
-
-        if (outfile.length() >= 0) {
-            AssetManager assetManager = ctx.getResources().getAssets();
-            try {
-                InputStream is = assetManager.open(DATABASE_NAME, AssetManager.ACCESS_BUFFER);
-                long filesize = is.available();
-                byte [] tempdata = new byte[(int)filesize];
-                is.read(tempdata);
-                is.close();
-                outfile.createNewFile();
-                FileOutputStream fo = new FileOutputStream(outfile);
-                fo.write(tempdata);
-                fo.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void makeDatabase() {
-
-        try {
-
-            SQLiteDatabase db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
-
-
-            Cursor cur = db.rawQuery("SELECT * From Classes", null);
-
-
-            cur.moveToFirst();
-
-
-            Log.i("move!!!", "" + cur.getString(0));
-            //TextView tv = (TextView) findViewById(R.id.textView);
-            String text1 = cur.getString(1);
-            String text2 = cur.getString(2);
-            double langitute = Double.parseDouble(text1);
-            double longitute = Double.parseDouble(text2);
-            Log.i("수행", "경도 :" + langitute);
-            Log.i("수행", "위도 :" + longitute);
-            Marker1 = new LatLng(langitute, longitute);
-
-
-            //tv.setText(text);
-        } catch (Exception e) {
-            Log.i("_)", "" + e.toString());
-        }
-
-    }
+//    public static void databaseInitialize(Context ctx) {
+//        // check
+//        File folder = new File(PACKAGE_DIR + "databases");
+//        folder.mkdirs();
+//        File outfile = new File(PACKAGE_DIR + "databases/" + COPY2DATABASE_NAME);
+//
+//        if (outfile.length() >= 0) {
+//            AssetManager assetManager = ctx.getResources().getAssets();
+//            try {
+//                InputStream is = assetManager.open(DATABASE_NAME, AssetManager.ACCESS_BUFFER);
+//                long filesize = is.available();
+//                byte [] tempdata = new byte[(int)filesize];
+//                is.read(tempdata);
+//                is.close();
+//                outfile.createNewFile();
+//                FileOutputStream fo = new FileOutputStream(outfile);
+//                fo.write(tempdata);
+//                fo.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+//
+//    public void makeDatabase() {
+//
+//        try {
+//
+//            SQLiteDatabase db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
+//
+//
+//            Cursor cur = db.rawQuery("SELECT * From Classes", null);
+//
+//
+//            cur.moveToFirst();
+//
+//
+//            Log.i("move!!!", "" + cur.getString(0));
+//            //TextView tv = (TextView) findViewById(R.id.textView);
+//            String text1 = cur.getString(1);
+//            String text2 = cur.getString(2);
+//            double langitute = Double.parseDouble(text1);
+//            double longitute = Double.parseDouble(text2);
+//            Log.i("수행", "경도 :" + langitute);
+//            Log.i("수행", "위도 :" + longitute);
+//            Marker1 = new LatLng(langitute, longitute);
+//
+//
+//            //tv.setText(text);
+//        } catch (Exception e) {
+//            Log.i("_)", "" + e.toString());
+//        }
+//
+//    }
 
     public void searchClass(View v) {
         //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
