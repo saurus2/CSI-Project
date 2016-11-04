@@ -100,7 +100,7 @@ MERGED from [com.google.android.gms:play-services-tasks:9.6.1] /home/lab1/Studio
 	android:icon
 		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:30:9-39
 	android:theme
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:33:9-59
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:33:9-65
 activity#csi.testapp.IntroActivity
 ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:37:9-44:20
 	android:name

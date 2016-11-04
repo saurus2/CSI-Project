@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
     Bitmap start;
     Bitmap end;
     Bitmap location;
-    BitmapFactory.Options options = new BitmapFactory.Options();
 
 
     //위도경도 새로 설정해야할때
@@ -127,8 +126,7 @@ public class MainActivity extends AppCompatActivity {
         mMapView.setZoomLevel(17);
 
         //지도 아이콘들 셋팅
-        options.inSampleSize = 60;
-        location = BitmapFactory.decodeResource(getResources(), R.drawable.location, options);
+        location = BitmapFactory.decodeResource(getResources(), R.drawable.location);
         start = BitmapFactory.decodeResource(getResources(), R.drawable.start);
         end = BitmapFactory.decodeResource(getResources(), R.drawable.end);
         mMapView.setIcon(location);
