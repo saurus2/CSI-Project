@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:2:1-82:12
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:2:1-77:12
 	package
 		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:3:5-26
 		INJECTED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml
@@ -65,11 +65,11 @@ ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xm
 	android:name
 		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:23:22-62
 uses-feature#android.hardware.camera
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:25:5-76
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:25:5-84
+	android:required
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:25:58-81
 	android:name
 		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:25:19-57
-	required
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:25:58-73
 uses-feature#android.hardware.camera.autofocus
 ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:26:5-95
 	android:required
@@ -77,7 +77,7 @@ ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xm
 	android:name
 		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:26:19-67
 application
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:28:5-76:19
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:28:5-71:19
 MERGED from [com.android.support:appcompat-v7:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-vector-drawable:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/AndroidManifest.xml:23:5-20
 MERGED from [com.android.support:support-compat:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/AndroidManifest.xml:25:5-20
@@ -102,54 +102,52 @@ MERGED from [com.google.android.gms:play-services-tasks:9.6.1] /home/lab1/Studio
 	android:theme
 		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:33:9-59
 activity#csi.testapp.IntroActivity
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:37:9-45:20
-	android:label
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:39:13-45
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:37:9-44:20
 	android:name
 		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:38:13-42
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:40:13-44:29
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:39:13-43:29
 action#android.intent.action.MAIN
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:41:17-69
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:40:17-69
 	android:name
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:41:25-66
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:40:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:43:17-77
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:42:17-77
 	android:name
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:43:27-74
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:42:27-74
 activity#csi.testapp.MainActivity
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:48:9-49:15
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:47:9-48:15
 	android:name
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:48:19-47
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:47:19-47
 meta-data#com.google.android.geo.API_KEY
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:52:9-54:71
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:51:9-53:71
 	android:value
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:54:13-68
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:53:13-68
 	android:name
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:53:13-58
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:52:13-58
 activity#csi.testapp.NextActivity
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:57:9-79
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:56:9-79
 	android:label
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:57:48-67
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:56:48-67
 	android:name
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:57:19-47
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:56:19-47
 meta-data#com.google.android.gms.version
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:59:9-61:69
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:58:9-60:69
 MERGED from [com.google.android.gms:play-services-basement:9.6.1] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.6.1/AndroidManifest.xml:20:9-121
 	android:value
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:61:13-66
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:60:13-66
 	android:name
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:60:13-58
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:59:13-58
 service#com.perples.recosdk.RECOBeaconService
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:64:9-73
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:63:9-73
 	android:name
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:64:18-70
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:63:18-70
 activity#csi.testapp.Compass
-ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:67:9-75:20
+ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:66:9-70:20
 	android:label
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:69:13-56
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:68:13-56
 	android:name
-		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:68:13-36
+		ADDED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml:67:13-36
 uses-sdk
 INJECTED from /home/lab1/StudioProjects/CSI-Project/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:24.2.0] /home/lab1/StudioProjects/CSI-Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/AndroidManifest.xml:21:5-23:78
