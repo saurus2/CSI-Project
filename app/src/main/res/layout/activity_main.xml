@@ -23,7 +23,7 @@
         <!--현재 위치 버튼 -->
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/arButton"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="@drawable/centerbutton"
@@ -57,11 +57,10 @@
             android:id="@+id/chButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="clicked2"
             android:text="Change"
             android:layout_marginEnd="35dp"
-            android:layout_alignBaseline="@+id/button6"
-            android:layout_alignBottom="@+id/button6"
+            android:layout_alignBaseline="@+id/arButton"
+            android:layout_alignBottom="@+id/arButton"
             android:layout_alignEnd="@+id/popup" />
 
 

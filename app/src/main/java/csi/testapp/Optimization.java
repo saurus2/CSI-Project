@@ -1,5 +1,6 @@
 package csi.testapp;
 
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -10,43 +11,29 @@ import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.provider.Settings;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.skp.Tmap.TMapGpsManager;
+
+import com.skp.Tmap.TMapData;
 import com.skp.Tmap.TMapPoint;
 import com.skp.Tmap.TMapPolyLine;
 import com.skp.Tmap.TMapView;
-import com.skp.Tmap.TMapGpsManager.onLocationChangedCallback;
-import com.skp.Tmap.TMapData;
-import com.skp.Tmap.TMapData.BizCategoryListenerCallback;
-import com.skp.Tmap.TMapData.ConvertGPSToAddressListenerCallback;
-import com.skp.Tmap.TMapData.FindAllPOIListenerCallback;
-import com.skp.Tmap.TMapData.FindAroundNamePOIListenerCallback;
-import com.skp.Tmap.TMapData.FindPathDataAllListenerCallback;
-import com.skp.Tmap.TMapData.FindPathDataListenerCallback;
-import com.skp.Tmap.TMapData.TMapPathType;
 
-import static csi.testapp.R.id.view;
+/**
+ * Created by lab1 on 10/26/16.
+ */
 
-public class MainActivity extends AppCompatActivity {
-
+public class Optimization extends AppCompatActivity{
     //티맵 관련 변수들
     public static String mApiKey = "8bdbb125-7d59-3684-84ff-ad4b5bb59e74";
     private TMapView mMapView = null;
@@ -76,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
     int check = 0;
 
     //버튼 선언
-    Button arButton;
     Button chbutton;
     ImageButton menu;
     ImageButton current;
@@ -94,15 +80,14 @@ public class MainActivity extends AppCompatActivity {
         //지도 아이콘들 셋팅
         options.inSampleSize = 60;
         location = BitmapFactory.decodeResource(getResources(), R.drawable.location, options);
-        start = BitmapFactory.decodeResource(getResources(), R.drawable.start);
-        end = BitmapFactory.decodeResource(getResources(), R.drawable.end);
+        start = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        end = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         mMapView.setIcon(location);
         mMapView.setIconVisibility(true);
         mMapView.setSightVisible(true);
         mMapView.setTMapPathIcon(start, end);
 
         //버튼 초기화
-        arButton = (Button) findViewById(R.id.arButton);
         chbutton = (Button) findViewById(R.id.chButton);
         menu = (ImageButton) findViewById(R.id.popup);
         current = (ImageButton) findViewById(R.id.current);
@@ -121,9 +106,8 @@ public class MainActivity extends AppCompatActivity {
         CheckPermission();
 
         //버튼 리스너들 등록 버튼 위치 조정
-        current.setOnClickListener(turnOn);
+        current.setOnClickListener(turnon);
         chbutton.setOnClickListener(inner);
-        arButton.setOnClickListener(arMode);
         refresh();
     }
 
@@ -132,8 +116,7 @@ public class MainActivity extends AppCompatActivity {
         menu.bringToFront();
         current.bringToFront();
         chbutton.bringToFront();
-        arButton.bringToFront();
-        setViewInvalidate(menu, current, chbutton, arButton);
+        setViewInvalidate(menu, current, chbutton);
     }
 
     private void setViewInvalidate(View... views) {
@@ -147,16 +130,7 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener inner = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, NextActivity.class);
-            startActivity(intent);
-        }
-    };
-
-    //AR 모드로 전환
-    View.OnClickListener arMode = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, Compass.class);
+            Intent intent = new Intent(Optimization.this, NextActivity.class);
             startActivity(intent);
         }
     };
@@ -198,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
     //1번 누르면 현재 위치 찾기
     //2번 누르면 나침반 모드
     //3번 누르면 나침반 모드 종료
-    View.OnClickListener turnOn = new View.OnClickListener() {
+    View.OnClickListener turnon = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             if (flag == 0) {
@@ -210,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (flag == 2) {
                 mMapView.setCompassMode(false);
                 flag = 3;
-            } else if (flag == 3) {
+            }else if(flag == 3){
                 locationManager.removeUpdates(locationfunction);
                 flag = 0;
             }
@@ -251,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //위치 관련 함수들
-    LocationListener locationfunction = new LocationListener() {
+   LocationListener locationfunction = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
             Now_Latitude = location.getLatitude();
@@ -308,4 +282,5 @@ public class MainActivity extends AppCompatActivity {
                 }
         }
     }
+
 }

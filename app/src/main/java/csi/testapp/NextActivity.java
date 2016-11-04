@@ -277,7 +277,7 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
 
     //원래 화면으로 돌아가는 버튼
     //버튼 만들고 액티비티랑 연결 -> 함수 미리 만들어 놓기 -> 버튼에서 onclick 기능 추가하면됨
-    public void clicked3(View v){
+    public void returnToMain(View v){
         finish();
     }
 

@@ -28,7 +28,7 @@
             android:id="@+id/button"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:onClick="clicked3" />
+            android:onClick="returnToMain" />
 
 
         <EditText
