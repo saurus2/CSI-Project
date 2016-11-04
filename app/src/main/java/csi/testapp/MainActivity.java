@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -34,6 +37,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.skp.Tmap.TMapGpsManager;
 import com.skp.Tmap.TMapPoint;
 import com.skp.Tmap.TMapPolyLine;
@@ -48,11 +52,26 @@ import com.skp.Tmap.TMapData.FindPathDataAllListenerCallback;
 import com.skp.Tmap.TMapData.FindPathDataListenerCallback;
 import com.skp.Tmap.TMapData.TMapPathType;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
 import static csi.testapp.R.id.view;
 
 public class MainActivity extends AppCompatActivity {
+
+    //데이터베이스 생성관련한 주소 변수들
+    //assets 폴더에 이미 SQLite로 만든 디비를 넣어놓고
+    //안드로이드에 디비를 불러와 생성함
+    public static final String PACKAGE_DIR = "/data/data/csi.testapp/";
+    public static final String DATABASE_NAME = "Classes.db";
+    public static final String COPY2DATABASE_NAME = "ClassesDB.db";
+
+    //도착지에 대한 경도 위도
+    public static double desLangitute = 0;
+    public static double desLongitute = 0;
 
     //티맵 관련 변수들
     public static String mApiKey = "8bdbb125-7d59-3684-84ff-ad4b5bb59e74";
@@ -132,7 +151,51 @@ public class MainActivity extends AppCompatActivity {
         chbutton.setOnClickListener(inner);
         arButton.setOnClickListener(arMode);
         refresh();
+
+        //데이터 베이스 초기화
+        Log.i("수행","메세지");
+        databaseInitialize(getApplicationContext());
+        Log.i("수행","이건 " + getApplicationContext());
+        //데이터 베이스 생성
+        makeDatabase();
+        Log.i("수행","데이터베이스생성");
     }
+
+    public static void databaseInitialize(Context ctx) {
+        // check
+        File folder = new File(PACKAGE_DIR + "databases");
+        folder.mkdirs();
+        File outfile = new File(PACKAGE_DIR + "databases/" + COPY2DATABASE_NAME);
+
+        if (outfile.length() >= 0) {
+            AssetManager assetManager = ctx.getResources().getAssets();
+            try {
+                InputStream is = assetManager.open(DATABASE_NAME, AssetManager.ACCESS_BUFFER);
+                long filesize = is.available();
+                byte [] tempdata = new byte[(int)filesize];
+                is.read(tempdata);
+                is.close();
+                outfile.createNewFile();
+                FileOutputStream fo = new FileOutputStream(outfile);
+                fo.write(tempdata);
+                fo.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void makeDatabase() {
+
+        try {
+            //database 생성
+            SQLiteDatabase db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
+        } catch (Exception e) {
+            Log.i("_)", "" + e.toString());
+        }
+
+    }
+
 
     //버튼들 최상단으로 새로고침 시켜주는 함수
     public void refresh() {

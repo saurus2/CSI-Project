@@ -119,13 +119,13 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        //데이터 베이스 초기화
-        Log.i("수행","메세지");
-        databaseInitialize(getApplicationContext());
-        Log.i("수행","이건 " + getApplicationContext());
-        //데이터 베이스 생성
-        makeDatabase();
-        Log.i("수행","데이터베이스생성");
+//        //데이터 베이스 초기화
+//        Log.i("수행","메세지");
+//        databaseInitialize(getApplicationContext());
+//        Log.i("수행","이건 " + getApplicationContext());
+//        //데이터 베이스 생성
+//        makeDatabase();
+//        Log.i("수행","데이터베이스생성");
 
         //비콘 소스 코드 추가
 
@@ -256,25 +256,6 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<RECOBeacon> mRangedBeacons;
     private LayoutInflater mLayoutInflater;
 
-
-
-    public void getView(int position, View convertView, ViewGroup parent) {
-        RECOBeacon recoBeacon = mRangedBeacons.get(position);
-        String proximityUuid = recoBeacon.getProximityUuid();
-
-        Log.i("수행 레코 비콘 정보 가져오기",String.format("%s-%s-%s-%s-%s", proximityUuid.substring(0, 8), proximityUuid.substring(8, 12), proximityUuid.substring(12, 16), proximityUuid.substring(16, 20), proximityUuid.substring(20) ));
-        Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getMajor()+"");
-        Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getMinor()+"");
-        Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getTxPower()+"");
-        Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getRssi()+"");
-        Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getBattery()+"");
-        Log.i("수행 레코 비콘 정보 가져오기",recoBeacon.getProximity()+"");
-        Log.i("수행 레코 비콘 정보 가져오기",String.format("%.2f", recoBeacon.getAccuracy())+"");
-    }
-
-
-
-
     //원래 화면으로 돌아가는 버튼
     //버튼 만들고 액티비티랑 연결 -> 함수 미리 만들어 놓기 -> 버튼에서 onclick 기능 추가하면됨
     public void returnToMain(View v){
@@ -287,9 +268,12 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
         //구글맵 카메라 위치, 마커 추가
         LatLng INHA = new LatLng(37.451179, 126.653162);
         LatLng Door = new LatLng(37.451298, 126.654124);
+        LatLng Des = new LatLng(MainActivity.desLangitute,MainActivity.desLongitute);
         mMap = map;//구글 맵 객체 추가
-        Marker Do = mMap.addMarker(new MarkerOptions().position(Door).title("인하대 5호관 입구 도착")); //오호관 포인트 마커 추가
-        Marker In = mMap.addMarker(new MarkerOptions().position(INHA).title("인하대 5호관 건물")); //오호관 포인트 마커 추가
+        Marker doo = mMap.addMarker(new MarkerOptions().position(Door).title("인하대 5호관 입구 도착")); //오호관 포인트 마커 추가
+        Marker in = mMap.addMarker(new MarkerOptions().position(INHA).title("인하대 5호관 건물")); //오호관 포인트 마커 추가
+        Marker de = mMap.addMarker(new MarkerOptions().position(Des).title("목적지")); //검색된 목적지 마커로 띄우기
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(INHA,18)); //구글맵 화면 전환
         overlaySetBuilding(); //오버레이만드는 함수 제작
 
@@ -305,60 +289,103 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
         GroundOverlay imageOverlay = mMap.addGroundOverlay(fifthFirstMap);//화면에 오버레이 띄우기
     }
 
-    public static void databaseInitialize(Context ctx) {
-        // check
-        File folder = new File(PACKAGE_DIR + "databases");
-        folder.mkdirs();
-        File outfile = new File(PACKAGE_DIR + "databases/" + COPY2DATABASE_NAME);
+//    public static void databaseInitialize(Context ctx) {
+//        // check
+//        File folder = new File(PACKAGE_DIR + "databases");
+//        folder.mkdirs();
+//        File outfile = new File(PACKAGE_DIR + "databases/" + COPY2DATABASE_NAME);
+//
+//        if (outfile.length() >= 0) {
+//            AssetManager assetManager = ctx.getResources().getAssets();
+//            try {
+//                InputStream is = assetManager.open(DATABASE_NAME, AssetManager.ACCESS_BUFFER);
+//                long filesize = is.available();
+//                byte [] tempdata = new byte[(int)filesize];
+//                is.read(tempdata);
+//                is.close();
+//                outfile.createNewFile();
+//                FileOutputStream fo = new FileOutputStream(outfile);
+//                fo.write(tempdata);
+//                fo.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+//
+//    public void makeDatabase() {
+//
+//        try {
+//
+//            SQLiteDatabase db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
+//
+//
+//            Cursor cur = db.rawQuery("SELECT * From Classes", null);
+//
+//
+//            cur.moveToFirst();
+//
+//
+//            Log.i("move!!!", "" + cur.getString(0));
+//            //TextView tv = (TextView) findViewById(R.id.textView);
+//            String text1 = cur.getString(1);
+//            String text2 = cur.getString(2);
+//            double langitute = Double.parseDouble(text1);
+//            double longitute = Double.parseDouble(text2);
+//            Log.i("수행", "경도 :" + langitute);
+//            Log.i("수행", "위도 :" + longitute);
+//            Marker1 = new LatLng(langitute, longitute);
+//
+//
+//            //tv.setText(text);
+//        } catch (Exception e) {
+//            Log.i("_)", "" + e.toString());
+//        }
+//
+//    }
 
-        if (outfile.length() >= 0) {
-            AssetManager assetManager = ctx.getResources().getAssets();
-            try {
-                InputStream is = assetManager.open(DATABASE_NAME, AssetManager.ACCESS_BUFFER);
-                long filesize = is.available();
-                byte [] tempdata = new byte[(int)filesize];
-                is.read(tempdata);
-                is.close();
-                outfile.createNewFile();
-                FileOutputStream fo = new FileOutputStream(outfile);
-                fo.write(tempdata);
-                fo.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
-    public void makeDatabase() {
+    public void mainSearchClass(View v) {
+        //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
 
         try {
+            EditText classNum = (EditText)findViewById(R.id.src_text);
+            //텍스트에 입력한 문자를 가지고옮
+            Log.i("수행", "" + classNum);
+            int classNo = Integer.parseInt(classNum.getText().toString());
+            //텍스트에서 가져온 문자를 정수로 변환 시켜줌
+
 
             SQLiteDatabase db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
+            //저장된 데이터베이스 포인터를 만들어줌
+            if(classNo != 0) {
+                String sql = "SELECT * From Classes Where room_no = " + classNo;
+                //검색한 방의 번호와 같은 리스트만 sql로 처리함
+                Cursor cur = db.rawQuery(sql, null);
+                //데이터베이스에서 sql로 처리된 테이블에 cursor를 만듦
 
+                cur.moveToFirst();
+                //커서를 데이터베이스의 0,0 즉 맨 처음 부분에 가져감
 
-            Cursor cur = db.rawQuery("SELECT * From Classes", null);
-
-
-            cur.moveToFirst();
-
-
-            Log.i("move!!!", "" + cur.getString(0));
-            //TextView tv = (TextView) findViewById(R.id.textView);
-            String text1 = cur.getString(1);
-            String text2 = cur.getString(2);
-            double langitute = Double.parseDouble(text1);
-            double longitute = Double.parseDouble(text2);
-            Log.i("수행", "경도 :" + langitute);
-            Log.i("수행", "위도 :" + longitute);
-            Marker1 = new LatLng(langitute, longitute);
-
-
-            //tv.setText(text);
+                Log.i("move!!!", "" + cur.getString(0));
+                //TextView tv = (TextView) findViewById(R.id.textView);
+                String text1 = cur.getString(1);
+                String text2 = cur.getString(2);
+                //Mainactivity 의 목적지 위도 경도를 저장시킴
+                MainActivity.desLangitute = Double.parseDouble(text1);
+                MainActivity.desLongitute = Double.parseDouble(text2);
+                //테이블의 1,2번째 칼럼 위도 경도를 실수로 저장함
+                Log.i("수행", "방번호 :" + cur.getString(0));
+                Log.i("수행", "경도 :" + MainActivity.desLangitute);
+                Log.i("수행", "위도 :" + MainActivity.desLongitute);
+            }
         } catch (Exception e) {
             Log.i("_)", "" + e.toString());
         }
 
     }
+
+
 
     public void searchClass(View v) {
         //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
