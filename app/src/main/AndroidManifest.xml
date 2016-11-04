@@ -30,7 +30,7 @@
         android:icon="@mipmap/appicon"
         android:label="Ooops"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <!--타이틀 제거 완료 -->
 
         <!-- 인트로 -->
