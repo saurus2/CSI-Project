@@ -59,6 +59,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static csi.testapp.R.id.view;
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     private TMapView mMapView = null;
     private RelativeLayout mMainRelativeLayout;
     private LocationManager locationManager;
+    private ArrayList<TMapPoint> passPoints = new ArrayList();
     //티맵 포인터들
     Bitmap start;
     Bitmap end;
@@ -262,6 +264,7 @@ public class MainActivity extends AppCompatActivity {
                         building_n = "5호관";
                         i_dialog();
                         drawPedestrianPath(n_Latitude, n_Longitude);
+                        passPointInfo(n_Latitude, n_Longitude);
                         break;
 
                     case R.id.center:
@@ -270,6 +273,7 @@ public class MainActivity extends AppCompatActivity {
                         building_n = "본관";
                         i_dialog();
                         drawPedestrianPath(n_Latitude, n_Longitude);
+                        passPointInfo(n_Latitude, n_Longitude);
                         break;
 
                     case R.id.tech:
@@ -278,6 +282,7 @@ public class MainActivity extends AppCompatActivity {
                         building_n = "하이테크";
                         i_dialog();
                         drawPedestrianPath(n_Latitude, n_Longitude);
+                        passPointInfo(n_Latitude, n_Longitude);
                         break;
                 }
                 return true;
@@ -312,6 +317,29 @@ public class MainActivity extends AppCompatActivity {
                         // Canceled.
                     }
                 });
+
+        alert.show();
+    }
+
+    //목적지를 선택하면 거기까지 가는 경로에서 꺾이는 지점들을 알림창으로 출력하는 함수
+    public void passPointInfo(double n_Latitude, double n_Longitude){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        TMapPoint point1 = new TMapPoint(Now_Latitude, Now_Longitude);
+
+        alert.setTitle("꺾이는 지점들");
+
+        String message = "";
+
+        for(int i = 0; i < passPoints.size(); i++) {
+            message += "Lon : " + passPoints.get(i).getLongitude() + " Lat : " + passPoints.get(i).getLatitude() + "\n";
+        }
+        alert.setMessage(message);
+
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                                // Do something with value!
+            }
+        });
 
         alert.show();
     }
@@ -353,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //맵에 길 그려주는 부분
-    public void drawPedestrianPath(double n_Latitude, double n_Longitude) {
+    public void drawPedestrianPath(final double n_Latitude, final double n_Longitude) {
         if (check == 0) {
             FindmyLocation();
         }
@@ -368,6 +396,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFindPathData(TMapPolyLine tMapPolyLine) {
                 tMapPolyLine.setLineColor(Color.BLUE);
                 mMapView.addTMapPath(tMapPolyLine);
+                passPoints = tMapPolyLine.getLinePoint();
             }
         });
 
