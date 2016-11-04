@@ -70,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String PACKAGE_DIR = "/data/data/csi.testapp/";
     public static final String DATABASE_NAME = "Classes.db";
     public static final String COPY2DATABASE_NAME = "ClassesDB.db";
+    public static SQLiteDatabase db;
+
+    //사용자에게 입력받는 데이터들
+    public static String roomnumber;
+
 
     //도착지에 대한 경도 위도
     public static double desLangitute = 0;
@@ -194,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             //database 생성
-            SQLiteDatabase db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
+            db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
         } catch (Exception e) {
             Log.i("_)", "" + e.toString());
         }
@@ -274,6 +279,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //호관 누르면 호수 물어보는 팝업 창 뜨게 하는 함수
+    //디비와 섞여있음
     public void i_dialog(){
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
@@ -286,10 +292,10 @@ public class MainActivity extends AppCompatActivity {
 
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                String value = input.getText().toString();
-                value.toString();
+                roomnumber = input.getText().toString();
+                roomnumber.toString();
                 // Do something with value!
-                Log.i("check dialog : ", value);
+                NextActivity.mainSearchClass();
             }
         });
         alert.setNegativeButton("Cancel",
@@ -301,6 +307,8 @@ public class MainActivity extends AppCompatActivity {
 
         alert.show();
     }
+
+
 
 
     //현재 위치 버튼 눌렀을때 작동

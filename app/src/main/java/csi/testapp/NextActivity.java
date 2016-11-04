@@ -345,23 +345,23 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
 //    }
 
 
-    public void mainSearchClass(View v) {
+    public static void mainSearchClass() {
         //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
 
         try {
-            EditText classNum = (EditText)findViewById(R.id.src_text);
+
             //텍스트에 입력한 문자를 가지고옮
-            Log.i("수행", "" + classNum);
-            int classNo = Integer.parseInt(classNum.getText().toString());
+
+            int classNo = Integer.parseInt(MainActivity.roomnumber.toString());
             //텍스트에서 가져온 문자를 정수로 변환 시켜줌
 
 
-            SQLiteDatabase db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
+            //MainActivity.db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
             //저장된 데이터베이스 포인터를 만들어줌
             if(classNo != 0) {
                 String sql = "SELECT * From Classes Where room_no = " + classNo;
-                //검색한 방의 번호와 같은 리스트만 sql로 처리함
-                Cursor cur = db.rawQuery(sql, null);
+                //검색한 방의 번호와 같은 리스트만 sql로 처리함d
+                Cursor cur = MainActivity.db.rawQuery(sql, null);
                 //데이터베이스에서 sql로 처리된 테이블에 cursor를 만듦
 
                 cur.moveToFirst();
