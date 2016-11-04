@@ -16,6 +16,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.Image;
+import android.os.Build;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -146,6 +147,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(Build.VERSION.SDK_INT >= 21){
+            getWindow().setStatusBarColor(Color.parseColor("#0066cc"));
+        }
         setContentView(R.layout.activity_main);
         //티맵 화면에 출력해주는 함수들
         mMainRelativeLayout = (RelativeLayout) findViewById(R.id.mainRelativeLayout);
