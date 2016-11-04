@@ -268,9 +268,12 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
         //구글맵 카메라 위치, 마커 추가
         LatLng INHA = new LatLng(37.451179, 126.653162);
         LatLng Door = new LatLng(37.451298, 126.654124);
+        LatLng Des = new LatLng(MainActivity.desLangitute,MainActivity.desLongitute);
         mMap = map;//구글 맵 객체 추가
-        Marker Do = mMap.addMarker(new MarkerOptions().position(Door).title("인하대 5호관 입구 도착")); //오호관 포인트 마커 추가
-        Marker In = mMap.addMarker(new MarkerOptions().position(INHA).title("인하대 5호관 건물")); //오호관 포인트 마커 추가
+        Marker doo = mMap.addMarker(new MarkerOptions().position(Door).title("인하대 5호관 입구 도착")); //오호관 포인트 마커 추가
+        Marker in = mMap.addMarker(new MarkerOptions().position(INHA).title("인하대 5호관 건물")); //오호관 포인트 마커 추가
+        Marker de = mMap.addMarker(new MarkerOptions().position(Des).title("목적지")); //검색된 목적지 마커로 띄우기
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(INHA,18)); //구글맵 화면 전환
         overlaySetBuilding(); //오버레이만드는 함수 제작
 
@@ -340,6 +343,49 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
 //        }
 //
 //    }
+
+
+    public void mainSearchClass(View v) {
+        //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
+
+        try {
+            EditText classNum = (EditText)findViewById(R.id.src_text);
+            //텍스트에 입력한 문자를 가지고옮
+            Log.i("수행", "" + classNum);
+            int classNo = Integer.parseInt(classNum.getText().toString());
+            //텍스트에서 가져온 문자를 정수로 변환 시켜줌
+
+
+            SQLiteDatabase db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
+            //저장된 데이터베이스 포인터를 만들어줌
+            if(classNo != 0) {
+                String sql = "SELECT * From Classes Where room_no = " + classNo;
+                //검색한 방의 번호와 같은 리스트만 sql로 처리함
+                Cursor cur = db.rawQuery(sql, null);
+                //데이터베이스에서 sql로 처리된 테이블에 cursor를 만듦
+
+                cur.moveToFirst();
+                //커서를 데이터베이스의 0,0 즉 맨 처음 부분에 가져감
+
+                Log.i("move!!!", "" + cur.getString(0));
+                //TextView tv = (TextView) findViewById(R.id.textView);
+                String text1 = cur.getString(1);
+                String text2 = cur.getString(2);
+                //Mainactivity 의 목적지 위도 경도를 저장시킴
+                MainActivity.desLangitute = Double.parseDouble(text1);
+                MainActivity.desLongitute = Double.parseDouble(text2);
+                //테이블의 1,2번째 칼럼 위도 경도를 실수로 저장함
+                Log.i("수행", "방번호 :" + cur.getString(0));
+                Log.i("수행", "경도 :" + MainActivity.desLangitute);
+                Log.i("수행", "위도 :" + MainActivity.desLongitute);
+            }
+        } catch (Exception e) {
+            Log.i("_)", "" + e.toString());
+        }
+
+    }
+
+
 
     public void searchClass(View v) {
         //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
