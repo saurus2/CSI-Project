@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     public static String roomnumber;
 
 
-    //도착지에 대한 경도 위도
+    //실내 네비용 도착지에 대한 경도 위도
     public static double desLangitute = 0;
     public static double desLongitute = 0;
 
@@ -92,13 +92,16 @@ public class MainActivity extends AppCompatActivity {
     Bitmap location;
 
 
-    //위도경도 새로 설정해야할때
-    double n_Latitude = 0;
-    double n_Longitude = 0;
+    //외부 지도용 위도경도 새로 설정해야할때
+    public static double n_Latitude = 0;
+    public static double n_Longitude = 0;
 
-    //현재 위치 저장되는 위도 경도
+    //외부 지도용 현재 위치 저장되는 위도 경도
     double Now_Latitude = 0;
     double Now_Longitude = 0;
+
+    //AR용 건물 이름
+    public static String building_n = null;
 
     //퍼미션 플래그
     final int READ_ROCATE_CODE = 0;
@@ -256,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.fifth:
                         n_Latitude = 37.4508;
                         n_Longitude = 126.6525;
+                        building_n = "5호관";
                         i_dialog();
                         drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
@@ -263,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.center:
                         n_Latitude = 37.449476;
                         n_Longitude = 126.654388;
+                        building_n = "본관";
                         i_dialog();
                         drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
@@ -270,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.tech:
                         n_Latitude = 37.450662;
                         n_Longitude = 126.656960;
+                        building_n = "하이테크";
                         i_dialog();
                         drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
