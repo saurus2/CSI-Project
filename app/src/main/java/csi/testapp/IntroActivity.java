@@ -31,6 +31,6 @@ public class  IntroActivity extends Activity {
             }
         };
         //3초 딜레이
-        handler.sendEmptyMessageDelayed(0, 1500);
+        handler.sendEmptyMessageDelayed(0, 3000);
     }
 }
