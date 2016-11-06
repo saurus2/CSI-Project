@@ -35,6 +35,7 @@ import android.view.WindowManager;
  * @author Coby Plain coby.plain@gmail.com, Ali Muzaffar ali@muzaffar.me
  */
 
+/*
 public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 	@SuppressWarnings("unused")
 	private static final String TAG = "CameraSurfaceView";
@@ -151,3 +152,4 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	}
 
 }
+*/
