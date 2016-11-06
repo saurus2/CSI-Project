@@ -25,9 +25,9 @@ import android.os.Bundle;
  *
  * @author Coby Plain coby.plain@gmail.com, Ali Muzaffar ali@muzaffar.me
  */
-
+/*
 public class LocationUtils {
-	/** this criteria will settle for less accuracy, high power, and cost */
+	// this criteria will settle for less accuracy, high power, and cost
 	public static Criteria createCoarseCriteria() {
 	 
 	  Criteria c = new Criteria();
@@ -41,7 +41,7 @@ public class LocationUtils {
 	 
 	}
 	 
-	/** this criteria needs high accuracy, high power, and cost */
+	// this criteria needs high accuracy, high power, and cost
 	public static Criteria createFineCriteria() {
 	 
 	  Criteria c = new Criteria();
@@ -55,10 +55,9 @@ public class LocationUtils {
 	 
 	}
 	 
-	/** 
-	  make sure to call this in the main thread, not a background thread
-	  make sure to call locMgr.removeUpdates(...) when you are done
-	*/
+	//	  make sure to call this in the main thread, not a background thread
+	//	  make sure to call locMgr.removeUpdates(...) when you are done
+
 	public static void init(Context ctx, LocationManager locMgr){
 	 
 	  //LocationManager locMgr = LocationUtils.getLocationManager(ctx.getMyContext());
@@ -106,3 +105,4 @@ public class LocationUtils {
 	      });
 	}
 }
+*/
