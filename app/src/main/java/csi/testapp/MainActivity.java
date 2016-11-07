@@ -121,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
     ImageButton current;
     ImageView bottom;
 
+    //내부 들어갈때 설정되는 플래그
+    int inner_F = 1;
+
     //지도와 버튼들 처음 초기화 시켜주는 함수
     void initView() {
         mMapView = new TMapView(this);
@@ -259,9 +262,10 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.fifth:
-                        n_Latitude = 37.4508;
-                        n_Longitude = 126.6525;
+                        n_Latitude = 37.451331;
+                        n_Longitude = 126.654132;
                         building_n = "5호관";
+                        inner_F = 0;
                         i_dialog();
                         DrawSurfaceView.props = new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n);
                         drawPedestrianPath(n_Latitude, n_Longitude);
@@ -272,6 +276,7 @@ public class MainActivity extends AppCompatActivity {
                         n_Latitude = 37.449476;
                         n_Longitude = 126.654388;
                         building_n = "본관";
+                        inner_F = 0;
                         i_dialog();
                         DrawSurfaceView.props = new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n);
                         drawPedestrianPath(n_Latitude, n_Longitude);
@@ -282,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
                         n_Latitude = 37.450662;
                         n_Longitude = 126.656960;
                         building_n = "하이테크";
+                        inner_F = 0;
                         i_dialog();
                         DrawSurfaceView.props = new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n);
                         drawPedestrianPath(n_Latitude, n_Longitude);
@@ -406,6 +412,59 @@ public class MainActivity extends AppCompatActivity {
         check = 1;
     }
 
+    //건물 입구 근처 도착 하면 띄워주는 함수
+    public void alert(){
+        double dist = 0;
+        if((dist = calDistance()) <= 10 && inner_F == 0){
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+            alert.setTitle("건물에 입장하시면 확인을 눌러주세요");
+
+            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    inner_F = 1;
+                    DrawSurfaceView.props = new Point(MainActivity.desLangitute, MainActivity.desLongitute, MainActivity.roomnumber);
+                    Intent intent = new Intent(MainActivity.this, Compass.class);
+                    startActivity(intent);
+                }
+            });
+            alert.setNegativeButton("취소",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // Canceled.
+                        }
+                    });
+
+            alert.show();
+        }
+
+    };
+
+    //위도 경도 거리계산
+    public double calDistance(){
+      double theta, dist;
+        theta = n_Longitude - Now_Longitude;
+        dist = Math.sin(deg2rad(n_Latitude)) * Math.sin(deg2rad(n_Latitude)) + Math.cos(deg2rad(n_Latitude))
+                * Math.cos(deg2rad(n_Latitude)) * Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1.609344;    // 단위 mile 에서 km 변환.
+        dist = dist * 1000.0;      // 단위  km 에서 m 로 변환
+
+        return dist;
+    };
+
+    // 주어진 도(degree) 값을 라디언으로 변환
+    private double deg2rad(double deg){
+        return (double)(deg * Math.PI / (double)180d);
+    }
+
+    // 주어진 라디언(radian) 값을 도(degree) 값으로 변환
+    private double rad2deg(double rad){
+        return (double)(rad * (double)180d / Math.PI);
+    }
 
     //위치 관련 함수들
     long updatedOn = Long.MAX_VALUE;
@@ -447,7 +506,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(getString(R.string.app_name), "", e);
             }
 
-
+            alert();
         }
 
         @Override
