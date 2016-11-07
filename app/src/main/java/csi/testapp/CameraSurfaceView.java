@@ -35,7 +35,7 @@ import android.view.WindowManager;
  * @author Coby Plain coby.plain@gmail.com, Ali Muzaffar ali@muzaffar.me
  */
 
-/*
+
 public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 	@SuppressWarnings("unused")
 	private static final String TAG = "CameraSurfaceView";
@@ -69,9 +69,9 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
 			// Open the Camera in preview mode
 			this.camera = Camera.open();
 			Configuration c = getResources().getConfiguration();
-			 
+
 			if(c.orientation == Configuration.ORIENTATION_PORTRAIT ) {
-				this.camera.setDisplayOrientation(90);	
+				this.camera.setDisplayOrientation(90);
 			}
 
 			this.camera.setPreviewDisplay(this.holder);
@@ -152,4 +152,3 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	}
 
 }
-*/
