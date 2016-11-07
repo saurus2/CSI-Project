@@ -423,7 +423,7 @@ public class MainActivity extends AppCompatActivity {
             alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     inner_F = 1;
-                    DrawSurfaceView.props = new Point(MainActivity.desLangitute, MainActivity.desLongitute, MainActivity.roomnumber);
+                    DrawSurfaceView.props = new Point(MainActivity.desLangitute, MainActivity.desLongitute, MainActivity.roomnumber+" 강의실");
                     Intent intent = new Intent(MainActivity.this, Compass.class);
                     startActivity(intent);
                 }
