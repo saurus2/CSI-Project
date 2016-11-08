@@ -114,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
     //바로 길찾기 눌렀을때 플래그
     int check = 0;
 
+    //길찾기 했을 때의 point arraylist를 순서대로 체크하기 위한 변수
+    int pathIndex = 0;
+
     //버튼 선언
     Button arButton;
     Button chbutton;
@@ -265,33 +268,33 @@ public class MainActivity extends AppCompatActivity {
                         n_Latitude = 37.451331;
                         n_Longitude = 126.654132;
                         building_n = "5호관";
+                        pathIndex = 0;
                         inner_F = 0;
                         i_dialog();
                         DrawSurfaceView.props = new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n);
                         drawPedestrianPath(n_Latitude, n_Longitude);
-                        passPointInfo(n_Latitude, n_Longitude);
                         break;
 
                     case R.id.center:
                         n_Latitude = 37.449476;
                         n_Longitude = 126.654388;
                         building_n = "본관";
+                        pathIndex = 0;
                         inner_F = 0;
                         i_dialog();
                         DrawSurfaceView.props = new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n);
                         drawPedestrianPath(n_Latitude, n_Longitude);
-                        passPointInfo(n_Latitude, n_Longitude);
                         break;
 
                     case R.id.tech:
                         n_Latitude = 37.450662;
                         n_Longitude = 126.656960;
                         building_n = "하이테크";
+                        pathIndex = 0;
                         inner_F = 0;
                         i_dialog();
                         DrawSurfaceView.props = new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n);
                         drawPedestrianPath(n_Latitude, n_Longitude);
-                        passPointInfo(n_Latitude, n_Longitude);
                         break;
                 }
                 return true;
@@ -385,8 +388,8 @@ public class MainActivity extends AppCompatActivity {
     //gps, network provider 설정
     void FindmyLocation() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 10, locationfunction);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationfunction);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 5, locationfunction);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, locationfunction);
     }
 
     //맵에 길 그려주는 부분
@@ -413,9 +416,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //건물 입구 근처 도착 하면 띄워주는 함수
-    public void alert(){
+    public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
-        if((dist = calDistance()) <= 10 && inner_F == 0){
+        if((dist = calDistance(n_Latitude, n_Longitude)) <= 10 && inner_F == 0){
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
             alert.setTitle("건물에 입장하시면 확인을 눌러주세요");
@@ -441,11 +444,11 @@ public class MainActivity extends AppCompatActivity {
     };
 
     //위도 경도 거리계산
-    public double calDistance(){
+    public double calDistance(final double latitude, final double longitude){
       double theta, dist;
-        theta = n_Longitude - Now_Longitude;
-        dist = Math.sin(deg2rad(n_Latitude)) * Math.sin(deg2rad(n_Latitude)) + Math.cos(deg2rad(n_Latitude))
-                * Math.cos(deg2rad(n_Latitude)) * Math.cos(deg2rad(theta));
+        theta = longitude - Now_Longitude;
+        dist = Math.sin(deg2rad(latitude)) * Math.sin(deg2rad(latitude)) + Math.cos(deg2rad(latitude))
+                * Math.cos(deg2rad(latitude)) * Math.cos(deg2rad(theta));
         dist = Math.acos(dist);
         dist = rad2deg(dist);
 
@@ -475,11 +478,12 @@ public class MainActivity extends AppCompatActivity {
             Now_Latitude = location.getLatitude();
             Now_Longitude = location.getLongitude();
 
-        /* 여기는 제대로 좌표 잡는지 테스트하려고 토스트 메세지 넣어둔거
+        // 여기는 제대로 좌표 잡는지 테스트하려고 토스트 메세지 넣어둔거
             String msg = "New Latitude: " + Now_Latitude
-                    + "New Longitude: " + Now_Longitude;
+                    + "\nNew Longitude: " + Now_Longitude
+                    + "\nPass Point: " + pathIndex + "/" + passPoints.size();
 
-            Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+    //        Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
 
             ////////////////////////////////////////////////////////////////////*/
 
@@ -499,6 +503,23 @@ public class MainActivity extends AppCompatActivity {
                 Compass.mDrawView.setMyLocation(location.getLatitude(), location.getLongitude());
                 Compass.mDrawView.invalidate();
 
+                //경로가 찾아져있다면 중간지점들을 저장하고있는 passPoint 변수의 사이즈가 0이 아닐 것이다
+                if(passPoints.size() != 0 && passPoints.size() > pathIndex) {
+                    double nextLat = passPoints.get(pathIndex).getLatitude();
+                    double nextLon = passPoints.get(pathIndex).getLongitude();
+                    double nextPointDistance = calDistance(nextLat, nextLon);
+
+                    if(nextPointDistance < 5)
+                        pathIndex++;
+                    else {
+                        DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                        msg += "\nnextPointDistance: " + nextPointDistance;
+                    }
+
+
+                }
+
+
                 synchronized (locationSync) {
                     updatedOn = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
                 }
@@ -506,7 +527,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(getString(R.string.app_name), "", e);
             }
 
-            alert();
+            alertBuilding(n_Latitude, n_Longitude);
+
+            Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
         }
 
         @Override

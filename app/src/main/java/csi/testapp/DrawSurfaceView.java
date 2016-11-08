@@ -62,6 +62,7 @@ public class DrawSurfaceView extends View {
 		mlSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.leftarrow);
 		mrSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.rightarrow);
 		mBlips = BitmapFactory.decodeResource(context.getResources(), R.drawable.blip);
+
 //		mSpots = new Bitmap[props.size()];
 //		for (int i = 0; i < mSpots.length; i++)
 //			mSpots[i] = BitmapFactory.decodeResource(context.getResources(), R.drawable.forwardarrow);
@@ -151,7 +152,6 @@ public class DrawSurfaceView extends View {
 //				u.x = (float) (float)(screenWidth*9); //somewhere off the screen
 			
 			u.y = (float)screenHeight/2 + spotCentreY;
-//			canvas.drawBitmap(fspot, u.x, u.y, mPaint); //camera spot
 			canvas.drawText(u.description, u.x, u.y, mPaint); //text
 		}
 	}
