@@ -130,9 +130,16 @@ public class DrawSurfaceView extends View {
 			
 			else if (angle >= 315) 
 				u.x = (float) ((screenWidth / 2) - ((screenWidth*4) - xPos));
-			
-			else
-				u.x = (float) (float)(screenWidth*9); //somewhere off the screen
+
+
+			else if (angle > 45 && angle <= 180)
+				u.x = (float) ((screenWidth / 90d) * 80);
+
+			else if (angle > 180 && angle < 315)
+				u.x = (float) (screenWidth / 90d);
+
+//			else
+//				u.x = (float) (float)(screenWidth*9); //somewhere off the screen
 			
 			u.y = (float)screenHeight/2 + spotCentreY;
 			canvas.drawBitmap(spot, u.x, u.y, mPaint); //camera spot
