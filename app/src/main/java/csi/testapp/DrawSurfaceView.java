@@ -1,7 +1,5 @@
 package csi.testapp;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,7 +33,7 @@ public class DrawSurfaceView extends View {
 	Paint mPaint = new Paint();
 	private double OFFSET = 0d;
 	private double screenWidth, screenHeight = 0d;
-	private Bitmap mSpots, mBlips;
+	private Bitmap mfSpots, mlSpots, mrSpots, mBlips;
 	private Bitmap mRadar;
 
 	public static Point props = new Point(0,0,"null");
@@ -60,11 +58,13 @@ public class DrawSurfaceView extends View {
 		
 		mRadar = BitmapFactory.decodeResource(context.getResources(), R.drawable.radar);
 
-		mSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.dot);
+		mfSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.forwardarrow);
+		mlSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.leftarrow);
+		mrSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.rightarrow);
 		mBlips = BitmapFactory.decodeResource(context.getResources(), R.drawable.blip);
 //		mSpots = new Bitmap[props.size()];
 //		for (int i = 0; i < mSpots.length; i++)
-//			mSpots[i] = BitmapFactory.decodeResource(context.getResources(), R.drawable.dot);
+//			mSpots[i] = BitmapFactory.decodeResource(context.getResources(), R.drawable.forwardarrow);
 //
 //		mBlips = new Bitmap[props.size()];
 //		for (int i = 0; i < mBlips.length; i++)
@@ -89,11 +89,13 @@ public class DrawSurfaceView extends View {
 
 		for (int i = 0; i < 1; i++) {
 			Bitmap blip = mBlips;//[i];
-			Bitmap spot = mSpots;//[i];
+			Bitmap fspot = mfSpots;//[i];
+			Bitmap lspot = mlSpots;
+			Bitmap rspot = mrSpots;
 			Point u = props;//.get(i);
 			double dist = distInMetres(me, u);
 			
-			if (blip == null || spot == null)
+			if (blip == null || fspot == null)
 				continue;
 			
 			if(dist > 70)
@@ -121,28 +123,35 @@ public class DrawSurfaceView extends View {
 			canvas.drawBitmap(blip, (radarCentreX + (int) xPos), (radarCentreY - (int) yPos), mPaint); //radar blip
 			
 			//reuse xPos
-			int spotCentreX = spot.getWidth() / 2;
-			int spotCentreY = spot.getHeight() / 2;
+			int spotCentreX = fspot.getWidth() / 2;
+			int spotCentreY = fspot.getHeight() / 2;
 			xPos = posInPx - spotCentreX;
 			
-			if (angle <= 45) 
+			if (angle <= 45) {
 				u.x = (float) ((screenWidth / 2) + xPos);
+				canvas.drawBitmap(fspot, u.x, u.y, mPaint); //camera spot
+			}
 			
-			else if (angle >= 315) 
-				u.x = (float) ((screenWidth / 2) - ((screenWidth*4) - xPos));
+			else if (angle >= 315) {
+				u.x = (float) ((screenWidth / 2) - ((screenWidth * 4) - xPos));
+				canvas.drawBitmap(fspot, u.x, u.y, mPaint); //camera spot
+			}
 
-
-			else if (angle > 45 && angle <= 180)
+			else if (angle > 45 && angle <= 180) {
 				u.x = (float) ((screenWidth / 90d) * 80);
+				canvas.drawBitmap(rspot, u.x, u.y, mPaint); //camera spot
+			}
 
-			else if (angle > 180 && angle < 315)
+			else if (angle > 180 && angle < 315) {
 				u.x = (float) (screenWidth / 90d);
+				canvas.drawBitmap(lspot, u.x, u.y, mPaint); //camera spot
+			}
 
 //			else
 //				u.x = (float) (float)(screenWidth*9); //somewhere off the screen
 			
 			u.y = (float)screenHeight/2 + spotCentreY;
-			canvas.drawBitmap(spot, u.x, u.y, mPaint); //camera spot
+//			canvas.drawBitmap(fspot, u.x, u.y, mPaint); //camera spot
 			canvas.drawText(u.description, u.x, u.y, mPaint); //text
 		}
 	}
