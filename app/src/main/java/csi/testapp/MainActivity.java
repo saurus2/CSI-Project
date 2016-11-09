@@ -114,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
     //바로 길찾기 눌렀을때 플래그
     int check = 0;
 
-    //길찾기 했을 때의 point arraylist를 순서대로 체크하기 위한 변수
-    int pathIndex = 0;
+    //길찾기 했을 때 point arraylist를 순서대로 체크하기 위한 변수
+    int pathIndex = 1;
 
     //버튼 선언
     Button arButton;
@@ -126,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
 
     //내부 들어갈때 설정되는 플래그
     int inner_F = 1;
+
+    //테스트용 메시지 변수
+    public static String msg = "";
 
     //지도와 버튼들 처음 초기화 시켜주는 함수
     void initView() {
@@ -268,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
                         n_Latitude = 37.451331;
                         n_Longitude = 126.654132;
                         building_n = "5호관";
-                        pathIndex = 0;
+                        pathIndex = 1;
                         inner_F = 0;
                         i_dialog();
                         DrawSurfaceView.props = new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n);
@@ -279,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
                         n_Latitude = 37.449476;
                         n_Longitude = 126.654388;
                         building_n = "본관";
-                        pathIndex = 0;
+                        pathIndex = 1;
                         inner_F = 0;
                         i_dialog();
                         DrawSurfaceView.props = new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n);
@@ -290,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
                         n_Latitude = 37.450662;
                         n_Longitude = 126.656960;
                         building_n = "하이테크";
-                        pathIndex = 0;
+                        pathIndex = 1;
                         inner_F = 0;
                         i_dialog();
                         DrawSurfaceView.props = new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n);
@@ -388,8 +391,8 @@ public class MainActivity extends AppCompatActivity {
     //gps, network provider 설정
     void FindmyLocation() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 5, locationfunction);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, locationfunction);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, locationfunction);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationfunction);
     }
 
     //맵에 길 그려주는 부분
@@ -434,6 +437,7 @@ public class MainActivity extends AppCompatActivity {
             alert.setNegativeButton("취소",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
+                            inner_F = 1;
                             // Canceled.
                         }
                     });
@@ -444,11 +448,11 @@ public class MainActivity extends AppCompatActivity {
     };
 
     //위도 경도 거리계산
-    public double calDistance(final double latitude, final double longitude){
+    public double calDistance(final double desLat, final double desLon){
       double theta, dist;
-        theta = longitude - Now_Longitude;
-        dist = Math.sin(deg2rad(latitude)) * Math.sin(deg2rad(latitude)) + Math.cos(deg2rad(latitude))
-                * Math.cos(deg2rad(latitude)) * Math.cos(deg2rad(theta));
+        theta = Now_Longitude - desLon;
+        dist = Math.sin(deg2rad(Now_Latitude)) * Math.sin(deg2rad(desLat))
+                + Math.cos(deg2rad(Now_Latitude)) * Math.cos(deg2rad(desLat)) * Math.cos(deg2rad(theta));
         dist = Math.acos(dist);
         dist = rad2deg(dist);
 
@@ -479,7 +483,7 @@ public class MainActivity extends AppCompatActivity {
             Now_Longitude = location.getLongitude();
 
         // 여기는 제대로 좌표 잡는지 테스트하려고 토스트 메세지 넣어둔거
-            String msg = "New Latitude: " + Now_Latitude
+            msg = "New Latitude: " + Now_Latitude
                     + "\nNew Longitude: " + Now_Longitude
                     + "\nPass Point: " + pathIndex + "/" + passPoints.size();
 
@@ -494,7 +498,7 @@ public class MainActivity extends AppCompatActivity {
 
             synchronized (locationSync) {
                 if (updatedOn + 1 > TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())) {
-                    Log.i(getString(R.string.app_name), "onLocationChanged() called in less than 10 seconds, ignoring...");
+                    Log.i(getString(R.string.app_name), "onLocationChanged() called in less than 1 seconds, ignoring...");
                     return;
                 }
             }
@@ -509,15 +513,15 @@ public class MainActivity extends AppCompatActivity {
                     double nextLon = passPoints.get(pathIndex).getLongitude();
                     double nextPointDistance = calDistance(nextLat, nextLon);
 
-                    if(nextPointDistance < 5)
-                        pathIndex++;
+                    if(nextPointDistance < 10)
+                        pathIndex += 2;
                     else {
                         DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
                         msg += "\nnextPointDistance: " + nextPointDistance;
                     }
-
-
                 }
+                else
+                    pathIndex = 1;
 
 
                 synchronized (locationSync) {
@@ -529,7 +533,7 @@ public class MainActivity extends AppCompatActivity {
 
             alertBuilding(n_Latitude, n_Longitude);
 
-            Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+ //           Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
         }
 
         @Override

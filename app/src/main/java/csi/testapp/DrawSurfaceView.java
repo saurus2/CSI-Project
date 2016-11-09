@@ -147,12 +147,16 @@ public class DrawSurfaceView extends View {
 				u.x = (float) (screenWidth / 90d);
 				canvas.drawBitmap(lspot, u.x, u.y, mPaint); //camera spot
 			}
-
-//			else
-//				u.x = (float) (float)(screenWidth*9); //somewhere off the screen
 			
 			u.y = (float)screenHeight/2 + spotCentreY;
 			canvas.drawText(u.description, u.x, u.y, mPaint); //text
+
+			// 테스트용 문구 표시
+			float y = u.y;
+			for (String line: MainActivity.msg.split("\n")) {
+				canvas.drawText(line, u.x - (float)(screenWidth / 90d)*20, y- 3 * spotCentreY, mPaint);
+				y += mPaint.descent() - mPaint.ascent();
+			}
 		}
 	}
 
