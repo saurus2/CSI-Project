@@ -312,7 +312,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         alert.setTitle("강의실 번호를 입력해주세요");
-        //alert.setMessage("Message");
 
         // Set an EditText view to get user input
         final EditText input = new EditText(this);
@@ -335,30 +334,6 @@ public class MainActivity extends AppCompatActivity {
 
         alert.show();
     }
-
-    //목적지를 선택하면 거기까지 가는 경로에서 꺾이는 지점들을 알림창으로 출력하는 함수
-    public void passPointInfo(double n_Latitude, double n_Longitude){
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        TMapPoint point1 = new TMapPoint(Now_Latitude, Now_Longitude);
-
-        alert.setTitle("꺾이는 지점들");
-
-        String message = "";
-
-        for(int i = 0; i < passPoints.size(); i++) {
-            message += "Lon : " + passPoints.get(i).getLongitude() + " Lat : " + passPoints.get(i).getLatitude() + "\n";
-        }
-        alert.setMessage(message);
-
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                                // Do something with value!
-            }
-        });
-
-        alert.show();
-    }
-
 
 
 
@@ -418,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
         check = 1;
     }
 
-    //건물 입구 근처 도착 하면 띄워주는 함수
+    //건물 입구 근처에 도착하면 안내문구를 띄워주는 함수
     public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
         if((dist = calDistance(n_Latitude, n_Longitude)) <= 10 && inner_F == 0){
@@ -447,7 +422,7 @@ public class MainActivity extends AppCompatActivity {
 
     };
 
-    //위도 경도 거리계산
+    //목적지의 위도와 경도를 전달받아서 현재 위치와의 거리를 계산하는 함수
     public double calDistance(final double desLat, final double desLon){
       double theta, dist;
         theta = Now_Longitude - desLon;
@@ -482,7 +457,7 @@ public class MainActivity extends AppCompatActivity {
             Now_Latitude = location.getLatitude();
             Now_Longitude = location.getLongitude();
 
-        // 여기는 제대로 좌표 잡는지 테스트하려고 토스트 메세지 넣어둔거
+        // 제대로 좌표 잡는지 테스트를 위한 메세지
             msg = "New Latitude: " + Now_Latitude
                     + "\nNew Longitude: " + Now_Longitude
                     + "\nPass Point: " + pathIndex + "/" + passPoints.size();
@@ -513,8 +488,10 @@ public class MainActivity extends AppCompatActivity {
                     double nextLon = passPoints.get(pathIndex).getLongitude();
                     double nextPointDistance = calDistance(nextLat, nextLon);
 
+                    //현재 위치와 다음 지점까지의 거리가 10미터 미만이라면 너무 가까우므로, array의 index를 2 증가시킨다
                     if(nextPointDistance < 10)
                         pathIndex += 2;
+                    //다음 목적지와의 거리가 10미터 이상이라면 그 지점을 다음 중간목적지로 설정한다
                     else {
                         DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
                         msg += "\nnextPointDistance: " + nextPointDistance;
@@ -532,8 +509,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             alertBuilding(n_Latitude, n_Longitude);
-
- //           Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
         }
 
         @Override
