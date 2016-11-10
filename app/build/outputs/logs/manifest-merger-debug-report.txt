@@ -144,7 +144,7 @@ ADDED from C:\Users\ISRL\Desktop\MSK\CSI-Project\app\src\main\AndroidManifest.xm
 		ADDED from C:\Users\ISRL\Desktop\MSK\CSI-Project\app\src\main\AndroidManifest.xml:63:18-70
 activity#csi.testapp.Compass
 ADDED from C:\Users\ISRL\Desktop\MSK\CSI-Project\app\src\main\AndroidManifest.xml:66:9-70:20
-	android:label
+	android:theme
 		ADDED from C:\Users\ISRL\Desktop\MSK\CSI-Project\app\src\main\AndroidManifest.xml:68:13-56
 	android:name
 		ADDED from C:\Users\ISRL\Desktop\MSK\CSI-Project\app\src\main\AndroidManifest.xml:67:13-36

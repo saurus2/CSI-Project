@@ -87,7 +87,7 @@
         <!-- AR 액티비티 추가 -->
         <activity
             android:name="csi.testapp.Compass"
-            android:label="@string/title_activity_main" >
+            android:theme="@android:style/Theme.Dialog" >
         </activity>
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"

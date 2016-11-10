@@ -12,6 +12,10 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
 
 import android.widget.Toast;
 
@@ -60,45 +64,18 @@ public class Compass extends Activity {
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+
+        //액티비티를 팝업 형태로 띄우는 변수들
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        getWindow().setGravity(Gravity.BOTTOM);
+
+        //센서들 설정
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+
         setContentView(R.layout.activity_ar);
-
         mDrawView = (DrawSurfaceView) findViewById(R.id.drawSurfaceView);
-
-//		locMgr = (LocationManager) this.getSystemService(LOCATION_SERVICE); // <2>
-//		LocationProvider high = locMgr.getProvider(locMgr.getBestProvider(
-//				LocationUtils.createFineCriteria(), true));
-//
-//		// using high accuracy provider... to listen for updates
-//		locMgr.requestLocationUpdates(high.getName(), 0, 0f,
-//				new LocationListener() {
-//					public void onLocationChanged(Location location) {
-//						// do something here to save this new location
-//						Log.d(TAG, "Location Changed");
-//						mDrawView.setMyLocation(location.getLatitude(), location.getLongitude());
-//						mDrawView.invalidate();
-//
-//						String msg = "AR New Latitude: " + location.getLatitude()
-//								+ "AR New Longitude: " + location.getLongitude();
-//						Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
-//					}
-//
-//					public void onStatusChanged(String s, int i, Bundle bundle) {
-//
-//					}
-//
-//					public void onProviderEnabled(String s) {
-//						// try switching to a different provider
-//					}
-//
-//					public void onProviderDisabled(String s) {
-//						// try switching to a different provider
-//					}
-//				});
-
-
-
     }
 
 

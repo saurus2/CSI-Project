@@ -65,7 +65,7 @@
         <!--AR 액티비티 추가-->
         <activity
             android:name=".Compass"
-            android:label="@string/title_activity_main" >
+            android:theme="@android:style/Theme.Dialog">
 
         </activity>
     </application>
