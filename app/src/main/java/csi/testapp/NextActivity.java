@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.Collection;
@@ -52,6 +53,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import static csi.testapp.MainActivity.msg;
 
 
 /**
@@ -96,6 +99,7 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
     public void onServiceConnect(){
         //RECOBeaconService와 연결 시 코드 작성
         Log.i("RECORangingActivity", "onServiceConnect()");
+
         mRecoManager.setDiscontinuousScan(DISCONTINUOUS_SCAN);
         this.start(mRegions);
         //Write the code when RECOBeaconManager is bound to RECOBeaconService
@@ -150,10 +154,10 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
 
         //RECOServiceConnectListener 인터페이스를 설정하고, RECOBeaconManager의 인스턴스를 RECOBeaconService와 연결합니다.
         mRecoManager = RECOBeaconManager.getInstance(getApplicationContext(), NextActivity.mScanRecoOnly, NextActivity.mEnableBackgroundTimeout);
+
         mRegions = this.generateBeaconRegion();
         //mRecoManager will be created here. (Refer to the RECOActivity.onCreate())
         //mRecoManager 인스턴스는 여기서 생성됩니다. RECOActivity.onCreate() 메소들르 참고하세요.
-
         //Set RECORangingListener (Required)
         //RECORangingListener 를 설정합니다. (필수)
         mRecoManager.setRangingListener(this);
@@ -210,8 +214,7 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
 
         for(RECOBeaconRegion region : regions) {
             try {
-                //mRecoManager.setScanPeriod(10); 장치들을 스캔할 시간 설정
-//                mRecoManager.setSleepPeriod(10); 다음 스캔 시작까지 멈출 시간
+
                 mRecoManager.startRangingBeaconsInRegion(region);
             } catch (RemoteException e) {
                 Log.i("RECORangingActivity", "Remote Exception");
@@ -574,12 +577,31 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
             Log.i("_)", "" + e.toString());
         }
     }
+    private ArrayList<RECOBeacon> ranged;
 
     @Override
     public void didRangeBeaconsInRegion(Collection<RECOBeacon> recoBeacons, RECOBeaconRegion recoRegion) {
+        TextView test = (TextView)findViewById(R.id.textView);
         Log.i("RECORangingActivity", "didRangeBeaconsInRegion() region: " + recoRegion.getUniqueIdentifier() + ", number of beacons ranged: " + recoBeacons.size());
-        mRangingListAdapter.updateAllBeacons(recoBeacons);
-        mRangingListAdapter.notifyDataSetChanged();
+        ranged = new ArrayList<RECOBeacon>(recoBeacons);
+        int a = ranged.size();
+        String numStr2 = String.valueOf(a);
+        Log.v("RECOArrayList size ",numStr2);
+        RECOBeacon reco = ranged.get(a-1);
+        numStr2 = String.valueOf(reco.getMinor());
+        Log.v("FUCK",numStr2);
+        for(int b = 0; b<a; b++){
+            reco = ranged.get(b);
+            if(reco.getMinor() == 8846){
+                msg = "Minor : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
+                Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+                test.setText(msg);
+            }
+
+        }
+
+//        mRangingListAdapter.updateAllBeacons(recoBeacons);
+//        mRangingListAdapter.notifyDataSetChanged();
         //Write the code when the beacons in the region is received
     }
 
