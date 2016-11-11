@@ -1,5 +1,10 @@
 package csi.testapp;
 
+
+import android.app.ActionBar;
+import android.view.Gravity;
+import android.view.WindowManager;
+
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
@@ -60,6 +65,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static csi.testapp.R.id.view;
@@ -84,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     //티맵 관련 변수들
     public static String mApiKey = "8bdbb125-7d59-3684-84ff-ad4b5bb59e74";
-    private TMapView mMapView = null;
+    private static TMapView mMapView = null;
     private RelativeLayout mMainRelativeLayout;
     private LocationManager locationManager;
     private ArrayList<TMapPoint> passPoints = new ArrayList();
@@ -118,11 +124,11 @@ public class MainActivity extends AppCompatActivity {
     int pathIndex = 1;
 
     //버튼 선언
-    Button arButton;
-    Button chbutton;
-    ImageButton menu;
-    ImageButton current;
-    ImageView bottom;
+    static Button arButton;
+    static Button chbutton;
+    static ImageButton menu;
+    static ImageButton current;
+    static ImageView bottom;
 
     //내부 들어갈때 설정되는 플래그
     int inner_F = 1;
@@ -224,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //버튼들 최상단으로 새로고침 시켜주는 함수
-    public void refresh() {
+    public static void refresh() {
         bottom.bringToFront();
         menu.bringToFront();
         current.bringToFront();
@@ -233,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
         setViewInvalidate(menu, current, chbutton, arButton, bottom);
     }
 
-    private void setViewInvalidate(View... views) {
+    private static void setViewInvalidate(View... views) {
         for (View v : views) {
             v.invalidate();
         }
@@ -255,8 +261,24 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             Intent intent = new Intent(MainActivity.this, Compass.class);
             startActivity(intent);
+
+
+            ViewGroup.LayoutParams params = mMapView.getLayoutParams();
+            params.width = ActionBar.LayoutParams.MATCH_PARENT;
+            params.height = 700;
+            mMapView.setLayoutParams(params);
+            mMapView.bringToFront();
+            setViewInvalidate(mMapView);
         }
     };
+
+    public static void returnARmode()
+    {
+        ViewGroup.LayoutParams params = mMapView.getLayoutParams();
+        params.height = ActionBar.LayoutParams.MATCH_PARENT;
+        mMapView.setLayoutParams(params);
+        refresh();
+    }
 
     //popupmenu 처리
     public void onPopupButtonClick(View button) {

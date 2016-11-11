@@ -1,23 +1,21 @@
 package csi.testapp;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.WindowManager.LayoutParams;
 
 import android.widget.Toast;
+
 
 /*
  * Portions (c) 2009 Google, Inc.
@@ -44,7 +42,6 @@ public class Compass extends Activity {
     private SensorManager mSensorManager;
     private Sensor mSensor;
     public static DrawSurfaceView mDrawView;
-    LocationManager locMgr;
 
     private final SensorEventListener mListener = new SensorEventListener() {
         public void onSensorChanged(SensorEvent event) {
@@ -70,14 +67,15 @@ public class Compass extends Activity {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         getWindow().setGravity(Gravity.BOTTOM);
 
+
         //센서들 설정
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 
         setContentView(R.layout.activity_ar);
         mDrawView = (DrawSurfaceView) findViewById(R.id.drawSurfaceView);
-    }
 
+    }
 
 
     @Override
@@ -97,4 +95,13 @@ public class Compass extends Activity {
         mSensorManager.unregisterListener(mListener);
         super.onStop();
     }
+
+    @Override
+    public void finish() {
+        MainActivity.returnARmode();
+
+        Toast.makeText(getBaseContext(), "Dismissed!", Toast.LENGTH_LONG).show();
+        super.finish();
+    }
 }
+
