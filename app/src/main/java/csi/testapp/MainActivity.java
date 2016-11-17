@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     //티맵 관련 변수들
     public static String mApiKey = "8bdbb125-7d59-3684-84ff-ad4b5bb59e74";
     private static TMapView mMapView = null;
-    private RelativeLayout mMainRelativeLayout;
+    private static RelativeLayout mMainRelativeLayout;
     private LocationManager locationManager;
     private ArrayList<TMapPoint> passPoints = new ArrayList();
     //티맵 포인터들
@@ -262,11 +262,16 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, Compass.class);
             startActivity(intent);
 
+//            ViewGroup.LayoutParams params = mMapView.getLayoutParams();
+//            params.width = ActionBar.LayoutParams.MATCH_PARENT;
+//            params.height = 700;
+//            mMapView.setLayoutParams(params);
 
-            ViewGroup.LayoutParams params = mMapView.getLayoutParams();
-            params.width = ActionBar.LayoutParams.MATCH_PARENT;
-            params.height = 700;
-            mMapView.setLayoutParams(params);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
+            mMainRelativeLayout.setLayoutParams(params);
+
             mMapView.bringToFront();
             setViewInvalidate(mMapView);
         }
@@ -274,9 +279,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static void returnARmode()
     {
-        ViewGroup.LayoutParams params = mMapView.getLayoutParams();
-        params.height = ActionBar.LayoutParams.MATCH_PARENT;
-        mMapView.setLayoutParams(params);
+//        ViewGroup.LayoutParams params = mMapView.getLayoutParams();
+//        params.height = ActionBar.LayoutParams.MATCH_PARENT;
+//        mMapView.setLayoutParams(params);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT, 0.0f);
+        mMainRelativeLayout.setLayoutParams(params);
         refresh();
     }
 

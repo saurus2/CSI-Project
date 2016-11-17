@@ -1,22 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/activity_ar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <csi.testapp.CameraSurfaceView
+            android:id="@+id/cameraSurfaceView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+        />
+
+        <csi.testapp.DrawSurfaceView
+            android:id="@+id/drawSurfaceView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+        />
+
+    </FrameLayout>
+
+</LinearLayout>
+
+<!-- 원본
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_ar"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="match_parent"
     android:orientation="vertical">
-
 
     <csi.testapp.CameraSurfaceView
         android:id="@+id/cameraSurfaceView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_gravity="bottom"
         />
 
     <csi.testapp.DrawSurfaceView
         android:id="@+id/drawSurfaceView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_gravity="bottom"
         />
 
-
 </FrameLayout>
+
+ -->

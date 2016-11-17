@@ -65,7 +65,8 @@
         <!--AR 액티비티 추가-->
         <activity
             android:name=".Compass"
-            android:theme="@android:style/Theme.Dialog">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <!-- 팝업 형태로 할거면 Theme.Dialog 로 바꾸면 된다 -->
 
         </activity>
     </application>

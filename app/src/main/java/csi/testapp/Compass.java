@@ -67,6 +67,14 @@ public class Compass extends Activity {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         getWindow().setGravity(Gravity.BOTTOM);
 
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = getWindow();
+        lp.copyFrom(window.getAttributes());
+        //This makes the dialog take up the full width
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+//        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+
 
         //센서들 설정
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
