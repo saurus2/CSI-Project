@@ -193,7 +193,9 @@ public class MainActivity extends AppCompatActivity {
         makeDatabase();
         Log.i("수행","데이터베이스생성");
 
-        showProgressDialog();
+        Intent intent = new Intent(MainActivity.this, Loading.class);
+        startActivity(intent);
+
     }
 
     public static void databaseInitialize(Context ctx) {
@@ -262,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener arMode = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            showProgressDialog();
+
             Intent intent = new Intent(MainActivity.this, Compass.class);
             startActivity(intent);
 
@@ -432,7 +434,7 @@ public class MainActivity extends AppCompatActivity {
 
     //건물 입구에서 첫 입구 비콘까지 도달할때까지 로딩창 띄워주기
     public void showProgressDialog(){
-        ProgressDialog asyncDialog = new ProgressDialog(this);
+            ProgressDialog asyncDialog = new ProgressDialog(this);
         asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         asyncDialog.setMessage("로딩중입니다..");
 

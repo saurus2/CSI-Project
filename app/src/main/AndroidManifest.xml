@@ -69,6 +69,12 @@
             <!-- 팝업 형태로 할거면 Theme.Dialog 로 바꾸면 된다 -->
 
         </activity>
+
+        <activity
+            android:name=".Loading"
+            android:theme="@android:style/Theme.Dialog">
+
+        </activity>
     </application>
 
 
