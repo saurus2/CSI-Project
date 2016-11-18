@@ -590,6 +590,7 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
         RECOBeacon reco = ranged.get(a-1);
         numStr2 = String.valueOf(reco.getMinor());
         Log.v("FUCK",numStr2);
+        //비콘을 하나씩 불러오는 함수
         for(int b = 0; b<a; b++){
             reco = ranged.get(b);
             if(reco.getMinor() == 8846){

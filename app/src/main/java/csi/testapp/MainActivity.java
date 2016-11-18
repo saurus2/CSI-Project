@@ -2,6 +2,7 @@ package csi.testapp;
 
 
 import android.app.ActionBar;
+import android.app.ProgressDialog;
 import android.view.Gravity;
 import android.view.WindowManager;
 
@@ -191,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
         //데이터 베이스 생성
         makeDatabase();
         Log.i("수행","데이터베이스생성");
+
+        showProgressDialog();
     }
 
     public static void databaseInitialize(Context ctx) {
@@ -259,6 +262,7 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener arMode = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            showProgressDialog();
             Intent intent = new Intent(MainActivity.this, Compass.class);
             startActivity(intent);
 
@@ -425,6 +429,21 @@ public class MainActivity extends AppCompatActivity {
         check = 1;
     }
 
+
+    //건물 입구에서 첫 입구 비콘까지 도달할때까지 로딩창 띄워주기
+    public void showProgressDialog(){
+        ProgressDialog asyncDialog = new ProgressDialog(this);
+        asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        asyncDialog.setMessage("로딩중입니다..");
+
+        asyncDialog.show();
+    }
+
+
+
+
+
+
     //건물 입구 근처에 도착하면 안내문구를 띄워주는 함수
     public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
@@ -453,6 +472,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+
+
+
 
     //목적지의 위도와 경도를 전달받아서 현재 위치와의 거리를 계산하는 함수
     public double calDistance(final double desLat, final double desLon){
