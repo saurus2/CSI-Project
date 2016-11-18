@@ -47,6 +47,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.skp.Tmap.MapUtils;
 import com.skp.Tmap.TMapGpsManager;
 import com.skp.Tmap.TMapPoint;
 import com.skp.Tmap.TMapPolyLine;
@@ -123,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
 
     //길찾기 했을 때 point arraylist를 순서대로 체크하기 위한 변수
     int pathIndex = 1;
+
+    //길찾기 할 때 목적지까지 남은 거리
+    double remainDistance = 0;
 
     //버튼 선언
     static Button arButton;
@@ -540,17 +544,47 @@ public class MainActivity extends AppCompatActivity {
 
                 //경로가 찾아져있다면 중간지점들을 저장하고있는 passPoint 변수의 사이즈가 0이 아닐 것이다
                 if(passPoints.size() != 0 && passPoints.size() > pathIndex) {
+
+                    if(pathIndex == 1)
+                    {
+                        double distance = 0.0D;
+                        if(passPoints.size() > 1) {
+                            for(int i = 1; i < passPoints.size(); ++i) {
+                                distance += MapUtils.getDistance((TMapPoint)passPoints.get(i), (TMapPoint)passPoints.get(i + 1));
+                                if(i + 1 == passPoints.size() - 1) {
+                                    break;
+                                }
+                            }
+                        }
+
+                        remainDistance = distance;
+                    }
+
+
                     double nextLat = passPoints.get(pathIndex).getLatitude();
                     double nextLon = passPoints.get(pathIndex).getLongitude();
                     double nextPointDistance = calDistance(nextLat, nextLon);
 
                     //현재 위치와 다음 지점까지의 거리가 10미터 미만이라면 너무 가까우므로, array의 index를 2 증가시킨다
-                    if(nextPointDistance < 10)
+                    //다음 지점에서 목적지까지의 거리를 갱신해서 변수에 저장한다
+                    if(nextPointDistance < 10) {
                         pathIndex += 2;
+
+                        double distance = 0.0D;
+                        if(passPoints.size() > 1) {
+                            for(int i = pathIndex; i < passPoints.size(); ++i) {
+                                distance += MapUtils.getDistance((TMapPoint)passPoints.get(i), (TMapPoint)passPoints.get(i + 1));
+                                if(i + 1 == passPoints.size() - 1) {
+                                    break;
+                                }
+                            }
+                        }
+                        remainDistance = distance;
+                    }
                     //다음 목적지와의 거리가 10미터 이상이라면 그 지점을 다음 중간목적지로 설정한다
                     else {
                         DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
-                        msg += "\nnextPointDistance: " + nextPointDistance;
+                        msg += "\nnextPointDistance: " + (remainDistance + nextPointDistance);
                     }
                 }
                 else
