@@ -15,7 +15,7 @@
         android:id="@+id/activity_ar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="2">
 
         <csi.testapp.CameraSurfaceView
             android:id="@+id/cameraSurfaceView"
@@ -33,30 +33,30 @@
 
     </FrameLayout>
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="0">
+
+        <ImageView
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottombar"/>
+
+        <ImageButton
+            android:id="@+id/popup"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="endAR"
+            android:background="@drawable/listbutton"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
 </LinearLayout>
-
-<!-- 원본
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_ar"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <csi.testapp.CameraSurfaceView
-        android:id="@+id/cameraSurfaceView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_gravity="bottom"
-        />
-
-    <csi.testapp.DrawSurfaceView
-        android:id="@+id/drawSurfaceView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_gravity="bottom"
-        />
-
-</FrameLayout>
-
- -->

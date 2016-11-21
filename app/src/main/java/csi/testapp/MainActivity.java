@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
     int check = 0;
 
     //길찾기 했을 때 point arraylist를 순서대로 체크하기 위한 변수
-    int pathIndex = 1;
+    static int pathIndex = 1;
 
     //길찾기 할 때 목적지까지 남은 거리
     double remainDistance = 0;
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
     static ImageView bottom;
 
     //내부 들어갈때 설정되는 플래그
-    int inner_F = 1;
+    static int inner_F = 1;
 
     //테스트용 메시지 변수
     public static String msg = "";
@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
+                    LinearLayout.LayoutParams.MATCH_PARENT, 2.0f);
             mMainRelativeLayout.setLayoutParams(params);
 
             mMapView.bringToFront();

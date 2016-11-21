@@ -6,7 +6,6 @@
     android:orientation="vertical">
 
     <RelativeLayout
-
         android:id="@+id/mainRelativeLayout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -15,7 +14,7 @@
         android:paddingTop="1dip">
 
         <!--구글 맵으로 바꾸는 버튼만들기-->
-        <!--현재 위치 버튼 -->
+        <!--현재 위치 버튼-->
 
         <ImageView
             android:id="@+id/bottomBar"
@@ -24,16 +23,16 @@
             android:layout_alignParentBottom="true"
             android:background="@drawable/bottombar"/>
 
-            <ImageButton
-                android:id="@+id/popup"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:onClick="onPopupButtonClick"
-                android:background="@drawable/listbutton"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true" />
+        <ImageButton
+            android:id="@+id/popup"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="onPopupButtonClick"
+            android:background="@drawable/listbutton"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
 
 
         <ImageButton

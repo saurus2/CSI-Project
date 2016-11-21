@@ -11,10 +11,12 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 
@@ -63,18 +65,16 @@ public class Compass extends Activity {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        //액티비티를 팝업 형태로 띄우는 변수들
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        getWindow().setGravity(Gravity.BOTTOM);
-
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        Window window = getWindow();
-        lp.copyFrom(window.getAttributes());
-        //This makes the dialog take up the full width
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-//        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        window.setAttributes(lp);
+        //액티비티를 팝업 형태로 띄우는 변수들, 현재는 안 쓰므로 주석처리
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+//        getWindow().setGravity(Gravity.BOTTOM);
+//
+//        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+//        Window window = getWindow();
+//        lp.copyFrom(window.getAttributes());
+//        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+//        window.setAttributes(lp);
 
 
         //센서들 설정
@@ -86,6 +86,9 @@ public class Compass extends Activity {
 
     }
 
+    public void endAR(View button) {
+        finish();
+    }
 
     @Override
     protected void onResume() {
@@ -109,7 +112,6 @@ public class Compass extends Activity {
     public void finish() {
         MainActivity.returnARmode();
 
-        Toast.makeText(getBaseContext(), "Dismissed!", Toast.LENGTH_LONG).show();
         super.finish();
     }
 }
