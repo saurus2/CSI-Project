@@ -37,13 +37,6 @@ public class DrawSurfaceView extends View {
 	private Bitmap mRadar;
 
 	public static Point props = new Point(0,0,"null");
-//	public static ArrayList<Point> props = new ArrayList<Point>();
-//	static {
-//		props.add(new Point(MainActivity.n_Latitude, MainActivity.n_Longitude, MainActivity.building_n));
-//		//props.add(new Point(37.449476, 126.654388, "본관"));
-//		//props.add(new Point(37.450662, 126.656960, "하이테크"));
-//		//props.add(new Point(37.450337, 126.655693, "2호관"));
-//	}
 
 	public DrawSurfaceView(Context c, Paint paint) {
 		super(c);
@@ -62,14 +55,6 @@ public class DrawSurfaceView extends View {
 		mlSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.leftarrow);
 		mrSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.rightarrow);
 		mBlips = BitmapFactory.decodeResource(context.getResources(), R.drawable.blip);
-
-//		mSpots = new Bitmap[props.size()];
-//		for (int i = 0; i < mSpots.length; i++)
-//			mSpots[i] = BitmapFactory.decodeResource(context.getResources(), R.drawable.forwardarrow);
-//
-//		mBlips = new Bitmap[props.size()];
-//		for (int i = 0; i < mBlips.length; i++)
-//			mBlips[i] = BitmapFactory.decodeResource(context.getResources(), R.drawable.blip);
 	}
 
 	@Override
@@ -157,6 +142,21 @@ public class DrawSurfaceView extends View {
 				canvas.drawText(line, u.x - (float)(screenWidth / 90d)*20, y- 3 * spotCentreY, mPaint);
 				y += mPaint.descent() - mPaint.ascent();
 			}
+
+			Paint rPaint = new Paint();
+			rPaint.setColor(Color.WHITE);
+			rPaint.setTextSize(50);
+			rPaint.setAntiAlias(true);
+
+			Paint rsPaint = new Paint();
+			rsPaint.setColor(Color.BLACK);
+			rsPaint.setTextSize(50);
+			rsPaint.setAntiAlias(true);
+			rsPaint.setStyle(Paint.Style.STROKE);
+			rsPaint.setStrokeWidth(1);
+
+			canvas.drawText(MainActivity.remainDistanceMsg, 0, (float)screenHeight-50, rPaint); //text
+			canvas.drawText(MainActivity.remainDistanceMsg, 0, (float)screenHeight-50, rsPaint); //text
 		}
 	}
 

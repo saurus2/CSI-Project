@@ -22,6 +22,58 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="top"
+            />
+
+        <csi.testapp.DrawSurfaceView
+            android:id="@+id/drawSurfaceView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            />
+
+        <ImageButton
+            android:id="@+id/popup"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="endAR"
+            android:background="@drawable/listbutton"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="right|bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+    </FrameLayout>
+
+
+</LinearLayout>
+
+
+<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/activity_ar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <csi.testapp.CameraSurfaceView
+            android:id="@+id/cameraSurfaceView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
         />
 
         <csi.testapp.DrawSurfaceView
@@ -60,3 +112,5 @@
     </RelativeLayout>
 
 </LinearLayout>
+
+        -->

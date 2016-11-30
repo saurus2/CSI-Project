@@ -140,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
     //테스트용 메시지 변수
     public static String msg = "";
+    public static String remainDistanceMsg = "";
 
     //지도와 버튼들 처음 초기화 시켜주는 함수
     void initView() {
@@ -522,7 +523,6 @@ public class MainActivity extends AppCompatActivity {
                     + "\nNew Longitude: " + Now_Longitude
                     + "\nPass Point: " + pathIndex + "/" + passPoints.size();
 
-    //        Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
 
             ////////////////////////////////////////////////////////////////////*/
 
@@ -558,6 +558,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         remainDistance = distance;
+                        remainDistanceMsg = "\nRemainDistance: " + ((int)remainDistance) + "m";
                     }
 
 
@@ -584,7 +585,7 @@ public class MainActivity extends AppCompatActivity {
                     //다음 목적지와의 거리가 10미터 이상이라면 그 지점을 다음 중간목적지로 설정한다
                     else {
                         DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
-                        msg += "\nnextPointDistance: " + (remainDistance + nextPointDistance);
+                        remainDistanceMsg = "\nRemainDistance: " + ((int)remainDistance + (int)nextPointDistance) + "m";
                     }
                 }
                 else
