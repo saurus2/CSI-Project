@@ -108,10 +108,13 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     private static RelativeLayout mMainRelativeLayout;
     private LocationManager locationManager;
     private ArrayList<TMapPoint> passPoints = new ArrayList();
+    private ArrayList<TMapPoint> passIndoor = new ArrayList();
+
     //티맵 포인터들
     Bitmap start;
     Bitmap end;
     Bitmap location;
+
 
 
     //외부 지도용 위도경도 새로 설정해야할때
@@ -142,11 +145,12 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
     //버튼 선언
     static Button arButton;
-    static Button chbutton;
+//    static Button chbutton;
     static ImageButton menu;
     static ImageButton current;
     static ImageView bottom;
     static TextView distance;
+    static ImageView guide;
 
     //내부 들어갈때 설정되는 플래그
     static int inner_F = 1;
@@ -203,11 +207,12 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
         //버튼 초기화
         arButton = (Button) findViewById(R.id.arButton);
-        chbutton = (Button) findViewById(R.id.chButton);
+//        chbutton = (Button) findViewById(R.id.chButton);
         menu = (ImageButton) findViewById(R.id.popup);
         current = (ImageButton) findViewById(R.id.current);
         bottom = (ImageView) findViewById(R.id.bottomBar);
         distance = (TextView) findViewById(R.id.distance);
+        guide = (ImageView) findViewById(R.id.guide);
 
     }
 
@@ -227,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
         //버튼 리스너들 등록 버튼 위치 조정
         current.setOnClickListener(turnOn);
-        chbutton.setOnClickListener(inner);
+//        chbutton.setOnClickListener(inner);
         arButton.setOnClickListener(arMode);
         refresh();
 
@@ -274,6 +279,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         mRecoManager.setRangingListener(this);
         //Activity에서 생성되고 리스너를 셋하지 않으면 정보를 가져올 수 없다
         mRecoManager.bind(this);
+
 
 
     }
@@ -410,10 +416,12 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         bottom.bringToFront();
         menu.bringToFront();
         current.bringToFront();
-        chbutton.bringToFront();
+//        chbutton.bringToFront();
+        guide.bringToFront();
         arButton.bringToFront();
         distance.bringToFront();
-        setViewInvalidate(menu, current, chbutton, arButton, bottom,distance);
+        setViewInvalidate(menu, current, arButton, bottom,distance,guide);
+        guide.setVisibility(View.VISIBLE);
     }
 
     private static void setViewInvalidate(View... views) {
@@ -476,6 +484,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
+                guide.setVisibility(View.INVISIBLE);
                 switch (item.getItemId()) {
                     case R.id.fifth:
                         n_Latitude = 37.451331;
@@ -522,7 +531,8 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         alert.setTitle("강의실 번호를 입력해주세요");
-
+        indoorPassInit();
+        //강의실 안내할 패스를 생성함
         // Set an EditText view to get user input
         final EditText input = new EditText(this);
         alert.setView(input);
@@ -543,6 +553,20 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 });
 
         alert.show();
+    }
+
+    public void indoorPassInit(){
+        TMapPoint point1 = new TMapPoint(37.451348, 126.653993);
+        TMapPoint point2 = new TMapPoint(37.450939, 126.653733);
+        TMapPoint point3 = new TMapPoint(37.450939, 126.653733);
+        TMapPoint point4 = new TMapPoint(37.451348, 126.653993);
+        TMapPoint point5 = new TMapPoint(37.451569, 126.653521);
+
+        passIndoor.add(point1);
+        passIndoor.add(point2);
+        passIndoor.add(point3);
+        passIndoor.add(point4);
+        passIndoor.add(point5);
     }
 
     public static void mainSearchClass() {
