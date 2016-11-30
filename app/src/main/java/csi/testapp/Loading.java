@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 
 /**
@@ -43,13 +44,14 @@ public class Loading extends Activity{
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            check = NextActivity.ranged.size();
-            while(check == 0){
-                check = NextActivity.ranged.size();
-            }
 
+            while(check == 0) {
+                //check = NextActivity.ranged.size();
+                Log.v("doin","doin");
+            }
 //            try {
-//                for (int i = 0; i < 5; i++) {
+//                while(check == 0) {
+//                    check = NextActivity.ranged.size();
 //                    //asyncDialog.setProgress(i * 30);
 //                    Thread.sleep(500);
 //                }

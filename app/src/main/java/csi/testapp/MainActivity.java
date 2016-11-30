@@ -70,9 +70,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import static csi.testapp.R.id.view;
 
 public class MainActivity extends AppCompatActivity {
+
+    private AlertBuilding mCustomDialog;
+
 
     //데이터베이스 생성관련한 주소 변수들
     //assets 폴더에 이미 SQLite로 만든 디비를 넣어놓고
@@ -143,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     public static String remainDistanceMsg = "";
 
     //building flag
-    int building_f = 0;
+    static int building_f = 0;
 
     //지도와 버튼들 처음 초기화 시켜주는 함수
     void initView() {
@@ -456,31 +458,18 @@ public class MainActivity extends AppCompatActivity {
     //건물 입구 근처에 도착하면 안내문구를 띄워주는 함수
     public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
-        if((dist = calDistance(n_Latitude, n_Longitude)) <= 100 && inner_F == 0){
+        if((dist = calDistance(n_Latitude, n_Longitude)) <= 1000 && inner_F == 0){
             building_f = 1;
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+           // mCustomDialog = new AlertBuilding(MainActivity.this,"건물에 입장하시면 확인버튼을 눌러주세요");
+            Intent intent = new Intent(MainActivity.this, AlertBuilding.class);
+            startActivity(intent);
+            //mCustomDialog.show();
 
-            alert.setTitle("건물에 입장하시면 확인을 눌러주세요");
-
-            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    inner_F = 1;
-                    Intent intent = new Intent(MainActivity.this, Loading.class);
-                    startActivity(intent);
-                }
-            });
-            alert.setNegativeButton("취소",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            inner_F = 1;
-                            // Canceled.
-                        }
-                    });
-
-            alert.show();
         }
-
     };
+
+
+
 
 
 

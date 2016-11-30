@@ -75,6 +75,11 @@
             android:theme="@android:style/Theme.Dialog">
 
         </activity>
+
+        <activity android:name=".AlertBuilding"
+            android:theme="@android:style/Theme.Dialog">
+
+        </activity>
     </application>
 
 
