@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Window;
@@ -14,6 +15,7 @@ import android.view.Window;
 
 
 public class Loading extends Activity{
+    int check = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,21 +43,29 @@ public class Loading extends Activity{
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            try {
-                for (int i = 0; i < 5; i++) {
-                    //asyncDialog.setProgress(i * 30);
-                    Thread.sleep(500);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            check = NextActivity.ranged.size();
+            while(check == 0){
+                check = NextActivity.ranged.size();
             }
+
+//            try {
+//                for (int i = 0; i < 5; i++) {
+//                    //asyncDialog.setProgress(i * 30);
+//                    Thread.sleep(500);
+//                }
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
-            asyncDialog.dismiss();
+            DrawSurfaceView.props = new Point(MainActivity.desLangitute, MainActivity.desLongitute, MainActivity.roomnumber+" 강의실");
+            Intent intent = new Intent(Loading.this, Compass.class);
+            startActivity(intent);
             finish();
+            asyncDialog.dismiss();
             super.onPostExecute(result);
         }
     }

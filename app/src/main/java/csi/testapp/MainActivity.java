@@ -137,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
     //테스트용 메시지 변수
     public static String msg = "";
 
+    //building flag
+    int building_f = 0;
+
     //지도와 버튼들 처음 초기화 시켜주는 함수
     void initView() {
         mMapView = new TMapView(this);
@@ -193,8 +196,6 @@ public class MainActivity extends AppCompatActivity {
         makeDatabase();
         Log.i("수행","데이터베이스생성");
 
-        Intent intent = new Intent(MainActivity.this, Loading.class);
-        startActivity(intent);
 
     }
 
@@ -298,6 +299,7 @@ public class MainActivity extends AppCompatActivity {
 
     //popupmenu 처리
     public void onPopupButtonClick(View button) {
+        building_f = 0;
         PopupMenu popup = new PopupMenu(this, button);
 
         popup.getMenuInflater().inflate(R.menu.popup, popup.getMenu());
@@ -433,13 +435,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     //건물 입구에서 첫 입구 비콘까지 도달할때까지 로딩창 띄워주기
-    public void showProgressDialog(){
-            ProgressDialog asyncDialog = new ProgressDialog(this);
-        asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        asyncDialog.setMessage("로딩중입니다..");
-
-        asyncDialog.show();
-    }
+//    public void showProgressDialog(){
+//            ProgressDialog asyncDialog = new ProgressDialog(this);
+//        asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        asyncDialog.setMessage("로딩중입니다..");
+//
+//        asyncDialog.show();
+//    }
 
 
 
@@ -449,7 +451,8 @@ public class MainActivity extends AppCompatActivity {
     //건물 입구 근처에 도착하면 안내문구를 띄워주는 함수
     public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
-        if((dist = calDistance(n_Latitude, n_Longitude)) <= 10 && inner_F == 0){
+        if((dist = calDistance(n_Latitude, n_Longitude)) <= 100 && inner_F == 0){
+            building_f = 1;
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
             alert.setTitle("건물에 입장하시면 확인을 눌러주세요");
@@ -457,8 +460,7 @@ public class MainActivity extends AppCompatActivity {
             alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     inner_F = 1;
-                    DrawSurfaceView.props = new Point(MainActivity.desLangitute, MainActivity.desLongitute, MainActivity.roomnumber+" 강의실");
-                    Intent intent = new Intent(MainActivity.this, Compass.class);
+                    Intent intent = new Intent(MainActivity.this, Loading.class);
                     startActivity(intent);
                 }
             });
@@ -564,7 +566,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(getString(R.string.app_name), "", e);
             }
 
-            alertBuilding(n_Latitude, n_Longitude);
+
+            if(building_f == 0) {
+                alertBuilding(n_Latitude, n_Longitude);
+            }
         }
 
         @Override

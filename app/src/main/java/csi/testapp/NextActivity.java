@@ -70,6 +70,7 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
     public static final String PACKAGE_DIR = "/data/data/csi.testapp/";
     public static final String DATABASE_NAME = "Classes.db";
     public static final String COPY2DATABASE_NAME = "ClassesDB.db";
+    public static ArrayList<RECOBeacon> ranged;
     LatLng Marker1;
     List<Marker> markers = new ArrayList<Marker>();
 
@@ -577,7 +578,7 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
             Log.i("_)", "" + e.toString());
         }
     }
-    private ArrayList<RECOBeacon> ranged;
+
 
     @Override
     public void didRangeBeaconsInRegion(Collection<RECOBeacon> recoBeacons, RECOBeaconRegion recoRegion) {
@@ -590,6 +591,7 @@ public class NextActivity extends FragmentActivity implements OnMapReadyCallback
         RECOBeacon reco = ranged.get(a-1);
         numStr2 = String.valueOf(reco.getMinor());
         Log.v("FUCK",numStr2);
+
         //비콘을 하나씩 불러오는 함수
         for(int b = 0; b<a; b++){
             reco = ranged.get(b);
