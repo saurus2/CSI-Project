@@ -557,16 +557,26 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
     public void indoorPassInit(){
         TMapPoint point1 = new TMapPoint(37.451348, 126.653993);
+        TMapPoint point1_2 = new TMapPoint(37.451348, 126.653993);
         TMapPoint point2 = new TMapPoint(37.450939, 126.653733);
+        TMapPoint point2_2 = new TMapPoint(37.450939, 126.653733);
         TMapPoint point3 = new TMapPoint(37.450939, 126.653733);
+        TMapPoint point3_2 = new TMapPoint(37.450939, 126.653733);
         TMapPoint point4 = new TMapPoint(37.451348, 126.653993);
+        TMapPoint point4_2 = new TMapPoint(37.451348, 126.653993);
         TMapPoint point5 = new TMapPoint(37.451569, 126.653521);
+        TMapPoint point5_2= new TMapPoint(37.451569, 126.653521);
 
         passIndoor.add(point1);
+        passIndoor.add(point1_2);
         passIndoor.add(point2);
+        passIndoor.add(point2_2);
         passIndoor.add(point3);
+        passIndoor.add(point3_2);
         passIndoor.add(point4);
+        passIndoor.add(point4_2);
         passIndoor.add(point5);
+        passIndoor.add(point5_2);
     }
 
     public static void mainSearchClass() {
