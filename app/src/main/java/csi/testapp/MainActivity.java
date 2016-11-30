@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
     //테스트용 메시지 변수
     public static String msg = "";
+    public static String remainDistanceMsg = "";
 
     //비콘 관련 변수들
     //RECOBeaconManager.getInstance(Context, boolean, boolean)의 경우,
@@ -682,7 +683,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     + "\nNew Longitude: " + Now_Longitude
                     + "\nPass Point: " + pathIndex + "/" + passPoints.size();
 
-    //        Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
 
             ////////////////////////////////////////////////////////////////////*/
 
@@ -718,6 +718,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                         }
 
                         remainDistance = distance;
+                        remainDistanceMsg = "\nRemainDistance: " + ((int)remainDistance) + "m";
                     }
 
 
@@ -744,7 +745,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     //다음 목적지와의 거리가 10미터 이상이라면 그 지점을 다음 중간목적지로 설정한다
                     else {
                         DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
-                        msg += "\nnextPointDistance: " + (remainDistance + nextPointDistance);
+                        remainDistanceMsg = "\nRemainDistance: " + ((int)remainDistance + (int)nextPointDistance) + "m";
                     }
                 }
                 else
