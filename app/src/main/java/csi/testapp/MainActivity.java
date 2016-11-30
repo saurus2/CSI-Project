@@ -146,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     static ImageButton menu;
     static ImageButton current;
     static ImageView bottom;
+    static TextView distance;
 
     //내부 들어갈때 설정되는 플래그
     static int inner_F = 1;
@@ -175,6 +176,10 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     private RecoRangingListAdapter mRangingListAdapter;
     private ListView mRegionListView;
 
+    //현재 층수 나타내는 변수
+    public static String flo = "1";
+    //건물에 들어갔는지를 표시하는 플래그
+    public static String entrance = "0";
 
 
     //지도와 버튼들 처음 초기화 시켜주는 함수
@@ -202,6 +207,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         menu = (ImageButton) findViewById(R.id.popup);
         current = (ImageButton) findViewById(R.id.current);
         bottom = (ImageView) findViewById(R.id.bottomBar);
+        distance = (TextView) findViewById(R.id.distance);
 
     }
 
@@ -406,7 +412,8 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         current.bringToFront();
         chbutton.bringToFront();
         arButton.bringToFront();
-        setViewInvalidate(menu, current, chbutton, arButton, bottom);
+        distance.bringToFront();
+        setViewInvalidate(menu, current, chbutton, arButton, bottom,distance);
     }
 
     private static void setViewInvalidate(View... views) {
@@ -525,7 +532,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 roomnumber = input.getText().toString();
                 roomnumber.toString();
                 // Do something with value!
-                NextActivity.mainSearchClass();
+                mainSearchClass();
             }
         });
         alert.setNegativeButton("Cancel",
@@ -537,6 +544,48 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
         alert.show();
     }
+
+    public static void mainSearchClass() {
+        //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
+
+        try {
+
+            //텍스트에 입력한 문자를 가지고옮
+
+            int classNo = Integer.parseInt(MainActivity.roomnumber.toString());
+            //텍스트에서 가져온 문자를 정수로 변환 시켜줌
+
+
+            //MainActivity.db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
+            //저장된 데이터베이스 포인터를 만들어줌
+            if(classNo != 0) {
+                String sql = "SELECT * From Classes Where room_no = " + classNo;
+                //검색한 방의 번호와 같은 리스트만 sql로 처리함d
+                Cursor cur = MainActivity.db.rawQuery(sql, null);
+                //데이터베이스에서 sql로 처리된 테이블에 cursor를 만듦
+
+                cur.moveToFirst();
+                //커서를 데이터베이스의 0,0 즉 맨 처음 부분에 가져감
+
+                Log.i("move!!!", "" + cur.getString(0));
+                //TextView tv = (TextView) findViewById(R.id.textView);
+                String text1 = cur.getString(1);
+                String text2 = cur.getString(2);
+                //Mainactivity 의 목적지 위도 경도를 저장시킴
+                MainActivity.desLangitute = Double.parseDouble(text1);
+                MainActivity.desLongitute = Double.parseDouble(text2);
+                //테이블의 1,2번째 칼럼 위도 경도를 실수로 저장함
+                Log.i("수행", "방번호 :" + cur.getString(0));
+                Log.i("수행", "경도 :" + MainActivity.desLangitute);
+                Log.i("수행", "위도 :" + MainActivity.desLongitute);
+            }
+        } catch (Exception e) {
+            Log.i("_)", "" + e.toString());
+        }
+
+    }
+
+
 
 
 
@@ -803,32 +852,104 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
     @Override
     public void didRangeBeaconsInRegion(Collection<RECOBeacon> recoBeacons, RECOBeaconRegion recoRegion) {
-        TextView test = (TextView)findViewById(R.id.distance);
+        TextView test = (TextView) findViewById(R.id.distance);
         Log.i("RECORangingActivity", "didRangeBeaconsInRegion() region: " + recoRegion.getUniqueIdentifier() + ", number of beacons ranged: " + recoBeacons.size());
         ranged = new ArrayList<RECOBeacon>(recoBeacons);
         int a = ranged.size();
-        if(a!=0) {
-            String numStr2 = String.valueOf(a);
-            Log.v("RECOArrayList size ", numStr2);
-            RECOBeacon reco = ranged.get(a - 1);
-            numStr2 = String.valueOf(reco.getMinor());
-            Log.v("FUCK", numStr2);
-            //비콘을 하나씩 불러오는 함수
+        String numStr2 = String.valueOf(a);
+        Log.v("RECOArrayList size ", numStr2);
+        RECOBeacon reco = ranged.get(a - 1);
+        numStr2 = String.valueOf(reco.getMinor());
+        Log.v("FUCK", numStr2);
+        //비콘을 하나씩 불러오는 함수
+        if (a != 0 && entrance.equals("0")) { //아직 입장 안했을때
             for (int b = 0; b < a; b++) {
                 reco = ranged.get(b);
-                if (reco.getMinor() == 8846) {
-                    msg = "Minor : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
-                    Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
-                    test.setText(msg);
+                int beaconMinor = reco.getMinor();
+                double dis = reco.getAccuracy();
+                if (beaconMinor == 8846) {
+                    if (dis < 0.05) {
+                        String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
+                        test.setText(msg1);
+                        entrance = "1";
+                    }else{
+                        String msg1 = "Out : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
+                        test.setText(msg1);
+                    }
                 }
 
             }
-        }
+        } else if (a != 0 && entrance.equals("1")) {
+            if (a != 0) { // 입장하고 난뒤
+                //비콘을 하나씩 불러오는 함수
+                for (int b = 0; b < a; b++) {
+                    reco = ranged.get(b);
+                    int beaconMinor = reco.getMinor();
+                    if (beaconMinor == 8846) {
+                        String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
+//                    Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+
+                        if (reco.getAccuracy() > 1.50) {
+                            String msg2 = "Out\nOut";
+                            test.setText(msg2);
+                            entrance = "0";
+                        }
+
+                        test.setText(msg1);
+                        detectBeacon(beaconMinor);
+                    }
+
+                }
+            }
 
 //        mRangingListAdapter.updateAllBeacons(recoBeacons);
 //        mRangingListAdapter.notifyDataSetChanged();
-        //Write the code when the beacons in the region is received
+            //Write the code when the beacons in the region is received
+        }
     }
+
+    public static void detectBeacon(int minor) {
+        //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
+
+        try {
+
+            //텍스트에 입력한 문자를 가지고옮
+
+            int classNo = minor;
+            //텍스트에서 가져온 문자를 정수로 변환 시켜줌
+
+
+            //MainActivity.db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
+            //저장된 데이터베이스 포인터를 만들어줌
+            if(classNo != 0) {
+                String sql = "SELECT * From Classes Where room_no = " + classNo + " and floor = " + flo;
+                //minor와 층수를 비교하여 위도 경도를 찾는다
+                //검색한 방의 번호와 같은 리스트만 sql로 처리함d
+                Cursor cur = MainActivity.db.rawQuery(sql, null);
+                //데이터베이스에서 sql로 처리된 테이블에 cursor를 만듦
+
+                cur.moveToFirst();
+                //커서를 데이터베이스의 0,0 즉 맨 처음 부분에 가져감
+
+                Log.i("move!!!", "" + cur.getString(0));
+                //TextView tv = (TextView) findViewById(R.id.textView);
+                String text1 = cur.getString(1);
+                String text2 = cur.getString(2);
+                //Mainactivity 의 목적지 위도 경도를 저장시킴
+                MainActivity.desLangitute = Double.parseDouble(text1);
+                MainActivity.desLongitute = Double.parseDouble(text2);
+                //테이블의 1,2번째 칼럼 위도 경도를 실수로 저장함
+                Log.i("수행", "방번호 :" + cur.getString(0));
+                Log.i("수행", "경도 :" + MainActivity.desLangitute);
+                Log.i("수행", "위도 :" + MainActivity.desLongitute);
+            }
+        } catch (Exception e) {
+            Log.i("_)", "" + e.toString());
+        }
+
+    }
+
+
 
     @Override
     public void rangingBeaconsDidFailForRegion(RECOBeaconRegion recoBeaconRegion, RECOErrorCode recoErrorCode) {
