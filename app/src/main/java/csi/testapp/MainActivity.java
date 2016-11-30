@@ -803,7 +803,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
     @Override
     public void didRangeBeaconsInRegion(Collection<RECOBeacon> recoBeacons, RECOBeaconRegion recoRegion) {
-        TextView test = (TextView)findViewById(R.id.textView);
+        TextView test = (TextView)findViewById(R.id.distance);
         Log.i("RECORangingActivity", "didRangeBeaconsInRegion() region: " + recoRegion.getUniqueIdentifier() + ", number of beacons ranged: " + recoBeacons.size());
         ranged = new ArrayList<RECOBeacon>(recoBeacons);
         int a = ranged.size();
@@ -820,8 +820,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     msg = "Minor : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
                     Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
                     test.setText(msg);
-
-
                 }
 
             }

@@ -66,11 +66,6 @@
             android:textOn="ON"
             android:textOff="OFF"
             android:onClick="onRangingToggleButtonClicked"/>
-        <ListView android:id="@+id/list_ranging"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
-        </ListView>
 
         <TextView
             android:text="TextView"
