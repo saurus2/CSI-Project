@@ -3,6 +3,9 @@ package csi.testapp;
 
 import android.app.ActionBar;
 import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
+import android.os.RemoteException;
 import android.view.Gravity;
 import android.view.WindowManager;
 
@@ -42,11 +45,19 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.perples.recosdk.RECOBeacon;
+import com.perples.recosdk.RECOBeaconManager;
+import com.perples.recosdk.RECOBeaconRegion;
+import com.perples.recosdk.RECOErrorCode;
+import com.perples.recosdk.RECORangingListener;
+import com.perples.recosdk.RECOServiceConnectListener;
 import com.skp.Tmap.MapUtils;
 import com.skp.Tmap.TMapGpsManager;
 import com.skp.Tmap.TMapPoint;
@@ -67,12 +78,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static csi.testapp.R.id.view;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RECOServiceConnectListener, RECORangingListener {
 
     //데이터베이스 생성관련한 주소 변수들
     //assets 폴더에 이미 SQLite로 만든 디비를 넣어놓고
@@ -141,6 +153,29 @@ public class MainActivity extends AppCompatActivity {
     //테스트용 메시지 변수
     public static String msg = "";
 
+    //비콘 관련 변수들
+    //RECOBeaconManager.getInstance(Context, boolean, boolean)의 경우,
+    //Context, RECO 비콘만을 대상으로 동작 여부를 설정하는 값, 그리고 백그라운드 monitoring 중 ranging 시 timeout을 설정하는 값을 매개변수로 받습니다.
+    //This is a default proximity uuid of the RECO
+    public static final String RECO_UUID = "24DDF411-8CF1-440C-87CD-E368DAF9C93E";
+    public static final boolean mScanRecoOnly = true;
+    public static final boolean mEnableBackgroundTimeout = true;
+    public static final boolean DISCONTINUOUS_SCAN = false;
+    protected RECOBeaconManager mRecoManager;
+    protected ArrayList<RECOBeaconRegion> mRegions;
+
+    private static final int REQUEST_ENABLE_BT = 1;
+    private static final int REQUEST_LOCATION = 10;
+
+    private BluetoothManager mBluetoothManager;
+    private BluetoothAdapter mBluetoothAdapter;
+
+
+    private RecoRangingListAdapter mRangingListAdapter;
+    private ListView mRegionListView;
+
+
+
     //지도와 버튼들 처음 초기화 시켜주는 함수
     void initView() {
         mMapView = new TMapView(this);
@@ -200,7 +235,132 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Loading.class);
         startActivity(intent);
 
+        //비콘 소스 코드 추가
+
+
+
+        /* 안드로이드 API 23 (마시멜로우)이상 버전부터, 정상적으로 RECO SDK를 사용하기 위해서는
+         * 위치 권한 (ACCESS_COARSE_LOCATION 혹은 ACCESS_FINE_LOCATION)을 요청해야 합니다.
+         * 권한 요청의 경우, 구글에서 제공하는 가이드를 참고하시기 바랍니다.
+         *
+         * http://www.google.com/design/spec/patterns/permissions.html
+         * https://github.com/googlesamples/android-RuntimePermissions
+         */
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                Log.i("MainActivity", "The location permission (ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION) is not granted.");
+                this.requestLocationPermission();
+            } else {
+                Log.i("MainActivity", "The location permission (ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION) is already granted.");
+            }
+        }
+
+
+        //RECOServiceConnectListener 인터페이스를 설정하고, RECOBeaconManager의 인스턴스를 RECOBeaconService와 연결합니다.
+        mRecoManager = RECOBeaconManager.getInstance(getApplicationContext(), NextActivity.mScanRecoOnly, NextActivity.mEnableBackgroundTimeout);
+
+        mRegions = this.generateBeaconRegion();
+        //mRecoManager will be created here. (Refer to the RECOActivity.onCreate())
+        //mRecoManager 인스턴스는 여기서 생성됩니다. RECOActivity.onCreate() 메소들르 참고하세요.
+        //Set RECORangingListener (Required)
+        //RECORangingListener 를 설정합니다. (필수)
+        mRecoManager.setRangingListener(this);
+        //Activity에서 생성되고 리스너를 셋하지 않으면 정보를 가져올 수 없다
+        mRecoManager.bind(this);
+
+
     }
+
+    private void requestLocationPermission() {
+        if(!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION);
+            return;
+        }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        mRangingListAdapter = new RecoRangingListAdapter(this);
+        Log.i("문제다 ",""+mRangingListAdapter);
+        mRegionListView = (ListView)findViewById(R.id.list_ranging);
+        mRegionListView.setAdapter(mRangingListAdapter);
+        //리스트뷰가 다른 xml에 있어서 에러가 났던 거임.
+        //리스트뷰에만 저장하고 할수 있는지 알아봐야함
+        // 만약 리스트뷰에서만 가능하다면 리스트 뷰를 감추고 정보만 사용하도록 하자
+
+
+    }
+
+    private ArrayList<RECOBeaconRegion> generateBeaconRegion() {
+        ArrayList<RECOBeaconRegion> regions = new ArrayList<RECOBeaconRegion>();
+
+        RECOBeaconRegion recoRegion;
+        recoRegion = new RECOBeaconRegion(NextActivity.RECO_UUID, "RECO Sample Region");
+        regions.add(recoRegion);
+
+        return regions;
+    }
+
+    void start(ArrayList<RECOBeaconRegion> regions) {
+        /**
+         * There is a known android bug that some android devices scan BLE devices only once. (link: http://code.google.com/p/android/issues/detail?id=65863)
+         * To resolve the bug in our SDK, you can use setDiscontinuousScan() method of the RECOBeaconManager.
+         * This method is to set whether the device scans BLE devices continuously or discontinuously.
+         * The default is set as FALSE. Please set TRUE only for specific devices.
+         *
+         * mRecoManager.setDiscontinuousScan(true);
+         */
+
+        for(RECOBeaconRegion region : regions) {
+            try {
+
+                mRecoManager.startRangingBeaconsInRegion(region);
+            } catch (RemoteException e) {
+                Log.i("RECORangingActivity", "Remote Exception");
+                e.printStackTrace();
+            } catch (NullPointerException e) {
+                Log.i("RECORangingActivity", "Null Pointer Exception");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    protected void onDestory(){
+        this.stop(mRegions);
+        this.unbind();
+
+    }
+
+    private void unbind() {
+        try {
+            mRecoManager.unbind();
+        } catch (RemoteException e) {
+            Log.i("RECORangingActivity", "Remote Exception");
+            e.printStackTrace();
+        }
+    }
+
+    void stop(ArrayList<RECOBeaconRegion> regions) {
+        for(RECOBeaconRegion region : regions) {
+            try {
+                mRecoManager.stopRangingBeaconsInRegion(region);
+            } catch (RemoteException e) {
+                Log.i("RECORangingActivity", "Remote Exception");
+                e.printStackTrace();
+            } catch (NullPointerException e) {
+                Log.i("RECORangingActivity", "Null Pointer Exception");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private ArrayList<RECOBeacon> mRangedBeacons;
+    private LayoutInflater mLayoutInflater;
+    private ArrayList<RECOBeacon> ranged;
+
+
+
 
     public static void databaseInitialize(Context ctx) {
         // check
@@ -638,5 +798,57 @@ public class MainActivity extends AppCompatActivity {
                     FindmyLocation();
                 }
         }
+    }
+
+    @Override
+    public void didRangeBeaconsInRegion(Collection<RECOBeacon> recoBeacons, RECOBeaconRegion recoRegion) {
+        TextView test = (TextView)findViewById(R.id.textView);
+        Log.i("RECORangingActivity", "didRangeBeaconsInRegion() region: " + recoRegion.getUniqueIdentifier() + ", number of beacons ranged: " + recoBeacons.size());
+        ranged = new ArrayList<RECOBeacon>(recoBeacons);
+        int a = ranged.size();
+        if(a!=0) {
+            String numStr2 = String.valueOf(a);
+            Log.v("RECOArrayList size ", numStr2);
+            RECOBeacon reco = ranged.get(a - 1);
+            numStr2 = String.valueOf(reco.getMinor());
+            Log.v("FUCK", numStr2);
+            //비콘을 하나씩 불러오는 함수
+            for (int b = 0; b < a; b++) {
+                reco = ranged.get(b);
+                if (reco.getMinor() == 8846) {
+                    msg = "Minor : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
+                    Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+                    test.setText(msg);
+
+
+                }
+
+            }
+        }
+
+//        mRangingListAdapter.updateAllBeacons(recoBeacons);
+//        mRangingListAdapter.notifyDataSetChanged();
+        //Write the code when the beacons in the region is received
+    }
+
+    @Override
+    public void rangingBeaconsDidFailForRegion(RECOBeaconRegion recoBeaconRegion, RECOErrorCode recoErrorCode) {
+
+    }
+
+    @Override
+    public void onServiceConnect() {
+        //RECOBeaconService와 연결 시 코드 작성
+        Log.i("RECORangingActivity", "onServiceConnect()");
+
+        mRecoManager.setDiscontinuousScan(DISCONTINUOUS_SCAN);
+        this.start(mRegions);
+        //Write the code when RECOBeaconManager is bound to RECOBeaconService
+    }
+
+    @Override
+    public void onServiceFail(RECOErrorCode recoErrorCode) {
+//RECOBeaconService와 연결 되지 않았을 시 코드 작성
+        return;
     }
 }

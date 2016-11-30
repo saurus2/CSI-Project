@@ -13,6 +13,15 @@
         android:background="@android:color/white"
         android:paddingTop="1dip">
 
+
+        <ListView android:id="@+id/list_ranging"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+        </ListView>
+
+
+
         <!--구글 맵으로 바꾸는 버튼만들기-->
         <!--현재 위치 버튼-->
 
