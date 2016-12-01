@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     Bitmap location;
 
 
-
     //외부 지도용 위도경도 새로 설정해야할때
     public static double n_Latitude = 0;
     public static double n_Longitude = 0;
@@ -145,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
     //버튼 선언
     static Button arButton;
-//    static Button chbutton;
+    //    static Button chbutton;
     static ImageButton menu;
     static ImageButton current;
     static ImageView bottom;
@@ -219,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(Build.VERSION.SDK_INT >= 21){
+        if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(Color.parseColor("#0066cc"));
         }
         setContentView(R.layout.activity_main);
@@ -237,15 +236,15 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         refresh();
 
         //데이터 베이스 초기화
-        Log.i("수행","메세지");
+        Log.i("수행", "메세지");
         databaseInitialize(getApplicationContext());
-        Log.i("수행","이건 " + getApplicationContext());
+        Log.i("수행", "이건 " + getApplicationContext());
         //데이터 베이스 생성
         makeDatabase();
-        Log.i("수행","데이터베이스생성");
+        Log.i("수행", "데이터베이스생성");
 
-        Intent intent = new Intent(MainActivity.this, Loading.class);
-        startActivity(intent);
+        //Intent intent = new Intent(MainActivity.this, Loading.class);
+        //startActivity(intent);
 
         //비콘 소스 코드 추가
 
@@ -258,8 +257,8 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
          * http://www.google.com/design/spec/patterns/permissions.html
          * https://github.com/googlesamples/android-RuntimePermissions
          */
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 Log.i("MainActivity", "The location permission (ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION) is not granted.");
                 this.requestLocationPermission();
             } else {
@@ -281,22 +280,21 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         mRecoManager.bind(this);
 
 
-
     }
 
     private void requestLocationPermission() {
-        if(!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+        if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION);
             return;
         }
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         mRangingListAdapter = new RecoRangingListAdapter(this);
-        Log.i("문제다 ",""+mRangingListAdapter);
-        mRegionListView = (ListView)findViewById(R.id.list_ranging);
+        Log.i("문제다 ", "" + mRangingListAdapter);
+        mRegionListView = (ListView) findViewById(R.id.list_ranging);
         mRegionListView.setAdapter(mRangingListAdapter);
         //리스트뷰가 다른 xml에 있어서 에러가 났던 거임.
         //리스트뷰에만 저장하고 할수 있는지 알아봐야함
@@ -325,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
          * mRecoManager.setDiscontinuousScan(true);
          */
 
-        for(RECOBeaconRegion region : regions) {
+        for (RECOBeaconRegion region : regions) {
             try {
 
                 mRecoManager.startRangingBeaconsInRegion(region);
@@ -339,7 +337,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         }
     }
 
-    protected void onDestory(){
+    protected void onDestory() {
         this.stop(mRegions);
         this.unbind();
 
@@ -355,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     }
 
     void stop(ArrayList<RECOBeaconRegion> regions) {
-        for(RECOBeaconRegion region : regions) {
+        for (RECOBeaconRegion region : regions) {
             try {
                 mRecoManager.stopRangingBeaconsInRegion(region);
             } catch (RemoteException e) {
@@ -373,8 +371,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     private ArrayList<RECOBeacon> ranged;
 
 
-
-
     public static void databaseInitialize(Context ctx) {
         // check
         File folder = new File(PACKAGE_DIR + "databases");
@@ -386,7 +382,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
             try {
                 InputStream is = assetManager.open(DATABASE_NAME, AssetManager.ACCESS_BUFFER);
                 long filesize = is.available();
-                byte [] tempdata = new byte[(int)filesize];
+                byte[] tempdata = new byte[(int) filesize];
                 is.read(tempdata);
                 is.close();
                 outfile.createNewFile();
@@ -420,7 +416,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         guide.bringToFront();
         arButton.bringToFront();
         distance.bringToFront();
-        setViewInvalidate(menu, current, arButton, bottom,distance,guide);
+        setViewInvalidate(menu, current, arButton, bottom, distance, guide);
         guide.setVisibility(View.VISIBLE);
     }
 
@@ -463,8 +459,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         }
     };
 
-    public static void returnARmode()
-    {
+    public static void returnARmode() {
 //        ViewGroup.LayoutParams params = mMapView.getLayoutParams();
 //        params.height = ActionBar.LayoutParams.MATCH_PARENT;
 //        mMapView.setLayoutParams(params);
@@ -527,7 +522,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
     //호관 누르면 호수 물어보는 팝업 창 뜨게 하는 함수
     //디비와 섞여있음
-    public void i_dialog(){
+    public void i_dialog() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         alert.setTitle("강의실 번호를 입력해주세요");
@@ -555,7 +550,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         alert.show();
     }
 
-    public void indoorPassInit(){
+    public void indoorPassInit() {
         TMapPoint point1 = new TMapPoint(37.451348, 126.653993);
         TMapPoint point1_2 = new TMapPoint(37.451348, 126.653993);
         TMapPoint point2 = new TMapPoint(37.450939, 126.653733);
@@ -565,7 +560,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         TMapPoint point4 = new TMapPoint(37.451348, 126.653993);
         TMapPoint point4_2 = new TMapPoint(37.451348, 126.653993);
         TMapPoint point5 = new TMapPoint(37.451569, 126.653521);
-        TMapPoint point5_2= new TMapPoint(37.451569, 126.653521);
+        TMapPoint point5_2 = new TMapPoint(37.451569, 126.653521);
 
         passIndoor.add(point1);
         passIndoor.add(point1_2);
@@ -592,7 +587,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
             //MainActivity.db = openOrCreateDatabase(COPY2DATABASE_NAME, Context.MODE_PRIVATE, null);
             //저장된 데이터베이스 포인터를 만들어줌
-            if(classNo != 0) {
+            if (classNo != 0) {
                 String sql = "SELECT * From Classes Where room_no = " + classNo;
                 //검색한 방의 번호와 같은 리스트만 sql로 처리함d
                 Cursor cur = MainActivity.db.rawQuery(sql, null);
@@ -618,9 +613,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         }
 
     }
-
-
-
 
 
     //현재 위치 버튼 눌렀을때 작동
@@ -681,8 +673,8 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
 
     //건물 입구에서 첫 입구 비콘까지 도달할때까지 로딩창 띄워주기
-    public void showProgressDialog(){
-            ProgressDialog asyncDialog = new ProgressDialog(this);
+    public void showProgressDialog() {
+        ProgressDialog asyncDialog = new ProgressDialog(this);
         asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         asyncDialog.setMessage("로딩중입니다..");
 
@@ -690,14 +682,10 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     }
 
 
-
-
-
-
     //건물 입구 근처에 도착하면 안내문구를 띄워주는 함수
-    public void alertBuilding(final double n_Latitude, final double n_Longitude){
+    public void alertBuilding(final double n_Latitude, final double n_Longitude) {
         double dist = 0;
-        if((dist = calDistance(n_Latitude, n_Longitude)) <= 10 && inner_F == 0){
+        if ((dist = calDistance(n_Latitude, n_Longitude)) <= 10 && inner_F == 0) {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
             alert.setTitle("건물에 입장하시면 확인을 눌러주세요");
@@ -705,7 +693,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
             alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     inner_F = 1;
-                    DrawSurfaceView.props = new Point(MainActivity.desLangitute, MainActivity.desLongitute, MainActivity.roomnumber+" 강의실");
+                    DrawSurfaceView.props = new Point(MainActivity.desLangitute, MainActivity.desLongitute, MainActivity.roomnumber + " 강의실");
                     Intent intent = new Intent(MainActivity.this, Compass.class);
                     startActivity(intent);
                 }
@@ -721,14 +709,14 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
             alert.show();
         }
 
-    };
+    }
 
-
+    ;
 
 
     //목적지의 위도와 경도를 전달받아서 현재 위치와의 거리를 계산하는 함수
-    public double calDistance(final double desLat, final double desLon){
-      double theta, dist;
+    public double calDistance(final double desLat, final double desLon) {
+        double theta, dist;
         theta = Now_Longitude - desLon;
         dist = Math.sin(deg2rad(Now_Latitude)) * Math.sin(deg2rad(desLat))
                 + Math.cos(deg2rad(Now_Latitude)) * Math.cos(deg2rad(desLat)) * Math.cos(deg2rad(theta));
@@ -740,16 +728,18 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         dist = dist * 1000.0;      // 단위  km 에서 m 로 변환
 
         return dist;
-    };
+    }
+
+    ;
 
     // 주어진 도(degree) 값을 라디언으로 변환
-    private double deg2rad(double deg){
-        return (double)(deg * Math.PI / (double)180d);
+    private double deg2rad(double deg) {
+        return (double) (deg * Math.PI / (double) 180d);
     }
 
     // 주어진 라디언(radian) 값을 도(degree) 값으로 변환
-    private double rad2deg(double rad){
-        return (double)(rad * (double)180d / Math.PI);
+    private double rad2deg(double rad) {
+        return (double) (rad * (double) 180d / Math.PI);
     }
 
     //위치 관련 함수들
@@ -761,7 +751,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
             Now_Latitude = location.getLatitude();
             Now_Longitude = location.getLongitude();
 
-        // 제대로 좌표 잡는지 테스트를 위한 메세지
+            // 제대로 좌표 잡는지 테스트를 위한 메세지
             msg = "New Latitude: " + Now_Latitude
                     + "\nNew Longitude: " + Now_Longitude
                     + "\nPass Point: " + pathIndex + "/" + passPoints.size();
@@ -786,22 +776,21 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 Compass.mDrawView.invalidate();
 
                 //경로가 찾아져있다면 중간지점들을 저장하고있는 passPoint 변수의 사이즈가 0이 아닐 것이다
-                if(passPoints.size() != 0 && passPoints.size() > pathIndex) {
+                if (passPoints.size() != 0 && passPoints.size() > pathIndex) {
 
-                    if(pathIndex == 1)
-                    {
+                    if (pathIndex == 1) {
                         double distance = 0.0D;
-                        if(passPoints.size() > 1) {
-                            for(int i = 1; i < passPoints.size(); ++i) {
-                                distance += MapUtils.getDistance((TMapPoint)passPoints.get(i), (TMapPoint)passPoints.get(i + 1));
-                                if(i + 1 == passPoints.size() - 1) {
+                        if (passPoints.size() > 1) {
+                            for (int i = 1; i < passPoints.size(); ++i) {
+                                distance += MapUtils.getDistance((TMapPoint) passPoints.get(i), (TMapPoint) passPoints.get(i + 1));
+                                if (i + 1 == passPoints.size() - 1) {
                                     break;
                                 }
                             }
                         }
 
                         remainDistance = distance;
-                        remainDistanceMsg = "\nRemainDistance: " + ((int)remainDistance) + "m";
+                        remainDistanceMsg = "\nRemainDistance: " + ((int) remainDistance) + "m";
                     }
 
 
@@ -811,14 +800,14 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
                     //현재 위치와 다음 지점까지의 거리가 10미터 미만이라면 너무 가까우므로, array의 index를 2 증가시킨다
                     //다음 지점에서 목적지까지의 거리를 갱신해서 변수에 저장한다
-                    if(nextPointDistance < 10) {
+                    if (nextPointDistance < 10) {
                         pathIndex += 2;
 
                         double distance = 0.0D;
-                        if(passPoints.size() > 1) {
-                            for(int i = pathIndex; i < passPoints.size(); ++i) {
-                                distance += MapUtils.getDistance((TMapPoint)passPoints.get(i), (TMapPoint)passPoints.get(i + 1));
-                                if(i + 1 == passPoints.size() - 1) {
+                        if (passPoints.size() > 1) {
+                            for (int i = pathIndex; i < passPoints.size(); ++i) {
+                                distance += MapUtils.getDistance((TMapPoint) passPoints.get(i), (TMapPoint) passPoints.get(i + 1));
+                                if (i + 1 == passPoints.size() - 1) {
                                     break;
                                 }
                             }
@@ -828,10 +817,9 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     //다음 목적지와의 거리가 10미터 이상이라면 그 지점을 다음 중간목적지로 설정한다
                     else {
                         DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
-                        remainDistanceMsg = "\nRemainDistance: " + ((int)remainDistance + (int)nextPointDistance) + "m";
+                        remainDistanceMsg = "\nRemainDistance: " + ((int) remainDistance + (int) nextPointDistance) + "m";
                     }
-                }
-                else
+                } else
                     pathIndex = 1;
 
 
