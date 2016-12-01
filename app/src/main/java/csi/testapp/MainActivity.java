@@ -889,56 +889,61 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         TextView test = (TextView) findViewById(R.id.distance);
         Log.i("RECORangingActivity", "didRangeBeaconsInRegion() region: " + recoRegion.getUniqueIdentifier() + ", number of beacons ranged: " + recoBeacons.size());
         ranged = new ArrayList<RECOBeacon>(recoBeacons);
-        int a = ranged.size();
-        String numStr2 = String.valueOf(a);
-        Log.v("RECOArrayList size ", numStr2);
-        RECOBeacon reco = ranged.get(a - 1);
-        numStr2 = String.valueOf(reco.getMinor());
-        Log.v("FUCK", numStr2);
-        //비콘을 하나씩 불러오는 함수
-        if (a != 0 && entrance.equals("0")) { //아직 입장 안했을때
-            for (int b = 0; b < a; b++) {
-                reco = ranged.get(b);
-                int beaconMinor = reco.getMinor();
-                double dis = reco.getAccuracy();
-                if (beaconMinor == 8846) {
-                    if (dis < 0.05) {
-                        String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
-                        test.setText(msg1);
-                        entrance = "1";
-                    }else{
-                        String msg1 = "Out : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
-                        test.setText(msg1);
-                    }
-                }
 
-            }
-        } else if (a != 0 && entrance.equals("1")) {
-            if (a != 0) { // 입장하고 난뒤
-                //비콘을 하나씩 불러오는 함수
+        try {
+            int a = ranged.size();
+            String numStr2 = String.valueOf(a);
+            Log.v("RECOArrayList size ", numStr2);
+            RECOBeacon reco = ranged.get(a - 1);
+            numStr2 = String.valueOf(reco.getMinor());
+            Log.v("FUCK", numStr2);
+            //비콘을 하나씩 불러오는 함수
+            if (a != 0 && entrance.equals("0")) { //아직 입장 안했을때
                 for (int b = 0; b < a; b++) {
                     reco = ranged.get(b);
                     int beaconMinor = reco.getMinor();
+                    double dis = reco.getAccuracy();
                     if (beaconMinor == 8846) {
-                        String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
-//                    Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
-
-                        if (reco.getAccuracy() > 1.50) {
-                            String msg2 = "Out\nOut";
-                            test.setText(msg2);
-                            entrance = "0";
+                        if (dis < 0.05) {
+                            String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
+                            test.setText(msg1);
+                            entrance = "1";
+                        } else {
+                            String msg1 = "Out : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
+                            test.setText(msg1);
                         }
-
-                        test.setText(msg1);
-                        detectBeacon(beaconMinor);
                     }
 
                 }
-            }
+            } else if (a != 0 && entrance.equals("1")) {
+                if (a != 0) { // 입장하고 난뒤
+                    //비콘을 하나씩 불러오는 함수
+                    for (int b = 0; b < a; b++) {
+                        reco = ranged.get(b);
+                        int beaconMinor = reco.getMinor();
+                        if (beaconMinor == 8846) {
+                            String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
+//                    Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+
+                            if (reco.getAccuracy() > 1.50) {
+                                String msg2 = "Out\nOut";
+                                test.setText(msg2);
+                                entrance = "0";
+                            }
+
+                            test.setText(msg1);
+                            detectBeacon(beaconMinor);
+                        }
+
+                    }
+                }
 
 //        mRangingListAdapter.updateAllBeacons(recoBeacons);
 //        mRangingListAdapter.notifyDataSetChanged();
-            //Write the code when the beacons in the region is received
+                //Write the code when the beacons in the region is received
+            }
+        } catch (Exception e) {
+            Log.v("non beacon", " no ");
         }
     }
 
