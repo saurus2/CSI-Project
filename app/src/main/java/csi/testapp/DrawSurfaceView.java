@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 /*
  * Portions (c) 2009 Google, Inc.
@@ -155,8 +156,11 @@ public class DrawSurfaceView extends View {
 			rsPaint.setStyle(Paint.Style.STROKE);
 			rsPaint.setStrokeWidth(1);
 
-			canvas.drawText(MainActivity.remainDistanceMsg, 0, (float)screenHeight-50, rPaint); //text
-			canvas.drawText(MainActivity.remainDistanceMsg, 0, (float)screenHeight-50, rsPaint); //text
+//			canvas.drawText(MainActivity.remainDistanceMsg, 0, (float)screenHeight-50, rPaint); //text
+//			canvas.drawText(MainActivity.remainDistanceMsg, 0, (float)screenHeight-50, rsPaint); //text
+			TextView test = (TextView) findViewById(R.id.distance);
+			String msg1 = "\nRemainDistance: " + (MainActivity.remainDistanceMsg) + "m";
+			test.setText(msg1);
 		}
 	}
 
