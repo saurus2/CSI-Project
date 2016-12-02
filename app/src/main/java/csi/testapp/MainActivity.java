@@ -190,6 +190,8 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     //건물에 들어갔는지를 표시하는 플래그
     public static String entrance = "0";
 
+    //빌딩 경고창 한번만 뜨게 하는 플래그
+    public static int checkbuilding = 0;
 
     //지도와 버튼들 처음 초기화 시켜주는 함수
     void initView() {
@@ -248,9 +250,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         //데이터 베이스 생성
         makeDatabase();
         Log.i("수행","데이터베이스생성");
-
-        Intent intent = new Intent(MainActivity.this, Loading.class);
-        startActivity(intent);
 
         //비콘 소스 코드 추가
 
@@ -524,6 +523,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                         drawPedestrianPath(n_Latitude, n_Longitude);
                         break;
                 }
+                checkbuilding = 0;
                 return true;
             }
         });
@@ -702,7 +702,8 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     //건물 입구 근처에 도착하면 안내문구를 띄워주는 함수
     public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
-        if((dist = calDistance(n_Latitude, n_Longitude)) <= 100 && inner_F == 0){
+        if((dist = calDistance(n_Latitude, n_Longitude)) <= 100 && inner_F == 0 && checkbuilding == 0){
+            checkbuilding = 1;
             Intent intent = new Intent(MainActivity.this, AlertBuilding.class);
             startActivity(intent);
         }
