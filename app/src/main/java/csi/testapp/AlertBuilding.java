@@ -79,6 +79,7 @@ public class AlertBuilding extends Activity {
             inner_F = 1;
             Intent i = new Intent(AlertBuilding.this, Loading.class);
             startActivity(i);
+            finish();
         }
     };
 

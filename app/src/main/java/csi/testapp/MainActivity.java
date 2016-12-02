@@ -249,8 +249,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         makeDatabase();
         Log.i("수행","데이터베이스생성");
 
-        Intent intent = new Intent(MainActivity.this, Loading.class);
-        startActivity(intent);
 
         //비콘 소스 코드 추가
 
@@ -702,7 +700,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     //건물 입구 근처에 도착하면 안내문구를 띄워주는 함수
     public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
-        if((dist = calDistance(n_Latitude, n_Longitude)) <= 100 && inner_F == 0){
+        if((dist = calDistance(n_Latitude, n_Longitude)) <= 1000 && inner_F == 0){
             Intent intent = new Intent(MainActivity.this, AlertBuilding.class);
             startActivity(intent);
         }
