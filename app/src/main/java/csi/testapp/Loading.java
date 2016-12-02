@@ -53,6 +53,11 @@ public class Loading extends Activity{
                 //entrance가 1로 변하면 while 문이 끝나도록 설정함
                 Log.v("beacon",MainActivity.entrance);
             }
+
+
+
+
+
             finish();
 //            try {
 //                while(check == 0) {
