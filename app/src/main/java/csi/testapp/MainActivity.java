@@ -272,17 +272,17 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         }
 
 
-        //RECOServiceConnectListener 인터페이스를 설정하고, RECOBeaconManager의 인스턴스를 RECOBeaconService와 연결합니다.
-        mRecoManager = RECOBeaconManager.getInstance(getApplicationContext(), NextActivity.mScanRecoOnly, NextActivity.mEnableBackgroundTimeout);
-
-        mRegions = this.generateBeaconRegion();
-        //mRecoManager will be created here. (Refer to the RECOActivity.onCreate())
-        //mRecoManager 인스턴스는 여기서 생성됩니다. RECOActivity.onCreate() 메소들르 참고하세요.
-        //Set RECORangingListener (Required)
-        //RECORangingListener 를 설정합니다. (필수)
-        mRecoManager.setRangingListener(this);
-        //Activity에서 생성되고 리스너를 셋하지 않으면 정보를 가져올 수 없다
-        mRecoManager.bind(this);
+//        //RECOServiceConnectListener 인터페이스를 설정하고, RECOBeaconManager의 인스턴스를 RECOBeaconService와 연결합니다.
+//        mRecoManager = RECOBeaconManager.getInstance(getApplicationContext(), NextActivity.mScanRecoOnly, NextActivity.mEnableBackgroundTimeout);
+//
+//        mRegions = this.generateBeaconRegion();
+//        //mRecoManager will be created here. (Refer to the RECOActivity.onCreate())
+//        //mRecoManager 인스턴스는 여기서 생성됩니다. RECOActivity.onCreate() 메소들르 참고하세요.
+//        //Set RECORangingListener (Required)
+//        //RECORangingListener 를 설정합니다. (필수)
+//        mRecoManager.setRangingListener(this);
+//        //Activity에서 생성되고 리스너를 셋하지 않으면 정보를 가져올 수 없다
+//        mRecoManager.bind(this);
 
 
 
@@ -704,6 +704,17 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         double dist = 0;
         if((dist = calDistance(n_Latitude, n_Longitude)) <= 100 && inner_F == 0 && checkbuilding == 0){
             checkbuilding = 1;
+            //RECOServiceConnectListener 인터페이스를 설정하고, RECOBeaconManager의 인스턴스를 RECOBeaconService와 연결합니다.
+            mRecoManager = RECOBeaconManager.getInstance(getApplicationContext(), NextActivity.mScanRecoOnly, NextActivity.mEnableBackgroundTimeout);
+
+            mRegions = this.generateBeaconRegion();
+            //mRecoManager will be created here. (Refer to the RECOActivity.onCreate())
+            //mRecoManager 인스턴스는 여기서 생성됩니다. RECOActivity.onCreate() 메소들르 참고하세요.
+            //Set RECORangingListener (Required)
+            //RECORangingListener 를 설정합니다. (필수)
+            mRecoManager.setRangingListener(this);
+            //Activity에서 생성되고 리스너를 셋하지 않으면 정보를 가져올 수 없다
+            mRecoManager.bind(this);
             Intent intent = new Intent(MainActivity.this, AlertBuilding.class);
             startActivity(intent);
         }
@@ -771,6 +782,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
             try {
                 if(entrance.equals("1")) {
                     //empty 처음 건물안에 들어갔을때
+                    Compass.mDrawView.setMyLocation(beacon_Latitude, beacon_Longitude);
                 }else{
                     Compass.mDrawView.setMyLocation(location.getLatitude(), location.getLongitude());
                 }
