@@ -698,27 +698,8 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
         if((dist = calDistance(n_Latitude, n_Longitude)) <= 10 && inner_F == 0){
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-            alert.setTitle("건물에 입장하시면 확인을 눌러주세요");
-
-            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    inner_F = 1;
-                    DrawSurfaceView.props = new Point(MainActivity.desLangitute, MainActivity.desLongitute, MainActivity.roomnumber+" 강의실");
-                    Intent intent = new Intent(MainActivity.this, Compass.class);
-                    startActivity(intent);
-                }
-            });
-            alert.setNegativeButton("취소",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            inner_F = 1;
-                            // Canceled.
-                        }
-                    });
-
-            alert.show();
+            Intent intent = new Intent(MainActivity.this, AlertBuilding.class);
+            startActivity(intent);
         }
 
     };
