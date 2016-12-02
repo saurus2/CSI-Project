@@ -249,8 +249,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         makeDatabase();
         Log.i("수행","데이터베이스생성");
 
-        Intent intent = new Intent(MainActivity.this, Loading.class);
-        startActivity(intent);
+
 
         //비콘 소스 코드 추가
 
@@ -272,18 +271,18 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
             }
         }
 
-
-        //RECOServiceConnectListener 인터페이스를 설정하고, RECOBeaconManager의 인스턴스를 RECOBeaconService와 연결합니다.
-        mRecoManager = RECOBeaconManager.getInstance(getApplicationContext(), NextActivity.mScanRecoOnly, NextActivity.mEnableBackgroundTimeout);
-
-        mRegions = this.generateBeaconRegion();
-        //mRecoManager will be created here. (Refer to the RECOActivity.onCreate())
-        //mRecoManager 인스턴스는 여기서 생성됩니다. RECOActivity.onCreate() 메소들르 참고하세요.
-        //Set RECORangingListener (Required)
-        //RECORangingListener 를 설정합니다. (필수)
-        mRecoManager.setRangingListener(this);
-        //Activity에서 생성되고 리스너를 셋하지 않으면 정보를 가져올 수 없다
-        mRecoManager.bind(this);
+//
+//        //RECOServiceConnectListener 인터페이스를 설정하고, RECOBeaconManager의 인스턴스를 RECOBeaconService와 연결합니다.
+//        mRecoManager = RECOBeaconManager.getInstance(getApplicationContext(), NextActivity.mScanRecoOnly, NextActivity.mEnableBackgroundTimeout);
+//
+//        mRegions = this.generateBeaconRegion();
+//        //mRecoManager will be created here. (Refer to the RECOActivity.onCreate())
+//        //mRecoManager 인스턴스는 여기서 생성됩니다. RECOActivity.onCreate() 메소들르 참고하세요.
+//        //Set RECORangingListener (Required)
+//        //RECORangingListener 를 설정합니다. (필수)
+//        mRecoManager.setRangingListener(this);
+//        //Activity에서 생성되고 리스너를 셋하지 않으면 정보를 가져올 수 없다
+//        mRecoManager.bind(this);
 
 
 
@@ -299,10 +298,14 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     @Override
     protected void onResume(){
         super.onResume();
-        mRangingListAdapter = new RecoRangingListAdapter(this);
-        Log.i("문제다 ",""+mRangingListAdapter);
-        mRegionListView = (ListView)findViewById(R.id.list_ranging);
-        mRegionListView.setAdapter(mRangingListAdapter);
+        try {
+            mRangingListAdapter = new RecoRangingListAdapter(this);
+            Log.i("문제다 ", "" + mRangingListAdapter);
+            mRegionListView = (ListView) findViewById(R.id.list_ranging);
+            mRegionListView.setAdapter(mRangingListAdapter);
+        }catch (Exception e){
+            //empty
+        }
         //리스트뷰가 다른 xml에 있어서 에러가 났던 거임.
         //리스트뷰에만 저장하고 할수 있는지 알아봐야함
         // 만약 리스트뷰에서만 가능하다면 리스트 뷰를 감추고 정보만 사용하도록 하자
@@ -703,8 +706,20 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
         if((dist = calDistance(n_Latitude, n_Longitude)) <= 100 && inner_F == 0){
+            //RECOServiceConnectListener 인터페이스를 설정하고, RECOBeaconManager의 인스턴스를 RECOBeaconService와 연결합니다.
+            mRecoManager = RECOBeaconManager.getInstance(getApplicationContext(), NextActivity.mScanRecoOnly, NextActivity.mEnableBackgroundTimeout);
+
+            mRegions = this.generateBeaconRegion();
+            //mRecoManager will be created here. (Refer to the RECOActivity.onCreate())
+            //mRecoManager 인스턴스는 여기서 생성됩니다. RECOActivity.onCreate() 메소들르 참고하세요.
+            //Set RECORangingListener (Required)
+            //RECORangingListener 를 설정합니다. (필수)
+            mRecoManager.setRangingListener(this);
+            //Activity에서 생성되고 리스너를 셋하지 않으면 정보를 가져올 수 없다
+            mRecoManager.bind(this);
             Intent intent = new Intent(MainActivity.this, AlertBuilding.class);
             startActivity(intent);
+
         }
 
     };
