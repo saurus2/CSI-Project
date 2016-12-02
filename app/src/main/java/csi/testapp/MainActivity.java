@@ -702,7 +702,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     //건물 입구 근처에 도착하면 안내문구를 띄워주는 함수
     public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
-        if((dist = calDistance(n_Latitude, n_Longitude)) <= 10 && inner_F == 0){
+        if((dist = calDistance(n_Latitude, n_Longitude)) <= 100 && inner_F == 0){
             Intent intent = new Intent(MainActivity.this, AlertBuilding.class);
             startActivity(intent);
         }
@@ -882,39 +882,43 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         int a = ranged.size();
         String numStr2 = String.valueOf(a);
         Log.v("RECOArrayList size ", numStr2);
-        RECOBeacon reco = ranged.get(a - 1);
-        numStr2 = String.valueOf(reco.getMinor());
-        Log.v("FUCK", numStr2);
-        //비콘을 하나씩 불러오는 함수
-        if (a != 0 && entrance.equals("0")) { //아직 입장 안했을때
-            for (int b = 0; b < a; b++) {
-                reco = ranged.get(b);
-                int beaconMinor = reco.getMinor();
-                double dis = reco.getAccuracy();
-                if (beaconMinor == 8846) {
+        try {
+            RECOBeacon reco = ranged.get(a - 1);
+            numStr2 = String.valueOf(reco.getMinor());
+            Log.v("FUCK", numStr2);
+            //비콘을 하나씩 불러오는 함수
+            if (a != 0 && entrance.equals("0")) { //아직 입장 안했을때
+                for (int b = 0; b < a; b++) {
+                    reco = ranged.get(b);
+                    int beaconMinor = reco.getMinor();
+                    double dis = reco.getAccuracy();
+                    if (beaconMinor == 8846 && dis < 0.07) {
                         String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
                         test.setText(msg1);
                         entrance = "1";
                         detectBeacon(8846);
-                }
+                    }
 
-            }
-        } else if (a != 0 && entrance.equals("1")) {
-            if (a != 0) { // 입장하고 난뒤
-                //비콘을 하나씩 불러오는 함수
-                for (int b = 0; b < a; b++) {
-                    reco = ranged.get(b);
-                    int beaconMinor = reco.getMinor();
-                    String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
-//                    Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
-                    test.setText(msg1);
-                    detectBeacon(beaconMinor);
                 }
-            }
+            } else if (a != 0 && entrance.equals("1")) {
+                if (a != 0) { // 입장하고 난뒤
+                    //비콘을 하나씩 불러오는 함수
+                    for (int b = 0; b < a; b++) {
+                        reco = ranged.get(b);
+                        int beaconMinor = reco.getMinor();
+                        String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
+//                    Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+                        test.setText(msg1);
+                        detectBeacon(beaconMinor);
+                    }
+                }
 
 //        mRangingListAdapter.updateAllBeacons(recoBeacons);
 //        mRangingListAdapter.notifyDataSetChanged();
-            //Write the code when the beacons in the region is received
+                //Write the code when the beacons in the region is received
+            }
+        }catch(Exception e){
+            Log.v("no","beacon");
         }
     }
 
