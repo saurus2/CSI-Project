@@ -457,7 +457,13 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 //            params.height = 700;
 //            mMapView.setLayoutParams(params);
 
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT, 2.0f);
+            mMainRelativeLayout.setLayoutParams(params);
 
+            mMapView.bringToFront();
+            setViewInvalidate(mMapView);
         }
     };
 
@@ -777,14 +783,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 if(entrance.equals("1")) {
                     //empty 처음 건물안에 들어갔을때
                     Compass.mDrawView.setMyLocation(beacon_Latitude, beacon_Longitude);
-                    mMapView.setZoomLevel(25);
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT, 2.0f);
-                    mMainRelativeLayout.setLayoutParams(params);
-
-                    mMapView.bringToFront();
-                    setViewInvalidate(mMapView);
+                    mMapView.setZoomLevel(20);
 
                 }else{
                     Compass.mDrawView.setMyLocation(location.getLatitude(), location.getLongitude());
