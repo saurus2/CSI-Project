@@ -121,6 +121,11 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     public static double n_Latitude = 0;
     public static double n_Longitude = 0;
 
+    //비콘 으로 위도 경도 받아올 값 저장
+    public static double beacon_Latitude = 0;
+    public static double beacon_Longitude = 0;
+
+
     //외부 지도용 현재 위치 저장되는 위도 경도
     double Now_Latitude = 0;
     double Now_Longitude = 0;
@@ -763,7 +768,11 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
             }
 
             try {
-                Compass.mDrawView.setMyLocation(location.getLatitude(), location.getLongitude());
+                if(entrance.equals("1")) {
+                    //empty 처음 건물안에 들어갔을때
+                }else{
+                    Compass.mDrawView.setMyLocation(location.getLatitude(), location.getLongitude());
+                }
                 Compass.mDrawView.invalidate();
 
                 //경로가 찾아져있다면 중간지점들을 저장하고있는 passPoint 변수의 사이즈가 0이 아닐 것이다
@@ -883,14 +892,10 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 int beaconMinor = reco.getMinor();
                 double dis = reco.getAccuracy();
                 if (beaconMinor == 8846) {
-                    if (dis < 0.05) {
                         String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
                         test.setText(msg1);
                         entrance = "1";
-                    }else{
-                        String msg1 = "Out : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
-                        test.setText(msg1);
-                    }
+                        detectBeacon(8846);
                 }
 
             }
@@ -900,20 +905,10 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 for (int b = 0; b < a; b++) {
                     reco = ranged.get(b);
                     int beaconMinor = reco.getMinor();
-                    if (beaconMinor == 8846) {
-                        String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
+                    String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
 //                    Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
-
-                        if (reco.getAccuracy() > 1.50) {
-                            String msg2 = "Out\nOut";
-                            test.setText(msg2);
-                            entrance = "0";
-                        }
-
-                        test.setText(msg1);
-                        detectBeacon(beaconMinor);
-                    }
-
+                    test.setText(msg1);
+                    detectBeacon(beaconMinor);
                 }
             }
 
@@ -951,12 +946,12 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 String text1 = cur.getString(1);
                 String text2 = cur.getString(2);
                 //Mainactivity 의 목적지 위도 경도를 저장시킴
-                MainActivity.desLangitute = Double.parseDouble(text1);
-                MainActivity.desLongitute = Double.parseDouble(text2);
+                beacon_Latitude = Double.parseDouble(text1);
+                beacon_Longitude = Double.parseDouble(text2);
                 //테이블의 1,2번째 칼럼 위도 경도를 실수로 저장함
                 Log.i("수행", "방번호 :" + cur.getString(0));
-                Log.i("수행", "경도 :" + MainActivity.desLangitute);
-                Log.i("수행", "위도 :" + MainActivity.desLongitute);
+                Log.i("수행", "경도 :" + beacon_Latitude);
+                Log.i("수행", "위도 :" + beacon_Longitude);
             }
         } catch (Exception e) {
             Log.i("_)", "" + e.toString());

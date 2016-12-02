@@ -48,6 +48,9 @@ public class Loading extends Activity{
             while(check == 0) {
                 //check = NextActivity.ranged.size();
                 Log.v("doin","doin");
+                if(MainActivity.entrance.equals("1"))
+                    break;
+                //entrance가 1로 변하면 while 문이 끝나도록 설정함
             }
 //            try {
 //                while(check == 0) {
