@@ -107,8 +107,8 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     private static TMapView mMapView = null;
     private static RelativeLayout mMainRelativeLayout;
     private LocationManager locationManager;
-    private ArrayList<TMapPoint> passPoints = new ArrayList();
-    private ArrayList<TMapPoint> passIndoor = new ArrayList();
+    private static ArrayList<TMapPoint> passPoints = new ArrayList();
+    private static ArrayList<TMapPoint> passIndoor = new ArrayList();
 
     //티맵 포인터들
     Bitmap start;
@@ -572,6 +572,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         TMapPoint point5 = new TMapPoint(37.451569, 126.653521);
         TMapPoint point5_2= new TMapPoint(37.451569, 126.653521);
 
+        passIndoor.clear();
         passIndoor.add(point1);
         passIndoor.add(point1_2);
         passIndoor.add(point2);
@@ -702,7 +703,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     //건물 입구 근처에 도착하면 안내문구를 띄워주는 함수
     public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
-        if((dist = calDistance(n_Latitude, n_Longitude)) <= 100 && inner_F == 0 && checkbuilding == 0){
+        if((dist = calDistance(n_Latitude, n_Longitude)) <= 1000 && inner_F == 0 && checkbuilding == 0){
             checkbuilding = 1;
             //RECOServiceConnectListener 인터페이스를 설정하고, RECOBeaconManager의 인스턴스를 RECOBeaconService와 연결합니다.
             mRecoManager = RECOBeaconManager.getInstance(getApplicationContext(), NextActivity.mScanRecoOnly, NextActivity.mEnableBackgroundTimeout);
@@ -715,11 +716,16 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
             mRecoManager.setRangingListener(this);
             //Activity에서 생성되고 리스너를 셋하지 않으면 정보를 가져올 수 없다
             mRecoManager.bind(this);
+
             Intent intent = new Intent(MainActivity.this, AlertBuilding.class);
             startActivity(intent);
         }
-
     };
+
+    //미리 찾아두었던 실내 비콘 간 경로를 기존 길찾기 함수에 적용시키기 위해 passPoints 변수로 적용시킨다
+    public static void setIndoorPass(){
+        passPoints = passIndoor;
+    }
 
 
 
@@ -781,7 +787,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
             try {
                 if(entrance.equals("1")) {
-                    //empty 처음 건물안에 들어갔을때
+                    //처음 건물안에 들어갔을때
                     Compass.mDrawView.setMyLocation(beacon_Latitude, beacon_Longitude);
                     mMapView.setZoomLevel(20);
 

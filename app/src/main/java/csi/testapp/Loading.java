@@ -54,9 +54,8 @@ public class Loading extends Activity{
                 Log.v("beacon",MainActivity.entrance);
             }
 
-
-
-
+            //찾았다는 것이므로, 실내 경로 안내로 변경한다
+            MainActivity.setIndoorPass();
 
             finish();
 //            try {
@@ -73,9 +72,9 @@ public class Loading extends Activity{
 
         @Override
         protected void onPostExecute(Void result) {
-            DrawSurfaceView.props = new Point(MainActivity.desLangitute, MainActivity.desLongitute, MainActivity.roomnumber+" 강의실");
-            Intent intent = new Intent(Loading.this, Compass.class);
-            startActivity(intent);
+//            DrawSurfaceView.props = new Point(MainActivity.desLangitute, MainActivity.desLongitute, MainActivity.roomnumber+" 강의실");
+//            Intent intent = new Intent(Loading.this, Compass.class);
+//            startActivity(intent);
             finish();
             asyncDialog.dismiss();
             super.onPostExecute(result);
