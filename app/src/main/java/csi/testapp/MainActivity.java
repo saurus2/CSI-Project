@@ -994,10 +994,22 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     //현재 잡히는 비콘이 다음 지점이라면 해당 지점에 도착한것이므로 그 다음 지점을 찍는다
                     if(nextLat == beacon_Latitude && nextLon == beacon_Longitude){
                         pathIndex += 2;
+                        if(passPoints.size() > pathIndex+2) {
+                            nextLat = passPoints.get(pathIndex + 2).getLatitude();
+                            nextLon = passPoints.get(pathIndex + 2).getLongitude();
+                            DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                        }else {
+                            nextLat = passPoints.get(passPoints.size() - 1).getLatitude();
+                            nextLon = passPoints.get(passPoints.size() - 1).getLongitude();
+                            DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                        }
+                        }else{
+                        //처음 출발할때 다음 위치
                         DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
                     }
                 }
                 else {
+
                     nextLat = passPoints.get(passPoints.size() - 1).getLatitude();
                     nextLon = passPoints.get(passPoints.size() - 1).getLongitude();
 
