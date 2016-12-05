@@ -34,7 +34,7 @@ public class AlertEnd extends Activity {
         lpWindow.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
-        setContentView(R.layout.alertstair);
+        setContentView(R.layout.alertend);
         setLayout();
         mOkButton.setOnClickListener(okClickListener);
     }

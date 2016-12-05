@@ -951,6 +951,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     }
 
     public static int onetime = 0;
+    public static int endtime = 0;
 
     public void detectBeacon(int minor) {
         //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
@@ -1019,8 +1020,11 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 }
 
                 //도착했을 때
-                if(classNo == 8845) {
-                    Intent intent = new Intent(MainActivity.this, AlertStair.class);
+                if(classNo == 8845 && endtime == 0) {
+                    endtime = 1;
+                    Log.i("end!!!", "" + endtime);
+                    Log.i("path: ", "" + pathIndex + "/" + passPoints.size());
+                    Intent intent = new Intent(MainActivity.this, AlertEnd.class);
                     startActivity(intent);
                 }
 
@@ -1028,6 +1032,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 Log.i("수행", "방번호 :" + cur.getString(0));
                 Log.i("수행", "경도 :" + beacon_Latitude);
                 Log.i("수행", "위도 :" + beacon_Longitude);
+                Log.i("path: ", "" + pathIndex + "/" + passPoints.size());
             }
         } catch (Exception e) {
             Log.i("_)", "" + e.toString());
