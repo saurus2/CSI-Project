@@ -823,7 +823,11 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     //현재 위치와 다음 지점까지의 거리가 10미터 미만이라면 너무 가까우므로, array의 index를 2 증가시킨다
                     //다음 지점에서 목적지까지의 거리를 갱신해서 변수에 저장한다
                     if(nextPointDistance < 10) {
-                        pathIndex += 2;
+
+                        //실외일경우에만 gps정보로 array를 조정한다
+                        if(entrance.equals("0")) {
+                            pathIndex += 2;
+                        }
 
                         double distance = 0.0D;
                         if(passPoints.size() > 1) {
@@ -838,7 +842,10 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     }
                     //다음 목적지와의 거리가 10미터 이상이라면 그 지점을 다음 중간목적지로 설정한다
                     else {
-                        DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                        //실외일경우에만 gps정보로 array를 조정한다
+                        if(entrance.equals("0")) {
+                            DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                        }
                         remainDistanceMsg = "\nRemainDistance: " + ((int)remainDistance + (int)nextPointDistance) + "m";
                     }
                 }
@@ -973,6 +980,15 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 //Mainactivity 의 목적지 위도 경도를 저장시킴
                 beacon_Latitude = Double.parseDouble(text1);
                 beacon_Longitude = Double.parseDouble(text2);
+
+                double nextLat = passPoints.get(pathIndex+2).getLatitude();
+                double nextLon = passPoints.get(pathIndex+2).getLongitude();
+
+                //현재 잡히는 비콘이 다음 지점이라면 해당 지점에 도착한것이므로 그 다음 지점을 찍는다
+                if(nextLat == beacon_Latitude && nextLon == beacon_Longitude){
+                    pathIndex += 2;
+                    DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                }
                 //테이블의 1,2번째 칼럼 위도 경도를 실수로 저장함
                 Log.i("수행", "방번호 :" + cur.getString(0));
                 Log.i("수행", "경도 :" + beacon_Latitude);
