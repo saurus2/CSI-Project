@@ -48,8 +48,8 @@ public class AlertBuilding extends Activity {
         getWindow().setAttributes(lpWindow);
         setContentView(R.layout.alertbuilding);
         setLayout();
-        mLeftButton.setOnClickListener(rightClickListener);
-        mRightButton.setOnClickListener(leftClickListener);
+        mLeftButton.setOnClickListener(leftClickListener);
+        mRightButton.setOnClickListener(rightClickListener);
         //setLayout();
 
     }

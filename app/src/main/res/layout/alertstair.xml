@@ -7,7 +7,6 @@
         android:layout_height="200dip"
         android:orientation="vertical"
         android:background="@android:color/darker_gray">
-
         <TextView android:id="@+id/tv_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -15,7 +14,6 @@
             android:text="Title"
             android:textSize="20sp"
             android:textColor="@android:color/black"/>
-
         <TextView android:id="@+id/tv_content"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -24,7 +22,7 @@
             android:textSize="40sp"/>
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="건물 입장하시면 확인을 눌러주세요."
+            android:text="계단을 다 오르셨으면 확인을 눌러주세요"
             android:gravity="center"
             android:textColor="@android:color/black"
             android:textSize="20sp"/>
@@ -33,15 +31,10 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:layout_marginTop="40dip">
-            <Button android:id="@+id/bt_left"
+            <Button android:id="@+id/bt_ok"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="확인"/>
-            <Button
-            android:id="@+id/bt_right"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="취소"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

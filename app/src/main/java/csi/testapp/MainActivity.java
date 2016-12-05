@@ -950,7 +950,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         }
     }
 
-    public static void detectBeacon(int minor) {
+    public void detectBeacon(int minor) {
         //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
 
         try {
@@ -981,14 +981,36 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 beacon_Latitude = Double.parseDouble(text1);
                 beacon_Longitude = Double.parseDouble(text2);
 
-                double nextLat = passPoints.get(pathIndex+2).getLatitude();
-                double nextLon = passPoints.get(pathIndex+2).getLongitude();
+                double nextLat = 0;
+                double nextLon = 0;
 
-                //현재 잡히는 비콘이 다음 지점이라면 해당 지점에 도착한것이므로 그 다음 지점을 찍는다
-                if(nextLat == beacon_Latitude && nextLon == beacon_Longitude){
-                    pathIndex += 2;
-                    DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                if(passPoints.size() > pathIndex+2) {
+                    nextLat = passPoints.get(pathIndex + 2).getLatitude();
+                    nextLon = passPoints.get(pathIndex + 2).getLongitude();
+
+                    //현재 잡히는 비콘이 다음 지점이라면 해당 지점에 도착한것이므로 그 다음 지점을 찍는다
+                    if(nextLat == beacon_Latitude && nextLon == beacon_Longitude){
+                        pathIndex += 2;
+                        DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                    }
                 }
+                else {
+                    nextLat = passPoints.get(passPoints.size() - 1).getLatitude();
+                    nextLon = passPoints.get(passPoints.size() - 1).getLongitude();
+
+                    //현재 잡히는 비콘이 다음 지점이라면 해당 지점에 도착한것이므로 그 다음 지점을 찍는다
+                    if(nextLat == beacon_Latitude && nextLon == beacon_Longitude){
+                        pathIndex = passPoints.size() - 1;
+                        DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                    }
+                }
+
+                //계단일 때
+                if(classNo == 8847) {
+                    Intent intent = new Intent(MainActivity.this, AlertStair.class);
+                    startActivity(intent);
+                }
+
                 //테이블의 1,2번째 칼럼 위도 경도를 실수로 저장함
                 Log.i("수행", "방번호 :" + cur.getString(0));
                 Log.i("수행", "경도 :" + beacon_Latitude);
