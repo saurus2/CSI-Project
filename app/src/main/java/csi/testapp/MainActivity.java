@@ -1018,6 +1018,12 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     startActivity(intent);
                 }
 
+                //도착했을 때
+                if(classNo == 8845) {
+                    Intent intent = new Intent(MainActivity.this, AlertStair.class);
+                    startActivity(intent);
+                }
+
                 //테이블의 1,2번째 칼럼 위도 경도를 실수로 저장함
                 Log.i("수행", "방번호 :" + cur.getString(0));
                 Log.i("수행", "경도 :" + beacon_Latitude);

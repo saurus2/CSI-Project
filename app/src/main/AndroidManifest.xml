@@ -73,16 +73,18 @@
         <activity
             android:name=".Loading"
             android:theme="@android:style/Theme.Dialog">
-
         </activity>
 
         <activity android:name=".AlertBuilding"
             android:theme="@android:style/Theme.Dialog">
-
         </activity>
+
         <activity android:name=".AlertStair"
             android:theme="@android:style/Theme.Dialog">
+        </activity>
 
+        <activity android:name=".AlertEnd"
+            android:theme="@android:style/Theme.Dialog">
         </activity>
     </application>
 
