@@ -80,6 +80,10 @@
             android:theme="@android:style/Theme.Dialog">
 
         </activity>
+        <activity android:name=".AlertStair"
+            android:theme="@android:style/Theme.Dialog">
+
+        </activity>
     </application>
 
 

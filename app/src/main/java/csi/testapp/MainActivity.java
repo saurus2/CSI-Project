@@ -950,6 +950,8 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         }
     }
 
+    public static int onetime = 0;
+
     public void detectBeacon(int minor) {
         //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
 
@@ -1005,8 +1007,13 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     }
                 }
 
+
+                Log.i("stair!!!", "" + classNo);
+
                 //계단일 때
-                if(classNo == 8847) {
+                if(classNo == 8847 && onetime == 0) {
+                    onetime = 1;
+                    Log.i("enterance!!!", "" + entrance);
                     Intent intent = new Intent(MainActivity.this, AlertStair.class);
                     startActivity(intent);
                 }
