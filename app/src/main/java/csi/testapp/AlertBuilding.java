@@ -73,7 +73,7 @@ public class AlertBuilding extends Activity {
         mContentView.setText(content);
     }
 
-    View.OnClickListener rightClickListener = new View.OnClickListener() {
+    View.OnClickListener leftClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             inner_F = 1;
@@ -83,7 +83,7 @@ public class AlertBuilding extends Activity {
         }
     };
 
-    View.OnClickListener leftClickListener = new View.OnClickListener() {
+    View.OnClickListener rightClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             inner_F = 1;
