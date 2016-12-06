@@ -986,6 +986,9 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
                 double nextLat = 0;
                 double nextLon = 0;
+                double tempLat = 0;
+                double tempLon = 0;
+
 
                 if(passPoints.size() > pathIndex+2) {
                     nextLat = passPoints.get(pathIndex + 2).getLatitude();
@@ -995,17 +998,21 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     if(nextLat == beacon_Latitude && nextLon == beacon_Longitude){
                         pathIndex += 2;
                         if(passPoints.size() > pathIndex+2) {
-                            nextLat = passPoints.get(pathIndex + 2).getLatitude();
-                            nextLon = passPoints.get(pathIndex + 2).getLongitude();
-                            DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
-                        }else {
-                            nextLat = passPoints.get(passPoints.size() - 1).getLatitude();
-                            nextLon = passPoints.get(passPoints.size() - 1).getLongitude();
-                            DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                            tempLat = passPoints.get(pathIndex + 2).getLatitude();
+                            tempLon = passPoints.get(pathIndex + 2).getLongitude();
+                            DrawSurfaceView.props = new Point(tempLat, tempLon, MainActivity.building_n);
                         }
-                        }else{
+                        else {
+                            tempLat = passPoints.get(passPoints.size() - 1).getLatitude();
+                            tempLon = passPoints.get(passPoints.size() - 1).getLongitude();
+                            DrawSurfaceView.props = new Point(tempLat, tempLon, MainActivity.building_n);
+                        }
+                    }
+                    else{
                         //처음 출발할때 다음 위치
                         DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                        Log.i("next 1 hop " ,""+ Double.toString(nextLat) + "/" + Double.toString(nextLon));
+                        Log.i("next pass !!!", "" + pathIndex + " -> " + passPoints.size());
                     }
                 }
                 else {
