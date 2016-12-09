@@ -701,7 +701,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     //건물 입구 근처에 도착하면 안내문구를 띄워주는 함수
     public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
-        if((dist = calDistance(n_Latitude, n_Longitude)) <= 1000 && inner_F == 0 && checkbuilding == 0){
+        if((dist = calDistance(n_Latitude, n_Longitude)) <= 30 && inner_F == 0 && checkbuilding == 0){
             checkbuilding = 1;
             //RECOServiceConnectListener 인터페이스를 설정하고, RECOBeaconManager의 인스턴스를 RECOBeaconService와 연결합니다.
             mRecoManager = RECOBeaconManager.getInstance(getApplicationContext(), NextActivity.mScanRecoOnly, NextActivity.mEnableBackgroundTimeout);
