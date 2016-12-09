@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false" >
+
+    <item android:drawable="@drawable/leftarrow" android:duration="500" />
+    <item android:drawable="@drawable/forwardarrow" android:duration="500" />
+    <item android:drawable="@drawable/rightarrow" android:duration="500" />
+
+</animation-list>

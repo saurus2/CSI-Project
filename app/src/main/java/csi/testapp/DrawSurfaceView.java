@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /*
@@ -56,6 +57,7 @@ public class DrawSurfaceView extends View {
 		mlSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.leftarrow);
 		mrSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.rightarrow);
 		mBlips = BitmapFactory.decodeResource(context.getResources(), R.drawable.blip);
+
 	}
 
 	@Override
@@ -200,4 +202,5 @@ public class DrawSurfaceView extends View {
 		double result = Math.toDegrees(Math.atan2(y, x));
 		return (result+360.0d)%360.0d;
 	}
+
 }

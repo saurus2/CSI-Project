@@ -796,6 +796,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 }
                 Compass.mDrawView.invalidate();
 
+
                 //경로가 찾아져있다면 중간지점들을 저장하고있는 passPoint 변수의 사이즈가 0이 아닐 것이다
                 if(passPoints.size() != 0 && passPoints.size() > pathIndex) {
 
@@ -1046,6 +1047,9 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     Intent intent = new Intent(MainActivity.this, AlertEnd.class);
                     startActivity(intent);
                 }
+
+                //뷰 갱신
+                Compass.mDrawView.invalidate();
 
                 //테이블의 1,2번째 칼럼 위도 경도를 실수로 저장함
                 Log.i("수행", "방번호 :" + cur.getString(0));

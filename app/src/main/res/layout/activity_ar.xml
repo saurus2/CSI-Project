@@ -31,6 +31,8 @@
             android:layout_gravity="top"
             />
 
+
+
         <ImageButton
             android:id="@+id/popup"
             android:layout_width="40dp"
@@ -43,8 +45,23 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true" />
 
-    </FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/transparent"
+            android:layout_gravity="bottom"
 
+            android:layout_marginBottom="0dp">
+
+            <ImageView
+                android:id="@+id/imgView"
+                android:layout_centerHorizontal="true"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+
+    </FrameLayout>
 
 </LinearLayout>
 

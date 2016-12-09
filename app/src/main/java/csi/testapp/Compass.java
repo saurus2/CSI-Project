@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -17,6 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -45,6 +47,12 @@ public class Compass extends Activity {
     private SensorManager mSensorManager;
     private Sensor mSensor;
     public static DrawSurfaceView mDrawView;
+
+
+    // 이미지 움직이는거 테스트
+    private AnimationDrawable frameAnimation;
+    private ImageView view;
+
 
     private final SensorEventListener mListener = new SensorEventListener() {
         public void onSensorChanged(SensorEvent event) {
@@ -84,7 +92,16 @@ public class Compass extends Activity {
         setContentView(R.layout.activity_ar);
         mDrawView = (DrawSurfaceView) findViewById(R.id.drawSurfaceView);
 
+        // 컨트롤 ImageView 객체를 가져온다
+        view = (ImageView) findViewById(R.id.imgView);
+
+        // animation_list.xml 를 ImageView 백그라운드에 셋팅한다
+        view.setBackgroundResource(R.drawable.animation);
+
+        // 이미지를 동작시키기위해  AnimationDrawable 객체를 가져온다.
+        frameAnimation = (AnimationDrawable) view.getBackground();
     }
+
 
     public void endAR(View button) {
         finish();
@@ -113,6 +130,18 @@ public class Compass extends Activity {
         MainActivity.returnARmode();
 
         super.finish();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            // 어플에 포커스가 갈때 시작된다
+            frameAnimation.start();
+        } else {
+            // 어플에 포커스를 떠나면 종료한다
+            frameAnimation.stop();
+        }
     }
 }
 
