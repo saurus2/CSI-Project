@@ -48,10 +48,10 @@ public class Loading extends Activity{
             while(check == 0) {
 
                 Log.v("doin","doin");
-                if(MainActivity.entrance.equals("1"))
+                if(MainActivity.inner_F == 1)
                     break;
                 //entrance가 1로 변하면 while 문이 끝나도록 설정함
-                Log.v("beacon",MainActivity.entrance);
+                Log.v("beacon","" + MainActivity.inner_F);
             }
 
             //찾았다는 것이므로, 실내 경로 안내로 변경한다

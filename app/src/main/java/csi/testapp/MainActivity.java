@@ -157,8 +157,8 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     static TextView distance;
     static ImageView guide;
 
-    //내부 들어갈때 설정되는 플래그
-    static int inner_F = 1;
+    //내부 들어갈때 설정되는 플래그. 0이면 외부, 1이면 내부이다
+    static int inner_F = 0;
 
     //테스트용 메시지 변수
     public static String msg = "";
@@ -187,8 +187,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
     //현재 층수 나타내는 변수
     public static String flo = "1";
-    //건물에 들어갔는지를 표시하는 플래그
-    public static String entrance = "0";
 
     //빌딩 경고창 한번만 뜨게 하는 플래그
     public static int checkbuilding = 0;
@@ -786,7 +784,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
             }
 
             try {
-                if(entrance.equals("1")) {
+                if(inner_F == 1) {
                     //처음 건물안에 들어갔을때
                     Compass.mDrawView.setMyLocation(beacon_Latitude, beacon_Longitude);
                     mMapView.setZoomLevel(20);
@@ -826,7 +824,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     if(nextPointDistance < 10) {
 
                         //실외일경우에만 gps정보로 array를 조정한다
-                        if(entrance.equals("0")) {
+                        if(inner_F == 0) {
                             pathIndex += 2;
                         }
 
@@ -844,7 +842,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     //다음 목적지와의 거리가 10미터 이상이라면 그 지점을 다음 중간목적지로 설정한다
                     else {
                         //실외일경우에만 gps정보로 array를 조정한다
-                        if(entrance.equals("0")) {
+                        if(inner_F == 0) {
                             DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
                         }
                         remainDistanceMsg = "\nRemainDistance: " + ((int)remainDistance + (int)nextPointDistance) + "m";
@@ -916,7 +914,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
             numStr2 = String.valueOf(reco.getMinor());
             Log.v("FUCK", numStr2);
             //비콘을 하나씩 불러오는 함수
-            if (a != 0 && entrance.equals("0")) { //아직 입장 안했을때
+            if (a != 0 && inner_F == 0) { //아직 입장 안했을때
                 for (int b = 0; b < a; b++) {
                     reco = ranged.get(b);
                     int beaconMinor = reco.getMinor();
@@ -924,12 +922,12 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     if (beaconMinor == 8846 && dis < 0.07) {
                         String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
                         test.setText(msg1);
-                        entrance = "1";
+                        inner_F = 1;
                         detectBeacon(8846);
                     }
 
                 }
-            } else if (a != 0 && entrance.equals("1")) {
+            } else if (a != 0 && inner_F == 1) {
                 if (a != 0) { // 입장하고 난뒤
                     //비콘을 하나씩 불러오는 함수
                     for (int b = 0; b < a; b++) {
@@ -1034,7 +1032,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 //계단일 때
                 if(classNo == 8847 && onetime == 0) {
                     onetime = 1;
-                    Log.i("enterance!!!", "" + entrance);
+                    Log.i("enterance!!!", "" + inner_F);
                     Intent intent = new Intent(MainActivity.this, AlertStair.class);
                     startActivity(intent);
                 }
