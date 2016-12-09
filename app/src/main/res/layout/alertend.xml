@@ -22,7 +22,7 @@
             android:textSize="40sp"/>
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="도칙하셨습니다!"
+            android:text="도착하셨습니다!"
             android:gravity="center"
             android:textColor="@android:color/black"
             android:textSize="20sp"/>

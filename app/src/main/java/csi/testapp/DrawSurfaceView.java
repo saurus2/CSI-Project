@@ -38,6 +38,11 @@ public class DrawSurfaceView extends View {
 	private Bitmap mfSpots, mlSpots, mrSpots, mBlips;
 	private Bitmap mRadar;
 
+	//목표물이 좌측, 정면, 우측 중 어디에 있는지를 나타내는 플래그
+	//0이면 좌측, 1이면 정면, 2이면 우측을 나타낸다
+	public static int directionFlag = 1;
+
+	//AR에서의 자신 위치를 지정하는 변수
 	public static Point props = new Point(0,0,"null");
 
 	public DrawSurfaceView(Context c, Paint paint) {
@@ -119,21 +124,25 @@ public class DrawSurfaceView extends View {
 			if (angle <= 45) {
 				u.x = (float) ((screenWidth / 2) + xPos);
 				canvas.drawBitmap(fspot, u.x, u.y, mPaint); //camera spot
+				directionFlag = 1;
 			}
 			
 			else if (angle >= 315) {
 				u.x = (float) ((screenWidth / 2) - ((screenWidth * 4) - xPos));
 				canvas.drawBitmap(fspot, u.x, u.y, mPaint); //camera spot
+				directionFlag = 1;
 			}
 
 			else if (angle > 45 && angle <= 180) {
 				u.x = (float) ((screenWidth / 90d) * 80);
 				canvas.drawBitmap(rspot, u.x, u.y, mPaint); //camera spot
+				directionFlag = 2;
 			}
 
 			else if (angle > 180 && angle < 315) {
 				u.x = (float) (screenWidth / 90d);
 				canvas.drawBitmap(lspot, u.x, u.y, mPaint); //camera spot
+				directionFlag = 0;
 			}
 			
 			u.y = (float)screenHeight/2 + spotCentreY;

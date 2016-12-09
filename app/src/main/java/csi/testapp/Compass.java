@@ -61,6 +61,15 @@ public class Compass extends Activity {
             if (mDrawView != null) {
                 mDrawView.setOffset(event.values[0]);
                 mDrawView.invalidate();
+
+                if(DrawSurfaceView.directionFlag == 1) {
+                    frameAnimation.start();
+                    view.setVisibility(View.VISIBLE);
+                }
+                else {
+                    frameAnimation.stop();
+                    view.setVisibility(View.INVISIBLE);
+                }
             }
         }
 
