@@ -3,7 +3,8 @@
     android:oneshot="false" >
 
     <item android:drawable="@drawable/leftarrow" android:duration="500" />
-    <item android:drawable="@drawable/forwardarrow" android:duration="500" />
+    <item android:drawable="@drawable/forwardleft" android:duration="500" />
+    <item android:drawable="@drawable/forwardright" android:duration="500" />
     <item android:drawable="@drawable/rightarrow" android:duration="500" />
 
 </animation-list>

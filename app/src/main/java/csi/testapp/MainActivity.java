@@ -418,7 +418,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         bottom.bringToFront();
         menu.bringToFront();
         current.bringToFront();
-//        chbutton.bringToFront();
         guide.bringToFront();
         arButton.bringToFront();
         distance.bringToFront();
@@ -450,11 +449,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
             Intent intent = new Intent(MainActivity.this, Compass.class);
             startActivity(intent);
 
-//            ViewGroup.LayoutParams params = mMapView.getLayoutParams();
-//            params.width = ActionBar.LayoutParams.MATCH_PARENT;
-//            params.height = 700;
-//            mMapView.setLayoutParams(params);
-
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.MATCH_PARENT, 2.0f);
@@ -467,10 +461,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
     public static void returnARmode()
     {
-//        ViewGroup.LayoutParams params = mMapView.getLayoutParams();
-//        params.height = ActionBar.LayoutParams.MATCH_PARENT;
-//        mMapView.setLayoutParams(params);
-
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 0.0f);
@@ -692,7 +682,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
         asyncDialog.show();
     }
-
 
 
 

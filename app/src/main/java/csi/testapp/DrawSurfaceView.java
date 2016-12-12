@@ -6,11 +6,14 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.AnimationDrawable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 
 /*
  * Portions (c) 2009 Google, Inc.
@@ -35,7 +38,7 @@ public class DrawSurfaceView extends View {
 	Paint mPaint = new Paint();
 	private double OFFSET = 0d;
 	private double screenWidth, screenHeight = 0d;
-	private Bitmap mfSpots, mlSpots, mrSpots, mBlips;
+	private Bitmap mflSpots, mfrSpots, mlSpots, mrSpots, mBlips;
 	private Bitmap mRadar;
 
 	//목표물이 좌측, 정면, 우측 중 어디에 있는지를 나타내는 플래그
@@ -58,7 +61,8 @@ public class DrawSurfaceView extends View {
 		
 		mRadar = BitmapFactory.decodeResource(context.getResources(), R.drawable.radar);
 
-		mfSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.forwardarrow);
+		mflSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.forwardleft);
+		mfrSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.forwardright);
 		mlSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.leftarrow);
 		mrSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.rightarrow);
 		mBlips = BitmapFactory.decodeResource(context.getResources(), R.drawable.blip);
@@ -83,13 +87,14 @@ public class DrawSurfaceView extends View {
 
 		for (int i = 0; i < 1; i++) {
 			Bitmap blip = mBlips;//[i];
-			Bitmap fspot = mfSpots;//[i];
+			Bitmap flspot = mflSpots;//[i];
+			Bitmap frspot = mfrSpots;
 			Bitmap lspot = mlSpots;
 			Bitmap rspot = mrSpots;
 			Point u = props;//.get(i);
 			double dist = distInMetres(me, u);
 			
-			if (blip == null || fspot == null)
+			if (blip == null || flspot == null)
 				continue;
 			
 			if(dist > 70)
@@ -117,30 +122,34 @@ public class DrawSurfaceView extends View {
 			canvas.drawBitmap(blip, (radarCentreX + (int) xPos), (radarCentreY - (int) yPos), mPaint); //radar blip
 			
 			//reuse xPos
-			int spotCentreX = fspot.getWidth() / 2;
-			int spotCentreY = fspot.getHeight() / 2;
+			int spotCentreX = flspot.getWidth() / 2;
+			int spotCentreY = flspot.getHeight() / 2;
 			xPos = posInPx - spotCentreX;
+
+			u.y = (float)screenHeight/5 + spotCentreY;
 			
 			if (angle <= 45) {
 				u.x = (float) ((screenWidth / 2) + xPos);
-				canvas.drawBitmap(fspot, u.x, u.y, mPaint); //camera spot
+				canvas.drawBitmap(frspot, u.x, u.y, mPaint); //camera spot
 				directionFlag = 1;
 			}
 			
 			else if (angle >= 315) {
 				u.x = (float) ((screenWidth / 2) - ((screenWidth * 4) - xPos));
-				canvas.drawBitmap(fspot, u.x, u.y, mPaint); //camera spot
+				canvas.drawBitmap(flspot, u.x, u.y, mPaint); //camera spot
 				directionFlag = 1;
 			}
 
 			else if (angle > 45 && angle <= 180) {
 				u.x = (float) ((screenWidth / 90d) * 80);
+				u.y = (float)screenHeight/3 + spotCentreY;
 				canvas.drawBitmap(rspot, u.x, u.y, mPaint); //camera spot
 				directionFlag = 2;
 			}
 
 			else if (angle > 180 && angle < 315) {
 				u.x = (float) (screenWidth / 90d);
+				u.y = (float)screenHeight/3 + spotCentreY;
 				canvas.drawBitmap(lspot, u.x, u.y, mPaint); //camera spot
 				directionFlag = 0;
 			}
@@ -211,5 +220,4 @@ public class DrawSurfaceView extends View {
 		double result = Math.toDegrees(Math.atan2(y, x));
 		return (result+360.0d)%360.0d;
 	}
-
 }
