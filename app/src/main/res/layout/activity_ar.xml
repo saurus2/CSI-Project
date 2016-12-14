@@ -38,7 +38,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:onClick="endAR"
-            android:background="@drawable/listbutton"
+            android:background="@drawable/endar"
             android:layout_marginBottom="5dp"
             android:layout_marginEnd="10dp"
             android:layout_gravity="right|bottom"

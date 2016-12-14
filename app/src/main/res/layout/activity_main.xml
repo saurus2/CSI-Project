@@ -77,7 +77,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/rightarrow"
+            app:srcCompat="@drawable/click"
             android:id="@+id/guide"
             android:layout_alignTop="@+id/popup"
             android:layout_toStartOf="@+id/popup"

@@ -38,7 +38,7 @@ public class DrawSurfaceView extends View {
 	Paint mPaint = new Paint();
 	private double OFFSET = 0d;
 	private double screenWidth, screenHeight = 0d;
-	private Bitmap mflSpots, mfrSpots, mlSpots, mrSpots, mBlips;
+	private Bitmap mfSpot1, mfSpot2, mfSpot3, mfSpot4, mfSpot5, turnleft, turnright, mBlips;
 	private Bitmap mRadar;
 
 	//목표물이 좌측, 정면, 우측 중 어디에 있는지를 나타내는 플래그
@@ -61,10 +61,13 @@ public class DrawSurfaceView extends View {
 		
 		mRadar = BitmapFactory.decodeResource(context.getResources(), R.drawable.radar);
 
-		mflSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.forwardleft);
-		mfrSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.forwardright);
-		mlSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.leftarrow);
-		mrSpots = BitmapFactory.decodeResource(context.getResources(), R.drawable.rightarrow);
+		mfSpot1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.forward1);
+		mfSpot2 = BitmapFactory.decodeResource(context.getResources(), R.drawable.forward2);
+		mfSpot3 = BitmapFactory.decodeResource(context.getResources(), R.drawable.forward3);
+		mfSpot4 = BitmapFactory.decodeResource(context.getResources(), R.drawable.forward4);
+		mfSpot5 = BitmapFactory.decodeResource(context.getResources(), R.drawable.forward5);
+		turnleft = BitmapFactory.decodeResource(context.getResources(), R.drawable.turnleft);
+		turnright = BitmapFactory.decodeResource(context.getResources(), R.drawable.turnright);
 		mBlips = BitmapFactory.decodeResource(context.getResources(), R.drawable.blip);
 
 	}
@@ -87,14 +90,17 @@ public class DrawSurfaceView extends View {
 
 		for (int i = 0; i < 1; i++) {
 			Bitmap blip = mBlips;//[i];
-			Bitmap flspot = mflSpots;//[i];
-			Bitmap frspot = mfrSpots;
-			Bitmap lspot = mlSpots;
-			Bitmap rspot = mrSpots;
+			Bitmap fspot1 = mfSpot1;
+			Bitmap fspot2 = mfSpot2;
+			Bitmap fspot3 = mfSpot3;
+			Bitmap fspot4 = mfSpot4;
+			Bitmap fspot5 = mfSpot5;
+			Bitmap lspot = turnleft;
+			Bitmap rspot = turnright;
 			Point u = props;//.get(i);
 			double dist = distInMetres(me, u);
 			
-			if (blip == null || flspot == null)
+			if (blip == null || fspot1 == null)
 				continue;
 			
 			if(dist > 70)
@@ -122,35 +128,56 @@ public class DrawSurfaceView extends View {
 			canvas.drawBitmap(blip, (radarCentreX + (int) xPos), (radarCentreY - (int) yPos), mPaint); //radar blip
 			
 			//reuse xPos
-			int spotCentreX = flspot.getWidth() / 2;
-			int spotCentreY = flspot.getHeight() / 2;
+			int spotCentreX = fspot3.getWidth() / 2;
+			int spotCentreY = fspot3.getHeight() / 2;
 			xPos = posInPx - spotCentreX;
 
 			u.y = (float)screenHeight/5 + spotCentreY;
 			
-			if (angle <= 45) {
+			if (angle <= 5) {
 				u.x = (float) ((screenWidth / 2) + xPos);
-				canvas.drawBitmap(frspot, u.x, u.y, mPaint); //camera spot
+				canvas.drawBitmap(fspot3, u.x, u.y, mPaint); //camera spot
 				directionFlag = 1;
 			}
-			
-			else if (angle >= 315) {
+			else if (angle < 335 &&	angle >= 315) {
 				u.x = (float) ((screenWidth / 2) - ((screenWidth * 4) - xPos));
-				canvas.drawBitmap(flspot, u.x, u.y, mPaint); //camera spot
+				canvas.drawBitmap(fspot1, u.x, u.y, mPaint); //camera spot
+				directionFlag = 1;
+			}
+			else if (angle <= 25 &&	angle > 5) {
+				u.x = (float) ((screenWidth / 2) + xPos);
+				canvas.drawBitmap(fspot4, u.x, u.y, mPaint); //camera spot
+				directionFlag = 1;
+			}
+			else if (angle <= 45 &&	angle > 25) {
+				u.x = (float) ((screenWidth / 2) + xPos);
+				canvas.drawBitmap(fspot5, u.x, u.y, mPaint); //camera spot
+				directionFlag = 1;
+			}
+			else if (angle >= 355) {
+				u.x = (float) ((screenWidth / 2) - ((screenWidth * 4) - xPos));
+				canvas.drawBitmap(fspot3, u.x, u.y, mPaint); //camera spot
+				directionFlag = 1;
+			}
+			else if (angle < 355 &&	angle >= 335) {
+				u.x = (float) ((screenWidth / 2) - ((screenWidth * 4) - xPos));
+				canvas.drawBitmap(fspot2, u.x, u.y, mPaint); //camera spot
 				directionFlag = 1;
 			}
 
+
+
 			else if (angle > 45 && angle <= 180) {
-				u.x = (float) ((screenWidth / 90d) * 80);
-				u.y = (float)screenHeight/3 + spotCentreY;
-				canvas.drawBitmap(rspot, u.x, u.y, mPaint); //camera spot
+				u.x = (float) ((screenWidth / 90d) * 50);
+				u.y = (float) spotCentreY;
+				canvas.drawBitmap(lspot, u.x, u.y, mPaint); //camera spot
 				directionFlag = 2;
 			}
 
 			else if (angle > 180 && angle < 315) {
 				u.x = (float) (screenWidth / 90d);
-				u.y = (float)screenHeight/3 + spotCentreY;
-				canvas.drawBitmap(lspot, u.x, u.y, mPaint); //camera spot
+				u.y = (float) spotCentreY;
+				canvas.drawBitmap(rspot, u.x, u.y, mPaint); //camera spot
 				directionFlag = 0;
 			}
 			

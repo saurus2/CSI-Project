@@ -4,7 +4,7 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout android:layout_width="300dip"
-        android:layout_height="200dip"
+        android:layout_height="300dip"
         android:orientation="vertical"
         android:background="@android:color/darker_gray">
         <TextView android:id="@+id/tv_title"
@@ -25,12 +25,19 @@
             android:text="도착하셨습니다!"
             android:gravity="center"
             android:textColor="@android:color/black"
+            android:layout_marginBottom="30dp"
             android:textSize="20sp"/>
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/endchick"/>
         <LinearLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:layout_marginTop="40dip">
+            android:layout_marginTop="20dip">
             <Button android:id="@+id/bt_ok"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
