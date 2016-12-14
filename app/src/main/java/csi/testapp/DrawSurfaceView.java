@@ -165,8 +165,6 @@ public class DrawSurfaceView extends View {
 				directionFlag = 1;
 			}
 
-
-
 			else if (angle > 45 && angle <= 180) {
 				u.x = (float) screenWidth - lspot.getWidth();
 				u.y = (float) screenHeight/10 + spotCentreY;
@@ -180,17 +178,21 @@ public class DrawSurfaceView extends View {
 				canvas.drawBitmap(lspot, u.x, u.y, mPaint); //camera spot
 				directionFlag = 0;
 			}
-			
-			u.y = (float)screenHeight/2 + spotCentreY;
-			canvas.drawText(u.description, u.x, u.y, mPaint); //text
 
-			// 테스트용 문구 표시
-			float y = u.y;
-			for (String line: MainActivity.msg.split("\n")) {
-				canvas.drawText(line, u.x - (float)(screenWidth / 90d)*20, y- 3 * spotCentreY, mPaint);
-				y += mPaint.descent() - mPaint.ascent();
+			if(directionFlag == 1) {
+				u.x += spotCentreX - u.description.length()*50 / 2;
+				u.y = (float) screenHeight / 2 + spotCentreY;
+				canvas.drawText(u.description, u.x, u.y, mPaint); //text
 			}
 
+			// 테스트용 문구 표시
+//			float y = u.y;
+//			for (String line: MainActivity.msg.split("\n")) {
+//				canvas.drawText(line, u.x - (float)(screenWidth / 90d)*20, y- 3 * spotCentreY, mPaint);
+//				y += mPaint.descent() - mPaint.ascent();
+//			}
+
+			//남은 거리 표시
 			Paint rPaint = new Paint();
 			rPaint.setColor(Color.WHITE);
 			rPaint.setTextSize(50);
