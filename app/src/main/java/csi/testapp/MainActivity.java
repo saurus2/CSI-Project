@@ -94,6 +94,16 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     public static final String COPY2DATABASE_NAME = "ClassesDB.db";
     public static SQLiteDatabase db;
 
+    //클래스와 계단을 저장할 배열 클래스
+    public static class geolocation{
+        int geoClassNo; //강의실 호수와 비콘 minor id
+        double geoLangitude; //위도
+        double geoLongitude; //경도
+        int geoFloor;//층수
+        int stairNo;//계단이면 1 아니면 0
+    }
+    public static geolocation[] geolocation= new geolocation[100];
+
     //사용자에게 입력받는 데이터들
     public static String roomnumber;
 
@@ -573,8 +583,11 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         passIndoor.add(point5_2);
     }
 
+
+
     public static void mainSearchClass() {
         //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
+        //강의실을 검색해야지만 실내의 비콘과 클래스 정보를 불러옴
 
         try {
 
@@ -607,6 +620,37 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 Log.i("수행", "경도 :" + MainActivity.desLangitute);
                 Log.i("수행", "위도 :" + MainActivity.desLongitute);
             }
+
+
+            //배열에 클래스와 계단 정보 받기
+            String dsql = "SELECT * From Classes";
+            Cursor cur = MainActivity.db.rawQuery(dsql, null);
+            cur.moveToFirst();//처음 행으로 가기
+            cur.moveToLast();//마지막 행으로 이동
+            int length = cur.getCount(); // 행의 갯수
+            cur.moveToFirst(); // 처음행으로 이동
+            for(int i = 0; i < length-1; i++){ // 처음행 부터 마지막 행 -1 까지 배열 클래스에 붙여넣기
+                geolocation[i] = new geolocation();
+                geolocation[i].geoClassNo = Integer.parseInt(cur.getString(0));
+                geolocation[i].geoLangitude = Double.parseDouble(cur.getString(1));
+                geolocation[i].geoLongitude = Double.parseDouble(cur.getString(2));
+                geolocation[i].geoFloor = Integer.parseInt(cur.getString(3));
+                if(cur.getString(4).equals("1")) //계단 값이 1이면 클래스의 계단값 1로
+                    geolocation[i].stairNo = Integer.parseInt(cur.getString(4));
+                else
+                    geolocation[i].stairNo = 0;
+                cur.moveToNext();// 다음행으로 이동
+            }
+            cur.moveToFirst();
+            for(int i = 0; i < length-1; i++){
+                Log.i("배열", "방번호 :" + geolocation[i].geoClassNo);
+                Log.i("배열", "위도 :" + geolocation[i].geoLangitude);
+                Log.i("배열", "경도 :" + geolocation[i].geoLongitude);
+                Log.i("배열", "층 :" + geolocation[i].geoFloor);
+                Log.i("배열", "계단 :" + geolocation[i].stairNo);
+            }
+            //커서를 데이터베이스의 0,0 즉 맨 처음 부분에 가져감
+
         } catch (Exception e) {
             Log.i("_)", "" + e.toString());
         }
