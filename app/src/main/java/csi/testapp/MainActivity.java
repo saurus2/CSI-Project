@@ -226,7 +226,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         menu = (ImageButton) findViewById(R.id.popup);
         current = (ImageButton) findViewById(R.id.current);
         bottom = (ImageView) findViewById(R.id.bottomBar);
-        distance = (TextView) findViewById(R.id.distance);
         guide = (ImageView) findViewById(R.id.guide);
 
     }
@@ -942,7 +941,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
 
     @Override
     public void didRangeBeaconsInRegion(Collection<RECOBeacon> recoBeacons, RECOBeaconRegion recoRegion) {
-        TextView test = (TextView) findViewById(R.id.distance);
         Log.i("RECORangingActivity", "didRangeBeaconsInRegion() region: " + recoRegion.getUniqueIdentifier() + ", number of beacons ranged: " + recoBeacons.size());
         ranged = new ArrayList<RECOBeacon>(recoBeacons);
         int a = ranged.size();
@@ -960,7 +958,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     double dis = reco.getAccuracy();
                     if (beaconMinor == 8846 && dis < 0.07) {
                         String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
-                        test.setText(msg1);
                         inner_F = 1;
                         detectBeacon(8846);
                     }
@@ -974,7 +971,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                         int beaconMinor = reco.getMinor();
                         String msg1 = "Entered : " + reco.getMinor() + "\n" + String.format("%.2f", reco.getAccuracy());
 //                    Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
-                        test.setText(msg1);
                         detectBeacon(beaconMinor);
                     }
                 }
@@ -1038,17 +1034,17 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                         if(passPoints.size() > pathIndex+2) {
                             tempLat = passPoints.get(pathIndex + 2).getLatitude();
                             tempLon = passPoints.get(pathIndex + 2).getLongitude();
-                            DrawSurfaceView.props = new Point(tempLat, tempLon, MainActivity.building_n);
+                            DrawSurfaceView.props = new Point(tempLat, tempLon, Integer.toString(classNo));
                         }
                         else {
                             tempLat = passPoints.get(passPoints.size() - 1).getLatitude();
                             tempLon = passPoints.get(passPoints.size() - 1).getLongitude();
-                            DrawSurfaceView.props = new Point(tempLat, tempLon, MainActivity.building_n);
+                            DrawSurfaceView.props = new Point(tempLat, tempLon, Integer.toString(classNo));
                         }
                     }
                     else{
                         //처음 출발할때 다음 위치
-                        DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                        DrawSurfaceView.props = new Point(nextLat, nextLon, Integer.toString(classNo));
                         Log.i("next 1 hop " ,""+ Double.toString(nextLat) + "/" + Double.toString(nextLon));
                         Log.i("next pass !!!", "" + pathIndex + " -> " + passPoints.size());
                     }
@@ -1061,7 +1057,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                     //현재 잡히는 비콘이 다음 지점이라면 해당 지점에 도착한것이므로 그 다음 지점을 찍는다
                     if(nextLat == beacon_Latitude && nextLon == beacon_Longitude){
                         pathIndex = passPoints.size() - 1;
-                        DrawSurfaceView.props = new Point(nextLat, nextLon, MainActivity.building_n);
+                        DrawSurfaceView.props = new Point(nextLat, nextLon, Integer.toString(classNo));
                     }
                 }
 
