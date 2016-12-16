@@ -534,7 +534,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         alert.setTitle("강의실 번호를 입력해주세요");
-        indoorPassInit();
         //강의실 안내할 패스를 생성함
         // Set an EditText view to get user input
         final EditText input = new EditText(this);
@@ -558,35 +557,35 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         alert.show();
     }
 
-    public void indoorPassInit(){
-        TMapPoint point1 = new TMapPoint(37.451348, 126.653993);
-        TMapPoint point1_2 = new TMapPoint(37.451348, 126.653993);
-        TMapPoint point2 = new TMapPoint(37.450939, 126.653733);
-        TMapPoint point2_2 = new TMapPoint(37.450939, 126.653733);
-        TMapPoint point3 = new TMapPoint(37.450939, 126.653733);
-        TMapPoint point3_2 = new TMapPoint(37.450939, 126.653733);
-        TMapPoint point4 = new TMapPoint(37.451348, 126.653993);
-        TMapPoint point4_2 = new TMapPoint(37.451348, 126.653993);
-        TMapPoint point5 = new TMapPoint(37.451569, 126.653521);
-        TMapPoint point5_2= new TMapPoint(37.451569, 126.653521);
-
-        passIndoor.clear();
-        passIndoor.add(point1);
-        passIndoor.add(point1_2);
-        passIndoor.add(point2);
-        passIndoor.add(point2_2);
-        passIndoor.add(point3);
-        passIndoor.add(point3_2);
-        passIndoor.add(point4);
-        passIndoor.add(point4_2);
-        passIndoor.add(point5);
-        passIndoor.add(point5_2);
-    }
-
+//    //테스트용 코드
+//    public void indoorPassInit(){
+//        TMapPoint point1 = new TMapPoint(37.451348, 126.653993);
+//        TMapPoint point1_2 = new TMapPoint(37.451348, 126.653993);
+//        TMapPoint point2 = new TMapPoint(37.450939, 126.653733);
+//        TMapPoint point2_2 = new TMapPoint(37.450939, 126.653733);
+//        TMapPoint point3 = new TMapPoint(37.450939, 126.653733);
+//        TMapPoint point3_2 = new TMapPoint(37.450939, 126.653733);
+//        TMapPoint point4 = new TMapPoint(37.451348, 126.653993);
+//        TMapPoint point4_2 = new TMapPoint(37.451348, 126.653993);
+//        TMapPoint point5 = new TMapPoint(37.451569, 126.653521);
+//        TMapPoint point5_2= new TMapPoint(37.451569, 126.653521);
+//
+//        passIndoor.clear();
+//        passIndoor.add(point1);
+//        passIndoor.add(point1_2);
+//        passIndoor.add(point2);
+//        passIndoor.add(point2_2);
+//        passIndoor.add(point3);
+//        passIndoor.add(point3_2);
+//        passIndoor.add(point4);
+//        passIndoor.add(point4_2);
+//        passIndoor.add(point5);
+//        passIndoor.add(point5_2);
+//    }
 
 
     public static void mainSearchClass() {
-        //오른쪽에 있는 버튼을 클릭했을때 불리는 콜백함수
+        //오른쪽에 있는 버튼을 클릭했을때 불리는 함수
         //강의실을 검색해야지만 실내의 비콘과 클래스 정보를 불러옴
 
         try {
@@ -642,6 +641,15 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
                 cur.moveToNext();// 다음행으로 이동
             }
             cur.moveToFirst();
+
+            // 경로 등록
+            passIndoor.clear();
+            for(int i = 3; i < length-1; i++) {
+                TMapPoint point = new TMapPoint(geolocation[i].geoLangitude, geolocation[i].geoLongitude);
+                passIndoor.add(point);
+                passIndoor.add(point);
+            }
+
             for(int i = 0; i < length-1; i++){
                 Log.i("배열", "방번호 :" + geolocation[i].geoClassNo);
                 Log.i("배열", "위도 :" + geolocation[i].geoLangitude);
@@ -656,8 +664,6 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
         }
 
     }
-
-
 
 
 
@@ -734,7 +740,7 @@ public class MainActivity extends AppCompatActivity implements RECOServiceConnec
     //건물 입구 근처에 도착하면 안내문구를 띄워주는 함수
     public void alertBuilding(final double n_Latitude, final double n_Longitude){
         double dist = 0;
-        if((dist = calDistance(n_Latitude, n_Longitude)) <= 30 && inner_F == 0 && checkbuilding == 0){
+        if((dist = calDistance(n_Latitude, n_Longitude)) <= 3000 && inner_F == 0 && checkbuilding == 0){
             checkbuilding = 1;
             //RECOServiceConnectListener 인터페이스를 설정하고, RECOBeaconManager의 인스턴스를 RECOBeaconService와 연결합니다.
             mRecoManager = RECOBeaconManager.getInstance(getApplicationContext(), NextActivity.mScanRecoOnly, NextActivity.mEnableBackgroundTimeout);
